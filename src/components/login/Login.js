@@ -7,11 +7,17 @@ function Login() {
                 <div className={"top"}>
                     <p>Login</p>
                 </div>
-                <div className={"bottom_thing"}>
-                    <label>Username/E-mail</label>
-                    <input type={"text"}/>
-                    <label>Password</label>
-                    <input type={"password"}/>
+                <div className={"login_details"}>
+                    <div className={"login_detail"}>
+                        <label>Username/E-mail</label>
+                        <input type={"text"}/>
+                    </div>
+                    <div className={"login_detail"}>
+                        <label>Password</label>
+                        <input type={"password"}/>
+                    </div>
+
+                    <input className={"submitButton"} type={"submit"} value={"Log in"}/>
                 </div>
             </div>
         </div>

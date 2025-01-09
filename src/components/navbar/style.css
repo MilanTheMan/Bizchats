@@ -1,0 +1,9 @@
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: dodgerblue;
+    ul{
+        list-style:none;
+        display: flex;
+    }
+}
