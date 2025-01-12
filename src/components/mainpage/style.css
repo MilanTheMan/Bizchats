@@ -1,0 +1,16 @@
+#main_page{
+    .class_list{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px; 
+
+        .listed_class{
+            img{
+                width: 200px;
+                height: 150px;
+            }
+        }
+    }
+}

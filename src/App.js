@@ -9,7 +9,10 @@ import Login from "./components/login/Login";
 import "./components/login/style.css";
 
 import Navbar from "./components/navbar/Navbar";
-import "./components/navbar/style.css"
+import "./components/navbar/style.css";
+
+import Mainpage from './components/mainpage/Mainpage';
+import "./components/mainpage/style.css";
 
 
 function App() {
@@ -19,6 +22,8 @@ function App() {
             <Navbar/>
             <Routes>
                 <Route path="/login" element={<Login/>} />
+
+                <Route path="/main_page" element={<Mainpage/>} />
             </Routes>
         </BrowserRouter>
 

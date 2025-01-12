@@ -4,10 +4,6 @@ import {Outlet, Link} from 'react-router-dom';
 const Navbar = () => {
 
     const ref = useRef();
-    useEffect(()=>{
-        ref.current.style.width = "547px";
-        ref.current.style.width = "154px";
-    });
 
     return(
         <nav id={"navbar"}>

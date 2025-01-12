@@ -2,6 +2,10 @@
     display: flex;
     justify-content: space-between;
     background-color: dodgerblue;
+    .bizchats_logo{
+        
+    }
+    
     ul{
         list-style:none;
         display: flex;
