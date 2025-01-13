@@ -2,12 +2,19 @@
     display: flex;
     justify-content: space-between;
     background-color: dodgerblue;
+    align-items: center;
+
     .bizchats_logo{
-        
+        height: 50px;
     }
     
     ul{
         list-style:none;
         display: flex;
+        li{
+            a{ /*it shows 'Link' in the js but it's supposed to be an anchor tag here*/
+                color: white;
+            }
+        }
     }
 }

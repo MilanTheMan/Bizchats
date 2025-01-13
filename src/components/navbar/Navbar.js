@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
+import Bizchats_logo from "../../img/bizchats_logo.png"
 
 const Navbar = () => {
 
@@ -7,7 +8,8 @@ const Navbar = () => {
 
     return(
         <nav id={"navbar"}>
-            <div className={"bizchats_logo"} ref={ref}/>
+            <img src={Bizchats_logo} className={"bizchats_logo"}/>
+
             <ul>
                 <li>
                     <Link to="/Login" className={"link_class"}>Log In</Link>

@@ -3,7 +3,7 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import bizchats_logo from './img/bizchats_logo.png';
+import Bizchats_logo from './img/bizchats_logo.png';
 
 import Login from "./components/login/Login";
 import "./components/login/style.css";
@@ -14,6 +14,8 @@ import "./components/navbar/style.css";
 import Mainpage from './components/mainpage/Mainpage';
 import "./components/mainpage/style.css";
 
+import Test from "./components/test/Test";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login/>} />
 
+                <Route path="/" element={<Test/>} />
                 <Route path="/main_page" element={<Mainpage/>} />
             </Routes>
         </BrowserRouter>
