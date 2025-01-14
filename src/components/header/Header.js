@@ -1,10 +1,15 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
+import Bizchats_logo from "../../img/bizchats_logo.png"
 
+const Header = () => {
 
-const Navbar = () => {
+    const ref = useRef();
+
     return(
-        <nav class={"navbar"}>
+        <header id={"header"}>
+            <img src={Bizchats_logo} className={"bizchats_logo"}/>
+
             <ul>
                 <li>
                     <Link to="/Login" className={"link_class"}>Log In</Link>
@@ -13,8 +18,8 @@ const Navbar = () => {
                     <Link to="/Signup" className={"link_class"}>Sign Up</Link>
                 </li>
             </ul>
-        </nav>
-    );
+        </header>
+    )
 }
 
-export default Navbar;
+export default Header;

@@ -9,12 +9,14 @@ import Login from "./components/login_and_signup/Login";
 import Signup from './components/login_and_signup/Signup';
 import "./components/login_and_signup/style.css";
 
-import Navbar from "./components/navbar/Navbar";
-import "./components/navbar/style.css";
+import Header from "./components/header/Header";
+import "./components/header/style.css";
 
 import Mainpage from './components/mainpage/Mainpage';
 import "./components/mainpage/style.css";
 
+import Navbar from './components/navbar/Navbar';
+import "./components/navbar/style.css";
 
 
 //testing purposes
@@ -25,7 +27,7 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            <Navbar/>
+            <Header/>
             <Routes>
                 <Route path="/" element={<Test/>} />
                 <Route path="/login" element={<Login/>} />

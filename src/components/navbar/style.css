@@ -1,20 +1,5 @@
-#navbar{
-    display: flex;
-    justify-content: space-between;
-    background-color: #0d3a75;
-    align-items: center;
-
-    .bizchats_logo{
-        height: 50px;
-    }
-    
-    ul{
-        list-style:none;
-        display: flex;
-        li{
-            a{ /*it shows 'Link' in the js but it's supposed to be an anchor tag here*/
-                color: white;
-            }
-        }
-    }
+.navbar{
+    background-color: rebeccapurple;
+    height: 50px;
+    width: 100vw;
 }
