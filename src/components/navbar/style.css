@@ -1,7 +1,7 @@
 #navbar{
     display: flex;
     justify-content: space-between;
-    background-color: dodgerblue;
+    background-color: #0d3a75;
     align-items: center;
 
     .bizchats_logo{
