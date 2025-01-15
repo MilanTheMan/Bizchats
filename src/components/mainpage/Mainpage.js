@@ -16,7 +16,6 @@ const Mainpage = () =>  {
                         <img src='https://geology.com/world/world-map.gif'/>
                         <p>Mr. Simon's Geography class</p>
                     </div>
-
                     <div class="listed_class">
                         <img src='https://geology.com/world/world-map.gif'/>
                         <p>Mr. Simon's Geography class</p>
@@ -25,7 +24,6 @@ const Mainpage = () =>  {
                         <img src='https://geology.com/world/world-map.gif'/>
                         <p>Mr. Simon's Geography class</p>
                     </div>
-
                     <div class="listed_class">
                         <img src='https://geology.com/world/world-map.gif'/>
                         <p>Mr. Simon's Geography class</p>
@@ -50,8 +48,10 @@ const Mainpage = () =>  {
                     </div>
                 </div>
 
-                <aside class="due_dates">
-                    <div class="duedate">
+                <aside class="events">
+
+                    <h4>Events</h4>
+                    <div class="event">
                         {/*//implement month, day number, title and desc*/}
                         <div class="date">
                             <p class="day">2</p>
@@ -59,7 +59,7 @@ const Mainpage = () =>  {
                         </div>
                         <p className='description'>short description of the assignment or whatever</p>
                     </div>
-                    <div class="duedate">
+                    <div class="event">
                         {/*//implement month, day number, title and desc*/}
                         <div class="date">
                             <p class="day">2</p>
@@ -67,7 +67,7 @@ const Mainpage = () =>  {
                         </div>
                         <p className='description'>short description of the assignment or whatever</p>
                     </div>
-                    <div class="duedate">
+                    <div class="event">
                         {/*//implement month, day number, title and desc*/}
                         <div class="date">
                             <p class="day">2</p>
