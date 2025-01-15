@@ -12,8 +12,14 @@ import "./components/login_and_signup/style.css";
 import Header from "./components/header/Header";
 import "./components/header/style.css";
 
+import Footer from "./components/footer/Footer";
+import "./components/footer/style.css"
+
 import Mainpage from './components/mainpage/Mainpage';
 import "./components/mainpage/style.css";
+
+import Settings from "./components/settings/Settings";
+import "./components/settings/style.css";
 
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
@@ -33,7 +39,9 @@ function App() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/main_page" element={<Mainpage/>} />
+                <Route path="/settings" element={<Settings/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
 
     </div>

@@ -15,8 +15,10 @@
                 width: 200px;
                 padding: 2px;
                 border-radius: 15px;
-                
-                background-color: #434957;
+                cursor: pointer;
+
+                background: rgb(69,76,90);
+                background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
                 box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
                 img{
                     width: 180px;
@@ -24,6 +26,18 @@
                     border-radius: 5px;
                 }
             }
+
+            .listed_class:hover{
+                background: rgb(13,58,117);
+                background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+            }
+
+            .listed_class:active{
+                background: rgb(17,19,23);
+                background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
+                box-shadow: none;
+            }
+
         }
 
         .events{
@@ -34,8 +48,9 @@
             
             padding: 2px;
             border-radius: 15px;
-            
-            background-color: #434957;
+
+            background: rgb(69,76,90);
+            background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
             box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 
 
