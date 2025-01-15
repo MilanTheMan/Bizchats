@@ -8,7 +8,9 @@ const Mainpage = () =>  {
     return(
         <div id={"main_page"}>
             <Navbar/>
-            
+
+            <h1>Welcome to BizChats!</h1>
+
 
             <div className={"actual_content"}>
                 <div class="class_list">
