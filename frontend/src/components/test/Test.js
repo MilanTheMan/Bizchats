@@ -12,10 +12,10 @@ function Test(){
                     <Link to="/signup" className={"link_class"}>Sign Up</Link>
                 </li>
                 <li>
-                    <Link to="/" className={"link_class"}>Test Page</Link>
+                    <Link to="/main_page" className={"link_class"}>Main Page</Link>
                 </li>
                 <li>
-                    <Link to="/main_page" className={"link_class"}>Main Page</Link>
+                    <Link to="/settings" className={"link_class"}>Settings</Link>
                 </li>
             </ul>
         </div>

@@ -22,7 +22,7 @@
         .top {
             width: 100%;
             height: 60px;
-            background-color: dodgerblue;
+            background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
 
