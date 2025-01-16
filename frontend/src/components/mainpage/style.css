@@ -25,6 +25,10 @@
                     height: 135px;
                     border-radius: 5px;
                 }
+
+                p{
+                    user-select: none;
+                }
             }
 
             .listed_class:hover{
@@ -76,6 +80,13 @@
                     .month{
                         margin: 0;
                     }
+                    p{
+                        user-select: none;
+                    }
+                }
+
+                p{
+                    user-select: none;
                 }
 
             }
