@@ -13,14 +13,14 @@ const Settings = () => {
                     <div className={"related_settings"}>
                         <div className={"settings_login_detail"}>
                             <label>E-mail</label>
-                            <div className={"text_and_button"}>
+                            <div className={"label_and_input"}>
                                 <input type={"text"}/>
                                 <button>Change Email</button>
                             </div>
                         </div>
                         <div className={"settings_login_detail"}>
                             <label>Password</label>
-                            <div className={"text_and_button"}>
+                            <div className={"label_and_input"}>
                                 <input type={"password"}/>
                                 <button>Change Password</button>
                             </div>
@@ -33,10 +33,23 @@ const Settings = () => {
                     </div>
                         <div className={"settings_category"}>
                             <div className={"related_settings"}>
-                                <label>Public</label><input type={"checkbox"}/>
-                                <label>Show Name</label><input type={"checkbox"}/>
-                                <label>Show Email</label><input type={"checkbox"}/>
-                                <label>Self Description</label><input type={"checkbox"}/>
+                                <div className={"label_and_input"}>                                
+                                    <label><b>Public</b></label><input type={"checkbox"}/>
+                                </div>
+                                <div className={"label_and_input"}>
+                                    <label>Show Name</label><input type={"checkbox"}/>
+                                </div>
+                                <div className={"label_and_input"}>
+                                    <label>Show Email</label><input type={"checkbox"}/>
+                                </div>
+                                <div className={"label_and_input"}>
+                                    <label>Show Email</label><input type={"checkbox"}/>
+                                </div>
+                                <div className={"label_and_input"}>
+                                    <label>Self Description</label><input type={"checkbox"}/>
+                                </div>
+                                
+
                                 <textarea type={"text"} className={"desc"}/>
                             </div>
                         </div>

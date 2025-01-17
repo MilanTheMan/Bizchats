@@ -23,10 +23,14 @@
                 padding: 5px;
 
 
-                .text_and_button{
+                .label_and_input{
                     display: flex;
 
 
+                    label{
+                        width: 100%;
+                        text-align: left;
+                    }
 
                     input{
                         width: calc(100% - 7px);
