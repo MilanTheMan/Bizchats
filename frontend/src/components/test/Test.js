@@ -17,6 +17,9 @@ function Test(){
                 <li>
                     <Link to="/settings" className={"link_class"}>Settings</Link>
                 </li>
+                <li>
+                    <Link to="/schedule" className={"link_class"}>Sched</Link>
+                </li>
             </ul>
         </div>
     )

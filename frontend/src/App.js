@@ -21,6 +21,9 @@ import "./components/mainpage/style.css";
 import Settings from "./components/settings/Settings";
 import "./components/settings/style.css";
 
+import Schedule from './components/schedule/Schedule';
+
+
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
 
@@ -40,6 +43,7 @@ function App() {
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/main_page" element={<Mainpage/>} />
                 <Route path="/settings" element={<Settings/>} />
+                <Route path="/schedule" element={<Schedule/>} />
             </Routes>
             <Footer/>
         </BrowserRouter>
