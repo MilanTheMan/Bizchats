@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 function Signup() {
     return(
-        <div id={"signup_page"}>
+        <div id={"signup_page"} className={"log_sign"}>
             <div id={"signup_box"}>
                 <div className={"top"}>
                     <p>Signup</p>

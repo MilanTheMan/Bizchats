@@ -1,12 +1,24 @@
-#login_page, #signup_page{
+#login_page{
+    background-image: url("../../img/login_image.webp");
+}
+
+#signup_page{
+    background-image: url("../../img/placeholder.png");
+}
+
+
+.log_sign{
     display: flex;
     align-items: center;
     justify-content: center;
     height: calc(100vh - 53px);
 
-    background-image: url("../../img/placeholder.png");
+    /*background-image: url("../../img/login_image.webp");*/
+
+
     background-repeat: no-repeat;
-    background-size: 100%, 100%;
+    background-size: cover;
+    background-position: right;
 
 
     #login_box, #signup_box {

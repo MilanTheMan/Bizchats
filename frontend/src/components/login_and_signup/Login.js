@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 function Login() {
     return(
-        <div id={"login_page"}>
+        <div id={"login_page"} className={"log_sign"}>
             <div id={"login_box"}>
                 <div className={"top"}>
                     <p>Login</p>
