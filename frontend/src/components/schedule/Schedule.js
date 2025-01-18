@@ -23,6 +23,9 @@ const Schedule = () => {
 
                 </div>
                 <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
+
+
+
                     <div className={"calendar_day"}>
                         <p className={"calendar_day_number"}>29</p>
                         <p></p>
@@ -55,6 +58,114 @@ const Schedule = () => {
                         <p className={"calendar_day_number"}>5</p>
                         <p>Start Assignment 2</p>
                     </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
+                    <div className={"calendar_day"}>
+                        <p className={"calendar_day_number"}>5</p>
+                        <p>Start Assignment 2</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,3 +173,5 @@ const Schedule = () => {
 }
 
 export default Schedule;
+
+//todo: add the sidebar that shows you the upcoming events

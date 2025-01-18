@@ -1,24 +1,31 @@
 #schedule{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     #calendar{
         display: flex;
         flex-direction: column;
         width: 80%;
 
         #calendar_day_names{
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            p{
-                border-width: 1px;
-                border-style: solid;
-                padding: 10px;
-                width: 100px;
-            }
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-column-gap: 1px;
+            grid-row-gap: 1px;
+            
+            flex-direction: row;
 
+            width: 100%;
         }
 
         #calendar_days{
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: 0.4fr repeat(5, 1fr);
+            grid-column-gap: 1px;
+            grid-row-gap: 1px;
+            
             flex-direction: row;
 
             width: 100%;
