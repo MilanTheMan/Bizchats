@@ -1,0 +1,14 @@
+#schedule{
+    #calendar{
+        display: flex;
+        flex-direction: column;
+
+        #calendar-days{
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+
+            width: 100%;
+        }
+    }
+}

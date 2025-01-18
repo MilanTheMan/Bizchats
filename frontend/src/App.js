@@ -22,6 +22,7 @@ import Settings from "./components/settings/Settings";
 import "./components/settings/style.css";
 
 import Schedule from './components/schedule/Schedule';
+import "./components/schedule/style.css"
 
 
 import Navbar from './components/navbar/Navbar';
