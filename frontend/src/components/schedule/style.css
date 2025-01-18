@@ -2,11 +2,24 @@
     #calendar{
         display: flex;
         flex-direction: column;
+        width: 80%;
 
-        #calendar-days{
+        #calendar_day_names{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            p{
+                border-width: 1px;
+                border-style: solid;
+                padding: 10px;
+                width: 100px;
+            }
+
+        }
+
+        #calendar_days{
             display: flex;
             flex-direction: row;
-            background-color: red;
 
             width: 100%;
         }
