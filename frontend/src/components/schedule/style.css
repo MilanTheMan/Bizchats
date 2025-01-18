@@ -15,8 +15,16 @@
             grid-row-gap: 1px;
             
             flex-direction: row;
+            --gap: 1px;
+            
+            background: rgb(69,76,90);
+            background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
 
             width: 100%;
+
+            p{
+                text-align: center;
+            }
         }
 
         #calendar_days{
