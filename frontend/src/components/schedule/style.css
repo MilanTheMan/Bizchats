@@ -1,50 +1,56 @@
 #schedule{
-
     display: flex;
     flex-direction: column;
-    align-items: center;
-    #calendar{
+    #schedule_content{
         display: flex;
         flex-direction: column;
-        width: 80%;
+        align-items: center;
+        
+        #calendar{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
 
-        #calendar_day_names{
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-column-gap: 1px;
-            grid-row-gap: 1px;
-            
-            flex-direction: row;
-            --gap: 1px;
-            
-            background: rgb(69,76,90);
-            background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+            #calendar_day_names{
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                grid-column-gap: 1px;
+                grid-row-gap: 1px;
+                
+                flex-direction: row;
+                
+                background: rgb(69,76,90);
+                background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
 
-            width: 100%;
+                width: 100%;
 
-            p{
-                text-align: center;
-            }
-        }
-
-        #calendar_days{
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-template-rows: 0.4fr repeat(5, 1fr);
-            
-            flex-direction: row;
-
-            width: 100%;
-
-            .calendar_day{
-                border-style: solid;
-                border-color: white;
-                border-width: 1px;
-                padding: 4px;
-
-                height: auto;
+                p{
+                    text-align: center;
+                }
             }
 
+            #calendar_days{
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                grid-template-rows: 0.4fr repeat(5, 1fr);
+                
+                flex-direction: row;
+
+                width: 100%;
+
+                .calendar_day{
+                    border-style: solid;
+                    border-color: #181a1f;
+                    border-width: 1px;
+                    padding: 4px;
+
+                    height: auto;
+
+                    background: rgb(17,19,23);
+                    background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
+                }
+
+            }
         }
     }
 }
