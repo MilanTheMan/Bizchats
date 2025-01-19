@@ -53,30 +53,34 @@ const Mainpage = () =>  {
                 <aside class="events">
 
                     <h4>Events</h4>
-                    <div class="event">
-                        {/*//implement month, day number, title and desc*/}
-                        <div class="date">
-                            <p class="day">2</p>
-                            <p class="month">Febuary</p>
+
+                    <div className={"event_list"}>
+                        <div className="event">
+                            {/*//implement month, day number, title and desc*/}
+                            <div className="date">
+                                <p className="day">2</p>
+                                <p className="month">Febuary</p>
+                            </div>
+                            <p className='description'>short description of the assignment or whatever</p>
                         </div>
-                        <p className='description'>short description of the assignment or whatever</p>
-                    </div>
-                    <div class="event">
-                        {/*//implement month, day number, title and desc*/}
-                        <div class="date">
-                            <p class="day">2</p>
-                            <p class="month">Febuary</p>
+                        <div className="event">
+                            {/*//implement month, day number, title and desc*/}
+                            <div className="date">
+                                <p className="day">2</p>
+                                <p className="month">Febuary</p>
+                            </div>
+                            <p className='description'>short description of the assignment or whatever</p>
                         </div>
-                        <p className='description'>short description of the assignment or whatever</p>
-                    </div>
-                    <div class="event">
-                        {/*//implement month, day number, title and desc*/}
-                        <div class="date">
-                            <p class="day">2</p>
-                            <p class="month">Febuary</p>
+                        <div className="event">
+                            {/*//implement month, day number, title and desc*/}
+                            <div className="date">
+                                <p className="day">2</p>
+                                <p className="month">Febuary</p>
+                            </div>
+                            <p className='description'>short description of the assignment or whatever</p>
                         </div>
-                        <p className='description'>short description of the assignment or whatever</p>
                     </div>
+
                 </aside>
 
             </div>

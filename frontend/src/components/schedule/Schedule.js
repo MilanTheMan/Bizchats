@@ -167,8 +167,25 @@ const Schedule = () => {
                     </div>
                 </div>
 
-                <aside id={"schedule_event_list"}>
-                    sdajfklsdjfklasdjfkl;asdfjfl
+                <aside id={"schedule_events"}>
+                    <h4>Events</h4>
+                    <div id={"schedule_event_list"}>
+                        <div className={"event red"}>
+                            <p>Description</p>
+                        </div>
+                        <div className={"event green"}>
+                            <p>Description</p>
+                        </div>
+                        <div className={"event blue"}>
+                            <p>Description</p>
+                        </div>
+                        <div className={"event yellow"}>
+                            <p>Description</p>
+                        </div>
+                        <div className={"event pink"}>
+                            <p>Description</p>
+                        </div>
+                    </div>
                 </aside>
             </div>
         </div>
