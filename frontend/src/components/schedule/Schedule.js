@@ -24,165 +24,166 @@ const Schedule = () => {
 
                     </div>
                     <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_yellow"}>
                             <p className={"calendar_day_number"}>29</p>
                             <p></p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_green"}>
                             <p className={"calendar_day_number"}>30</p>
                             <p>Assignment 1</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>31</p>
                             <p>C23 Math Class Lab</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_blue"}>
                             <p className={"calendar_day_number"}>1</p>
                             <p>Today</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>2</p>
                             <p>C23 Math Class Lecture</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>3</p>
                             <p></p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_red"}>
                             <p className={"calendar_day_number"}>4</p>
                             <p></p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_pink"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_pink"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_green"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_yellow"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_blue"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_blue"}>
+                            <p className={"calendar_day_number"}>30</p>
+                            <p>Assignment 1</p>
+                        </div>
+                        <div className={"calendar_day col_default"}>
+                            <p className={"calendar_day_number"}>31</p>
+                            <p>C23 Math Class Lab</p>
+                        </div>
+                        <div className={"calendar_day col_default"}>
+                            <p className={"calendar_day_number"}>1</p>
+                            <p>Today</p>
+                        </div>
+                        <div className={"calendar_day col_pink"}>
+                            <p className={"calendar_day_number"}>2</p>
+                            <p>C23 Math Class Lecture</p>
+                        </div>
+                        <div className={"calendar_day col_default"}>
+                            <p className={"calendar_day_number"}>3</p>
+                            <p></p>
+                        </div>
+                        <div className={"calendar_day col_red col_pink"}>
+                            <p className={"calendar_day_number"}>4</p>
+                            <p></p>
+                        </div>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_red"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_default"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_pink"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
+                        <div className={"calendar_day col_green"}>
                             <p className={"calendar_day_number"}>5</p>
                             <p>Start Assignment 2</p>
                         </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 2</p>
-                        </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 2</p>
-                        </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 2</p>
-                        </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 2</p>
-                        </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 2</p>
-                        </div>
-                        <div className={"calendar_day"}>
-                            <p className={"calendar_day_number"}>5</p>
-                            <p>Start Assignment 3</p>
-                        </div>
+
                     </div>
                 </div>
 
                 <aside id={"schedule_events"}>
                     <h4>Events</h4>
                     <div id={"schedule_event_list"}>
-                        <div className={"event red"}>
+                        <div className={"event col_green"}>
                             <p>Description</p>
                         </div>
-                        <div className={"event green"}>
+                        <div className={"event col_red"}>
                             <p>Description</p>
                         </div>
-                        <div className={"event blue"}>
+                        <div className={"event col_yellow"}>
                             <p>Description</p>
                         </div>
-                        <div className={"event yellow"}>
+                        <div className={"event col_blue"}>
                             <p>Description</p>
                         </div>
-                        <div className={"event pink"}>
+                        <div className={"event col_pink"}>
                             <p>Description</p>
                         </div>
                     </div>
@@ -194,4 +195,4 @@ const Schedule = () => {
 
 export default Schedule;
 
-//todo: add the sidebar that shows you the upcoming events
+//todo: polish it
