@@ -1,0 +1,78 @@
+/* PersonalUse Wrapper */
+.personal-use {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Header Section */
+  .personal-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .personal-header h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .personal-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Class List */
+  .class-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Class Card */
+  .class-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .class-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .class-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Footer */
+  .personal-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .personal-footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+  }
+  
+  .personal-footer li {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  

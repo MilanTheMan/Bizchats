@@ -1,27 +1,69 @@
-body{
-  background-color: #282c34;
+/* Set up a full-page layout */
+body, html, #root, .App {
   height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Stack header, main, and footer vertically */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header Style */
+#header {
+  background: linear-gradient(180deg, rgba(13, 58, 117, 1) 0%, rgba(6, 27, 56, 1) 100%);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#header .bizchats_logo {
+  height: 50px; /* Ensure consistent logo size */
+}
+
+#header ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+#header ul li {
+  margin-right: 15px;
+}
+
+#header ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+#header ul li a:hover {
+  color: #61dafb; /* Highlight on hover */
+}
+
+/* Main Content Style */
+main {
+  flex: 1; /* Dynamically fill the available space between header and footer */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 20px;
+  background-color: #282c34;
   color: white;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-a, h1, h2, h3, h4, h5, p{
+/* Footer Style */
+footer {
+  background: linear-gradient(180deg, rgba(13, 58, 117, 1) 0%, rgba(6, 27, 56, 1) 100%);
   color: white;
-}
-
-h1{
   text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
 }

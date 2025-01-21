@@ -1,0 +1,118 @@
+/* Class Page Wrapper */
+.class-page {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  .class-header {
+    background: linear-gradient(180deg, #007BFF, #0056b3);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Recent News Section */
+  .recent-news {
+    margin: 20px 0;
+  }
+  
+  .recent-news h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .news-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .news-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 250px;
+  }
+  
+  .news-card .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+  
+  .tag.assignment {
+    background-color: #ffcc00;
+  }
+  
+  .tag.marks {
+    background-color: #28a745;
+  }
+  
+  .tag.announcement {
+    background-color: #007bff;
+  }
+  
+  /* Chat Section */
+  .class-chat {
+    margin: 20px 0;
+  }
+  
+  .chat-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-message {
+    margin-bottom: 10px;
+  }
+  
+  .chat-message strong {
+    color: #333;
+  }
+  
+  .chat-message .timestamp {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .chat-input {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  .chat-input button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+  }
+  
+  .chat-input button:hover {
+    background: #0056b3;
+  }
+  
