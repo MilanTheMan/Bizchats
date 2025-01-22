@@ -22,10 +22,11 @@
                 border-radius: 15px;
                 cursor: pointer;
 
-                background: rgb(69,76,90);
-                background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+
                 box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
                 img{
+                    background: rgb(69,76,90);
+                    background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
                     width: 180px;
                     height: 135px;
                     border-radius: 5px;
