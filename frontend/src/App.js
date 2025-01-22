@@ -9,6 +9,16 @@ import Login from "./components/login_and_signup/Login";
 import Signup from './components/login_and_signup/Signup';
 import "./components/login_and_signup/style.css";
 
+import HomePage from './components/home/HomePage';
+
+import PersonalUse from "./components/personal/PersonalUse";
+
+import Educational from "./components/educational/Educational";
+
+import Professional from "./components/professional/Professional";
+
+import ClassPage from "./components/class/ClassPage";
+
 import Header from "./components/header/Header";
 import "./components/header/style.css";
 
@@ -45,6 +55,11 @@ function App() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/main_page" element={<Mainpage/>} />
+                <Route path="/home" element={<HomePage/>} />
+                <Route path="/personal" element={<PersonalUse />} />
+                <Route path="/educational" element={<Educational />} />
+                <Route path="/professional" element={<Professional />} />
+                <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
                 <Route path="/*" element={<NotFound/>} />
