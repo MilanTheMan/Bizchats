@@ -8,90 +8,96 @@
 
 
 .log_sign{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh);
-
-    /*background-image: url("../../img/login_image.webp");*/
-
-
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right;
 
+    .log_sign_content{
 
-    #login_box, #signup_box {
-        width: 300px;
-        height: 300px;
-        background-color: gray;
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh);
 
-        border-radius: 15px;
-        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+        /*background-image: url("../../img/login_image.webp");*/
 
-        .top {
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-            p {
-                color: white;
-                margin: 0;
-                font-size: 40px;
-            }
-        }
-
-        .login_details, .signup_details {
-            padding: 5px;
+        #login_box, #signup_box {
+            width: 300px;
+            height: 300px;
+            background-color: gray;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            height: 100%;
 
-            .login_detail, .signup_detail{
+            border-radius: 15px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+
+            .top {
+                width: 100%;
+                height: 60px;
+                background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
+                justify-content: center;
+                align-items: center;
 
-                input{
-                    width: calc(100% - 7px);
-                    height: 30px;
-                    border-radius: 20px;
-                    border: none;
-                    font-size: 20px;
+                p {
+                    color: white;
+                    margin: 0;
+                    font-size: 40px;
                 }
             }
 
-            .submitButton{
-                background: rgb(13,58,117);
-                background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
-                border-radius: 15px;
-                border: none;
-                color: white;
-                width: 150px;
-                height: 50px;
-                font-size: 30px;
-                box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-            }
+            .login_details, .signup_details {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                height: 100%;
 
-            .submitButton:hover{
-                background: rgb(70,40,0);
-                background: linear-gradient(0deg, rgba(70,40,0,1) 0%, rgba(255,127,0,1) 100%);
-            }
+                .login_detail, .signup_detail{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
 
-            .submitButton:active{
-                background: rgb(17,19,23);
-                background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
+                    input{
+                        width: calc(100% - 7px);
+                        height: 30px;
+                        border-radius: 20px;
+                        border: none;
+                        font-size: 20px;
+                    }
+                }
+
+                .submitButton{
+                    background: rgb(13,58,117);
+                    background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+                    border-radius: 15px;
+                    border: none;
+                    color: white;
+                    width: 150px;
+                    height: 50px;
+                    font-size: 30px;
+                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+                }
+
+                .submitButton:hover{
+                    background: rgb(70,40,0);
+                    background: linear-gradient(0deg, rgba(70,40,0,1) 0%, rgba(255,127,0,1) 100%);
+                }
+
+                .submitButton:active{
+                    background: rgb(17,19,23);
+                    background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
+                }
             }
         }
     }
+
+
+
 }
