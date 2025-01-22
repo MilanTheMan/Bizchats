@@ -12,17 +12,11 @@
 
     ul{
         display: flex;
-<<<<<<< HEAD
-        width: 150px;
-    
-        justify-content: space-between;
-=======
         flex-direction: row;
         list-style-type: none;
 
         padding: 0;
 
->>>>>>> alexis
         li{
             padding-left: 10px;
             padding-right: 10px;
