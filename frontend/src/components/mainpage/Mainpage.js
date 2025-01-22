@@ -6,7 +6,6 @@ import Header from "../header/Header";
 
 
 const Mainpage = () =>  {
-
     //todo: later this will have to be dynamic and not have simon over and over again
     return(
         <div id={"main_page"}>
