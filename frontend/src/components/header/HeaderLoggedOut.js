@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
 import Bizchats_logo from "../../img/bizchats_logo.png"
 
-const Header = () => {
+const HeaderLoggedOut = () => {
 
     const ref = useRef();
 
@@ -22,4 +22,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default HeaderLoggedOut;

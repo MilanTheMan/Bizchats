@@ -8,14 +8,22 @@
     .bizchats_logo{
         height: 50px;
     }
-    
+
     ul{
-        list-style:none;
         display: flex;
+        flex-direction: row;
+        list-style-type: none;
+
+        padding: 0;
+
         li{
-            a{ /*it shows 'Link' in the js but it's supposed to be an anchor tag here*/
+            padding-left: 10px;
+            padding-right: 10px;
+
+            a{
                 color: white;
             }
         }
+
     }
 }
