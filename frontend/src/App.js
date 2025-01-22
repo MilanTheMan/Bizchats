@@ -24,6 +24,7 @@ import "./components/settings/style.css";
 import Schedule from './components/schedule/Schedule';
 import "./components/schedule/style.css"
 
+import NotFound from './components/notfound/notfound';
 
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/main_page" element={<Mainpage/>} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
+                <Route path="/*" element={<NotFound/>} />
             </Routes>
             <Footer/>
         </BrowserRouter>
