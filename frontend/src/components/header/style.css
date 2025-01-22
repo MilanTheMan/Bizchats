@@ -12,6 +12,9 @@
     ul{
         list-style:none;
         display: flex;
+        width: 150px;
+    
+        justify-content: space-between;
         li{
             a{ /*it shows 'Link' in the js but it's supposed to be an anchor tag here*/
                 color: white;
