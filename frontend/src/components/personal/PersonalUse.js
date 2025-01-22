@@ -49,15 +49,7 @@ const PersonalUse = () => {
         ))}
       </div>
 
-      {/* Footer Section */}
-      <footer className="personal-footer">
-        <ul>
-          <li>Terms & Conditions</li>
-          <li>Privacy Policy</li>
-          <li>Cookies</li>
-          <li>Accessibility</li>
-        </ul>
-      </footer>
+      
     </div>
   );
 };

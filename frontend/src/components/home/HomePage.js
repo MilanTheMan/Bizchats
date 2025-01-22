@@ -8,14 +8,7 @@ import professionalImg from '../../img/professional_logo.jpg';
 const Home = () => {
     return (
         <div className="home">
-            {/* Header */}
-            <header className="home-header">
-                <img src={bizchatLogo} alt="BizChat Logo" className="logo" />
-                <h1>BizChat</h1>
-                <div className="user-icon">
-                    <img src="https://via.placeholder.com/50" alt="User" className="user-avatar" />
-                </div>
-            </header>
+         
 
             {/* Main Section */}
             <main className="home-main">

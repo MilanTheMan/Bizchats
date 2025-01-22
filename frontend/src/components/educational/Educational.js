@@ -50,15 +50,6 @@ const Educational = () => {
         ))}
       </div>
 
-      {/* Footer Section */}
-      <footer className="educational-footer">
-        <ul>
-          <li>Terms & Conditions</li>
-          <li>Privacy Policy</li>
-          <li>Cookies</li>
-          <li>Accessibility</li>
-        </ul>
-      </footer>
     </div>
   );
 };
