@@ -25,6 +25,7 @@ import Schedule from './components/schedule/Schedule';
 import "./components/schedule/style.css"
 
 import NotFound from './components/notfound/notfound';
+import "./components/notfound/style.css"
 
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
