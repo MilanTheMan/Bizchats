@@ -2,7 +2,8 @@ import React from "react";
 import "./style.css";
 import mathImg from "../../img/math.png";
 import scienceImg from "../../img/science.png"; 
-import designImg from "../../img/design.png"; 
+import designImg from "../../img/design.png";
+import Header from "../header/Header";
 
 const Educational = () => {
   // List of classes with their details
@@ -30,6 +31,8 @@ const Educational = () => {
   return (
     <div className="educational-page">
       {/* Header Section */}
+
+      <Header/>
       <header className="educational-header">
         <h1>Welcome to BizChats</h1>
         <p>Your Classes:</p>

@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
 import Bizchats_logo from "../../img/bizchats_logo.png"
 
-const Header = () => {
+const HeaderLoggedOut = () => {
 
     const ref = useRef();
 
@@ -12,17 +12,14 @@ const Header = () => {
 
             <ul>
                 <li>
-                    <Link to="/Classes" className={"link_class"}>Notifications</Link>
+                    <Link to="/Login" className={"link_class"}>Log In</Link>
                 </li>
                 <li>
-                    <Link to="/Schedule" className={"link_class"}>Profile</Link>
-                </li>
-                <li>
-                    <Link to="/Meetings" className={"link_class"}>Meetings</Link>
+                    <Link to="/Signup" className={"link_class"}>Sign Up</Link>
                 </li>
             </ul>
         </header>
     )
 }
 
-export default Header;
+export default HeaderLoggedOut;

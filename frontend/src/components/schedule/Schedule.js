@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import Header from "../header/Header";
 
 const Schedule = () => {
     /*
@@ -9,6 +10,7 @@ const Schedule = () => {
     
     return(
         <div id={"schedule"}>
+            <Header/>
             <h1>Schedule</h1>
 
             <div id={"schedule_content"}>

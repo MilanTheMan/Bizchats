@@ -1,17 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
+import Header from "../header/Header";
+
+
 
 const Mainpage = () =>  {
 
     //todo: later this will have to be dynamic and not have simon over and over again
     return(
         <div id={"main_page"}>
+            <Header/>
             <Navbar/>
 
             <h1>Welcome to BizChats!</h1>
-
-
             <div className={"actual_content"}>
                 <div class="class_list">
                     <div class="listed_class">

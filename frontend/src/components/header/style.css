@@ -1,24 +1,36 @@
-#header{
+.header{
     display: flex;
     justify-content: space-between;
     background: rgb(13,58,117);
     background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
     align-items: center;
+    width: 100%;
 
     .bizchats_logo{
         height: 50px;
     }
-    
+
     ul{
-        list-style:none;
         display: flex;
+<<<<<<< HEAD
         width: 150px;
     
         justify-content: space-between;
+=======
+        flex-direction: row;
+        list-style-type: none;
+
+        padding: 0;
+
+>>>>>>> alexis
         li{
-            a{ /*it shows 'Link' in the js but it's supposed to be an anchor tag here*/
+            padding-left: 10px;
+            padding-right: 10px;
+
+            a{
                 color: white;
             }
         }
+
     }
 }

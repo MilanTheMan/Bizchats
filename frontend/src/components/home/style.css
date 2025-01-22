@@ -7,6 +7,7 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* Header */
 .home-header {
     display: flex;
@@ -21,6 +22,8 @@
 }
 
 
+=======
+>>>>>>> alexis
 .logo {
     width: 50px;
 }
@@ -40,20 +43,17 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f4f4f4;
     box-sizing: border-box;
 }
 
 /* Main title and description */
 .home-main h2 {
     margin-bottom: 10px;
-    color: #333;
     font-size: 2rem; 
 }
 
 .home-main p {
     margin-bottom: 20px;
-    color: #666;
     font-size: 1.2rem; 
     
 }
@@ -71,7 +71,8 @@
 
 /* Individual card styles */
 .option {
-    background-color: white;
+    background: rgb(69,76,90);
+    background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -93,7 +94,6 @@
 }
 
 .option h3 {
-    color: #333;
     font-size: 18px;
 }
 

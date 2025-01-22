@@ -1,6 +1,6 @@
 /* Set up a full-page layout */
 body, html, #root, .App {
-  height: 100%;
+  height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column; /* Stack header, main, and footer vertically */

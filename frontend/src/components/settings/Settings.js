@@ -1,9 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
+import Header from "../header/Header";
+
 
 const Settings = () => {
     return(
         <div id={"settings"}>
+            <Header/>
             <h1>Settings</h1>
             <div id={"settings_categories"}>
                 <div className={"settings_category"}>

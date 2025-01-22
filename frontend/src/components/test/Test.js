@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+import Header from "../header/Header";
+import HeaderLoggedOut from "../header/HeaderLoggedOut";
+
 function Test() {
     const classes = [
         { id: "c23-math", name: "C23 Math Class" },
@@ -10,6 +13,8 @@ function Test() {
 
     return (
         <div>
+            <Header/>
+            <HeaderLoggedOut/>
             <ul>
                 <li>
                     <Link to="/login" className="link_class">Log In</Link>
