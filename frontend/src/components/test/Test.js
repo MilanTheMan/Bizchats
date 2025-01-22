@@ -20,6 +20,9 @@ function Test(){
                 <li>
                     <Link to="/schedule" className={"link_class"}>Sched</Link>
                 </li>
+                <li>
+                    <Link to="/*" className={"link_class"}>not dounf page</Link>
+                </li>
             </ul>
         </div>
     )
