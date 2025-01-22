@@ -14,8 +14,6 @@ const Mainpage = () =>  {
             <Navbar/>
 
             <h1>Welcome to BizChats!</h1>
-
-
             <div className={"actual_content"}>
                 <div class="class_list">
                     <div class="listed_class">
