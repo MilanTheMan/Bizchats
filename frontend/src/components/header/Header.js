@@ -7,7 +7,7 @@ const Header = () => {
 
     const ref = useRef();
 
-    const [loggedIn, setLoggedIn] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
 
     const loggedInLinks = [
         {id: "notifications", name: "Notifications"},
