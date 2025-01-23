@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 import chessImg from "../../img/chess.jpg"; 
-import freelanceImg from "../../img/workplace.jpg"; 
+import freelanceImg from "../../img/workplace.jpg";
+import Header from "../header/Header";
 
 const Professional = () => {
   // List of businesses with their details
@@ -22,6 +23,7 @@ const Professional = () => {
 
   return (
     <div className="professional-page">
+      <Header/>
       {/* Header Section */}
       <header className="professional-header">
         <h1>Welcome to BizChats</h1>
