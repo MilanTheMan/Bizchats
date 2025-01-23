@@ -29,7 +29,6 @@ const PersonalUse = () => {
 
   return (
     <div className="personal-use">
-      <Header/>
       {/* Header Section */}
       <header className="personal-header">
         <h1>Welcome to BizChats</h1>

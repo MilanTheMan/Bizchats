@@ -3,7 +3,6 @@ import "./style.css";
 import mathImg from "../../img/math.png";
 import scienceImg from "../../img/science.png"; 
 import designImg from "../../img/design.png";
-import Header from "../header/Header";
 import {Link} from "react-router-dom";
 
 const Educational = () => {
@@ -35,8 +34,6 @@ const Educational = () => {
   return (
     <div className="educational-page">
       {/* Header Section */}
-
-      <Header/>
       <header className="educational-header">
         <h1>Welcome to BizChats</h1>
         <p>Your Classes:</p>

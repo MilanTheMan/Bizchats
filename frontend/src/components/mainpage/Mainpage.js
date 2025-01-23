@@ -9,7 +9,6 @@ const Mainpage = () =>  {
     //todo: later this will have to be dynamic and not have simon over and over again
     return(
         <div id={"main_page"}>
-            <Header/>
             <Navbar/>
 
             <h1>Welcome to BizChats!</h1>

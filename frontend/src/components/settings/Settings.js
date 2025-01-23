@@ -6,7 +6,6 @@ import Header from "../header/Header";
 const Settings = () => {
     return(
         <div id={"settings"}>
-            <Header/>
             <h1>Settings</h1>
             <div id={"settings_categories"}>
                 <div className={"settings_category"}>

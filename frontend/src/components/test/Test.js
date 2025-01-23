@@ -13,7 +13,6 @@ function Test() {
 
     return (
         <div>
-            <Header/>
             <HeaderLoggedOut/>
             <ul>
                 <li>

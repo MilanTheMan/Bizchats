@@ -23,7 +23,6 @@ const Professional = () => {
 
   return (
     <div className="professional-page">
-      <Header/>
       {/* Header Section */}
       <header className="professional-header">
         <h1>Welcome to BizChats</h1>
