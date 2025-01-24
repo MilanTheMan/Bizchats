@@ -43,6 +43,7 @@ import "./components/navbar/style.css";
 
 //testing purposes
 import Test from "./components/test/Test";
+import ProfileCard from "./components/profile_card/ProfileCard";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
+                <Route path="/profile_card" element={<ProfileCard/>} />
                 <Route path="/*" element={<NotFound/>} />
             </Routes>
             <Footer/>

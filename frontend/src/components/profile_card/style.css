@@ -1,0 +1,23 @@
+.profile_card {
+    background: rgb(69,76,90);
+    background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+    width: 300px;
+
+    border-radius: 15px;
+
+    padding: 10px;
+
+    .pfp_and_name{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+
+            margin-right: 10px;
+        }
+    }
+}

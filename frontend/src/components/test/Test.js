@@ -56,6 +56,11 @@ function Test() {
                 <li>
                     <Link to="/*" className={"link_class"}>not found page</Link>
                 </li>
+
+
+                <li>
+                    <Link to="/profile_card" className={"link_class"}>profile card that appears when you click the pfp or name of a user</Link>
+                </li>
             </ul>
         </div>
     );

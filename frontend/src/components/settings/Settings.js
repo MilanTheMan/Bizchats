@@ -21,7 +21,13 @@ const Settings = () => {
                             </div>
                         </div>
                         <div className={"settings_login_detail"}>
-                            <label>Password</label>
+                            <label>Reset Password</label>
+                            <div className={"label_and_input"}>
+                                <input type={"password"}/>
+                            </div>
+                        </div>
+                        <div className={"settings_login_detail"}>
+                            <label>Confirm Password</label>
                             <div className={"label_and_input"}>
                                 <input type={"password"}/>
                                 <button>Change Password</button>
@@ -29,13 +35,13 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-                    <div className={"settings_category"}>
+                <div className={"settings_category"}>
                     <div className={"top"}>
                         <h2>Profile</h2>
                     </div>
-                        <div className={"settings_category"}>
-                            <div className={"related_settings"}>
-                                <div className={"label_and_input"}>                                
+                    <div className={"settings_category"}>
+                        <div className={"related_settings"}>
+                            <div className={"label_and_input"}>
                                     <label><b>Public</b></label><input type={"checkbox"}/>
                                 </div>
                                 <div className={"label_and_input"}>
