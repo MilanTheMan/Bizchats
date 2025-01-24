@@ -20,4 +20,22 @@
             margin-right: 10px;
         }
     }
+
+    button{
+        background: rgb(13,58,117);
+        background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+        width: 40px;
+        height: 40px;
+        color: white;
+
+        border-radius: 15px;
+        border: none;
+
+        font-size: 20px;
+    }
+
+    button:hover{
+        background: rgb(70,40,0);
+        background: linear-gradient(0deg, rgba(70,40,0,1) 0%, rgba(255,127,0,1) 100%);
+    }
 }
