@@ -1,5 +1,7 @@
 import React from "react";
 import "./style.css";
+import ProfileCard from "../profile_card/ProfileCard";
+import profileCard from "../profile_card/ProfileCard";
 
 const classData = {
   name: "C23 Math Class",
@@ -39,13 +41,36 @@ const classData = {
       message: "Working on it now!",
       timestamp: "10/30/2024 2:14 PM",
     },
+    {
+      id: 3,
+      user: "AAAAAAAAAAAAAAAAAAAAA",
+      message: "🦊",
+      timestamp: "01/24/2025 3:59 PM",
+    },
   ],
 };
 
 const ClassPage = () => {
+
+  const [profileCards, setProfileCards] = React.useState([]);
+  const showProfileCard = () => {
+    console.log("djfsdfsdfdsfdsf");
+
+    setProfileCards((prevCards) => [
+      ...prevCards,
+      <ProfileCard/>
+    ]);
+  }
+
+
   return (
     <div className="class-page">
       {/* Header (not the one that appears on evey page) */}
+
+      <div className={"profile_card_holder"}>
+        {profileCards.map(profileCard => profileCard)}
+      </div>
+
       <header className="class-header">
         <h1>{classData.name}</h1>
       </header>
@@ -75,9 +100,10 @@ const ClassPage = () => {
           <div className="chat-box">
             {classData.chat.map((message) => (
               <div key={message.id} className="chat-message">
-                <p>
-                  <strong>{message.user}</strong>: {message.message}
-                </p>
+                <div className={"user_and_message"}>
+                  <p className={"chat_username"} onClick={showProfileCard}>{message.user}: </p>
+                  <p className={"chat_user_message"}>{message.message}</p>
+                </div>
                 <span className="timestamp">{message.timestamp}</span>
               </div>
             ))}

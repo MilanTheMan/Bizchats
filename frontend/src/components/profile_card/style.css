@@ -19,6 +19,14 @@
 
             margin-right: 10px;
         }
+
+        h4{
+            user-select: none;
+        }
+    }
+
+    p{
+        user-select: none;
     }
 
     button{
