@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 import chessImg from "../../img/chess.jpg"; 
-import freelanceImg from "../../img/workplace.jpg"; 
+import freelanceImg from "../../img/workplace.jpg";
+import Header from "../header/Header";
 
 const Professional = () => {
   // List of businesses with their details

@@ -13,8 +13,6 @@ function Test() {
 
     return (
         <div>
-            <Header/>
-            <HeaderLoggedOut/>
             <ul>
                 <li>
                     <Link to="/login" className="link_class">Log In</Link>
@@ -56,7 +54,7 @@ function Test() {
                     </ul>
                 </li>
                 <li>
-                    <Link to="/*" className={"link_class"}>not dounf page</Link>
+                    <Link to="/*" className={"link_class"}>not found page</Link>
                 </li>
             </ul>
         </div>

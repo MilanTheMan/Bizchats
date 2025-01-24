@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import Header from "../header/Header";
 
 const classData = {
   name: "C23 Math Class",
@@ -46,7 +45,6 @@ const classData = {
 const ClassPage = () => {
   return (
     <div className="class-page">
-      <Header/>
       {/* Header (not the one that appears on evey page) */}
       <header className="class-header">
         <h1>{classData.name}</h1>

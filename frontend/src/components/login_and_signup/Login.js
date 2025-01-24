@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import HeaderLoggedOut from "../header/HeaderLoggedOut";
 
 function Login() {
     return(
         <div id={"login_page"} className={"log_sign"}>
-            <HeaderLoggedOut/>
             <div className={"log_sign_content"}>
                 <div id={"login_box"}>
                     <div className={"top"}>

@@ -3,6 +3,7 @@ import "./style.css";
 import omegaImg from "../../img/omega.jpg";
 import mountainImg from "../../img/mountain.jpg";
 import torontoImg from "../../img/toronto.jpg";
+import Header from "../header/Header";
 
 const PersonalUse = () => {
   const classes = [
