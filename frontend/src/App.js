@@ -40,11 +40,14 @@ import "./components/notfound/style.css"
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
 
+// not sites
+import ProfileCard from "./components/profile_card/ProfileCard";
+import Daycard from './components/schedule/popup/Daycard';
+import "./components/schedule/popup/style.css"
 
 //testing purposes
 import Test from "./components/test/Test";
-import ProfileCard from "./components/profile_card/ProfileCard";
-import Daycard from './components/schedule/popup/Daycard';
+
 
 
 function App() {
