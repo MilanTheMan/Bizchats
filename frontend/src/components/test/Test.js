@@ -61,6 +61,10 @@ function Test() {
                 <li>
                     <Link to="/profile_card" className={"link_class"}>profile card that appears when you click the pfp or name of a user</Link>
                 </li>
+
+                <li>
+                    <Link to="/day_card" className={"link_class"}>day card that appears when you click a day on a calendar</Link>
+                </li>
             </ul>
         </div>
     );
