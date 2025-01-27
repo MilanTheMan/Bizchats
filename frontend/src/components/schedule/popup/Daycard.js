@@ -7,38 +7,28 @@ const Daycard = () => {
     const [titleSpaceColor, setTitleSpaceColor] = useState("#5715d1");
     const [title, setTitle] = useState("No Title Set")
 
-    const [dateHappening, setDateHappening] = useState(); // date
-    const [timeHappening, setTimeHappening] = useState(); // time
-    const [instructor, setInstructor] = useState();
-    const [room, setRoom] = useState();
+    const [dateHappening, setDateHappening] = useState("2025-01-23"); // date
+    const [timeHappening, setTimeHappening] = useState("4:20 pm"); // time
+    const [instructor, setInstructor] = useState("Mr. Simon");
+    const [room, setRoom] = useState("B32");
 
-    const [description, setDescription] = useState();
-
-    const html = (
-        <div>
-
-
-
-        </div>
-    )
-
-    function detailConstructor(){
-
-    }
-
-
-    detailConstructor();
-
+    const [description, setDescription] = useState("asd;hsdio;fhasdklfhasdkl;jsdkfjasdkl;fjasdkl;fjsdkl;fjasdkl;fjasdkl;fjasdklfjasdkfjasdkl;fjasdklfjasdkl;fj;asdklfjakl;sdjfkl;asdjf;");
     
     return (
-        <div className={"day_card"}>
+        <Rnd className={"day_card"}>
             <div className={"title_container"}>
                 <p>{title}</p>
             </div>
             <div className={"actual_content"}>
-                {dateHappening ? (<p>Happening on {dateHappening}</p>) : ''} {/*do the same for the rest*/}
+                {dateHappening ? (<p>Date: {dateHappening}</p>) : ''} {/*do the same for the rest*/}
+                {timeHappening ? (<p>Time: {timeHappening}</p>) : ''}
+                {instructor ? (<p>Instructor: {instructor}</p>) : ''}
+                {room ? (<p>Room: {room}</p>) : ''}
+                {description ? (<p>{description}</p>) : ''}
             </div>
-        </div>
+
+            ``
+        </Rnd>
     )   
 }
 
