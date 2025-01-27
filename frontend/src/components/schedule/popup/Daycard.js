@@ -10,7 +10,9 @@ const Daycard = () => {
     const [dateHappening, setDateHappening] = useState("2025-01-23"); // date
     const [timeHappening, setTimeHappening] = useState("4:20 pm"); // time
     const [instructor, setInstructor] = useState("Mr. Simon");
+    const [theClass, setTheClass] = useState("Sample");
     const [room, setRoom] = useState("B32");
+
 
     const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus dolorum excepturi expedita id itaque labore molestias officiis tempore totam?");
 
@@ -36,7 +38,8 @@ const Daycard = () => {
                 <p>{title}</p>
             </div>
             <div className={"actual_content"}>
-                {dateHappening ? (<p>Date: {dateHappening}</p>) : ''} {/*do the same for the rest*/}
+                {theClass ? (<p>Class: {theClass}</p>) : ''}
+                {dateHappening ? (<p>Date: {dateHappening}</p>) : ''}
                 {timeHappening ? (<p>Time: {timeHappening}</p>) : ''}
                 {instructor ? (<p>Instructor: {instructor}</p>) : ''}
                 {room ? (<p>Room: {room}</p>) : ''}
