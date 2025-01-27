@@ -12,10 +12,26 @@ const Daycard = () => {
     const [instructor, setInstructor] = useState("Mr. Simon");
     const [room, setRoom] = useState("B32");
 
-    const [description, setDescription] = useState("asd;hsdio;fhasdklfhasdkl;jsdkfjasdkl;fjasdkl;fjsdkl;fjasdkl;fjasdkl;fjasdklfjasdkfjasdkl;fjasdklfjasdkl;fj;asdklfjakl;sdjfkl;asdjf;");
-    
+    const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus dolorum excepturi expedita id itaque labore molestias officiis tempore totam?");
+
+    const [isOpen, setIsOpen] = useState(true);
+
+    function closeCard(){
+        setIsOpen(false);
+    }
+
+    if (!isOpen){
+        return null;
+    }
+
     return (
-        <Rnd className={"day_card"}>
+        <Rnd className={"day_card"}
+             default={{
+                 x: 100,
+                 y: 100,
+                 width: 320,
+
+             }}>
             <div className={"title_container"}>
                 <p>{title}</p>
             </div>
@@ -27,9 +43,9 @@ const Daycard = () => {
                 {description ? (<p>{description}</p>) : ''}
             </div>
 
-            ``
+            <button className={"close_day_card"} onClick={closeCard}>X</button>
         </Rnd>
-    )   
+    )
 }
 
 export default Daycard;
