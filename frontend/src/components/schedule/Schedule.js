@@ -4,15 +4,14 @@ import Daycard from "./popup/Daycard";
 
 const Schedule = () => {
     /*
-    todo: make sample data for the calendar
-
     todo: make it so that the calendar defaults to the current month
     and will get the days that are marked with an event, such as when 
     an assignment is due or if there's am exam
     */
 
-    const sampleSpecialDays = [
+    var sampleSpecialDays = [ // id is just square number
         {
+            "id": 2,
             "titleSpaceColor": "red",
             "title": "Assignment 1",
             "theClass": "Math",
@@ -20,6 +19,7 @@ const Schedule = () => {
             "description": "The due date has already passed. Marks have not been given out yet."
         },
         {
+            "id": 3,
             "titleSpaceColor": "pink",
             "title": "C23 Math Class Lab",
             "dateHappening": "2024-12-31",
@@ -30,12 +30,14 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 4,
             "titleSpaceColor": "yellow",
             "title": "Today",
             "dateHappening": "2025-01-01",
             "description": "Nothing to do today."
         },
         {
+            "id": 5,
             "titleSpaceColor": "blue",
             "title": "C23 Math Class Lecture",
             "dateHappening": "2025-01-02",
@@ -45,6 +47,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 7,
             "titleSpaceColor": "green",
             "title": "Assignment 2",
             "dateHappening": "2025-01-04",
@@ -53,6 +56,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 10,
             "titleSpaceColor": "pink",
             "title": "C23 Math Class Lab",
             "dateHappening": "2025-01-07",
@@ -63,6 +67,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 12,
             "titleSpaceColor": "blue",
             "title": "C23 Math Class Lecture",
             "dateHappening": "2025-01-09",
@@ -72,6 +77,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 15,
             "titleSpaceColor": "red",
             "title": "Assignment 2",
             "theClass": "Math",
@@ -79,6 +85,7 @@ const Schedule = () => {
             "description": "The due date will be on a Sunday."
         },
         {
+            "id": 17,
             "titleSpaceColor": "pink",
             "title": "C23 Math Class Lab",
             "dateHappening": "2025-01-14",
@@ -89,6 +96,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 19,
             "titleSpaceColor": "blue",
             "title": "C23 Math Class Lecture",
             "dateHappening": "2025-01-16",
@@ -98,6 +106,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 24,
             "titleSpaceColor": "pink",
             "title": "C23 Math Class Lab",
             "dateHappening": "2025-01-21",
@@ -108,6 +117,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 25,
             "titleSpaceColor": "red",
             "title": "Quiz 3",
             "theClass": "Math",
@@ -115,6 +125,7 @@ const Schedule = () => {
             "description": "The due date will be on a Wednesday."
         },
         {
+            "id": 26,
             "titleSpaceColor": "blue",
             "title": "C23 Math Class Lecture",
             "dateHappening": "2025-01-23",
@@ -124,6 +135,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 31,
             "titleSpaceColor": "pink",
             "title": "C23 Math Class Lab",
             "dateHappening": "2025-01-28",
@@ -134,6 +146,7 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
         {
+            "id": 33,
             "titleSpaceColor": "blue",
             "title": "C23 Math Class Lecture",
             "dateHappening": "2025-01-30",
@@ -143,6 +156,41 @@ const Schedule = () => {
             "description": "We will do some stuff what we have learned in the lecture for last week"
         },
     ]
+
+    function addToSamples(array){
+        let returnArray = [];
+        let alreadySet = [];
+
+        for (let i = 0; i < array.length; i++) {
+            alreadySet.push(array[i]["id"])
+        }
+
+        console.log(alreadySet)
+
+        for (let i = 0; i < 36; i++){
+            if (array[i] != null && alreadySet.includes(array[i]["id"])){ //this is probably the problem
+                console.log("contains " + i)
+                console.log(array[i]["id"])
+                returnArray.push(array[i])
+            }
+            else{
+                console.log("does not contain " + i)
+                returnArray.push({
+                    "id": i,
+                    "titleSpaceColor": "default",
+                    "dateHappening": "no",
+                })
+            }
+        }
+
+        return returnArray;
+    }
+
+    sampleSpecialDays = addToSamples(sampleSpecialDays)
+
+    console.log("1234567890" + sampleSpecialDays);
+
+    sampleSpecialDays = sampleSpecialDays.slice(0, 15)
 
 
 
@@ -165,11 +213,21 @@ const Schedule = () => {
                     </div>
                     <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
                         {sampleSpecialDays.map((day) => (
-                            <div className={`calendar_day col_{day.titleSpaceColor}`}>
+                            <div className={`calendar_day col_${day.titleSpaceColor}`}>
                                 <p className={"calendar_day_number"}>{day.dateHappening}</p>
                                 <p>{day.title}</p>
                             </div>
                         ))}
+
+                        {/*
+
+                        {sampleSpecialDays.map((day) => (
+                            <div className={`calendar_day col_${day.titleSpaceColor}`}>
+                                <p className={"calendar_day_number"}>{day.dateHappening}</p>
+                                <p>{day.title}</p>
+                            </div>
+                        ))}
+                        */}
 
                         {/*
                         <div className={"calendar_day col_yellow"}>
