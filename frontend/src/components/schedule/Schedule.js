@@ -169,11 +169,9 @@ const Schedule = () => {
 
         for (let i = 1; i < 36; i++){
             if (alreadySet.includes(i)) {
-                // Find the object with the current index in the array
-                let obj = array.find(x => x["id"] === i);
                 console.log("contains " + i);
                 console.log(i);
-                returnArray.push(obj);
+                returnArray.push(array.find(x => x["id"] === i));
             }
             else{
                 console.log("does not contain " + i)
@@ -191,8 +189,6 @@ const Schedule = () => {
     sampleSpecialDays = addToSamples(sampleSpecialDays)
 
     console.log("1234567890" + sampleSpecialDays);
-
-    sampleSpecialDays = sampleSpecialDays.slice(0, 15)
 
 
 
