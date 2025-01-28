@@ -167,11 +167,13 @@ const Schedule = () => {
 
         console.log(alreadySet)
 
-        for (let i = 0; i < 36; i++){
-            if (array[i] != null && alreadySet.includes(array[i]["id"])){ //this is probably the problem
-                console.log("contains " + i)
-                console.log(array[i]["id"])
-                returnArray.push(array[i])
+        for (let i = 1; i < 36; i++){
+            if (alreadySet.includes(i)) {
+                // Find the object with the current index in the array
+                let obj = array.find(x => x["id"] === i);
+                console.log("contains " + i);
+                console.log(i);
+                returnArray.push(obj);
             }
             else{
                 console.log("does not contain " + i)
