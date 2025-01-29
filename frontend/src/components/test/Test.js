@@ -42,6 +42,18 @@ function Test() {
                     <Link to="/professional" className="link_class">Professional Use</Link>
                 </li>
                 <li>
+                    <Link to="/announcements" className="link_class">Announcements</Link>
+                </li>
+                <li>
+                    <Link to="/grades" className="link_class">Grades</Link>
+                </li>
+                <li>
+                    <Link to="/submission" className="link_class">Submission Page</Link>
+                </li>
+
+
+                
+                <li>
                     <h3>Classes:</h3>
                     <ul>
                         {classes.map((classItem) => (

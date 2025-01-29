@@ -19,6 +19,12 @@ import Professional from "./components/professional/Professional";
 
 import ClassPage from "./components/class/ClassPage";
 
+import Announcements from './components/announcements/Announcments';
+
+import Grades from "./components/grades/Grades";
+
+import SubmissionPage from "./components/submission/SubmissionPage";
+
 import Header from "./components/header/Header";
 import "./components/header/style.css";
 
@@ -67,6 +73,10 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
+                <Route path="/announcements" element={<Announcements />} />
+                <Route path="/grades" element={<Grades />} />
+                <Route path="/submission" element={<SubmissionPage />} />
+
 
                 {/*remove the below links later*/}
                 
