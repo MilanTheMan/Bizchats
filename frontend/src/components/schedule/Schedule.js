@@ -9,6 +9,7 @@ const Schedule = () => {
     an assignment is due or if there's am exam
     */
 
+    // this will get replaced later
     var sampleSpecialDays = [ // id is just square number
         {
             "id": 2,
@@ -157,6 +158,15 @@ const Schedule = () => {
         },
     ]
 
+    function getEarliestEvents(array, number){ //
+        let returnArray = []
+        for (let i = 0; i < number; i++) {
+            returnArray.push(array[i]);
+        }
+
+        return returnArray;
+    }
+
     function addToSamples(array){
         let returnArray = [];
         let alreadySet = [];
@@ -186,8 +196,10 @@ const Schedule = () => {
         return returnArray;
     }
 
-    sampleSpecialDays = addToSamples(sampleSpecialDays)
+    let earliestEvents = getEarliestEvents(sampleSpecialDays, 5);
+    sampleSpecialDays = addToSamples(sampleSpecialDays);
 
+    console.log(earliestEvents)
     console.log("1234567890" + sampleSpecialDays);
 
 
@@ -377,6 +389,21 @@ const Schedule = () => {
                 <aside id={"schedule_events"}>
                     <h4>Events</h4>
                     <div id={"schedule_event_list"}>
+                        {earliestEvents.map((day) => (
+                            <div className={`event col_${day.titleSpaceColor}`}>
+                                <p>{day.title}</p>
+                            </div>
+                        ))}
+
+                        {/*
+                            <div className={`calendar_day col_${day.titleSpaceColor}`}>
+                                <p className={"calendar_day_number"}>{day.dateHappening}</p>
+                                <p>{day.title}</p>
+                            </div>
+                        */}
+
+
+                        {/*
                         <div className={"event col_green"}>
                             <p>Description</p>
                         </div>
@@ -392,6 +419,7 @@ const Schedule = () => {
                         <div className={"event col_pink"}>
                             <p>Description</p>
                         </div>
+                        */}
                     </div>
                 </aside>
             </div>
