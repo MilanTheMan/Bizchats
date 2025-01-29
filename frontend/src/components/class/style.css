@@ -1,131 +1,145 @@
 /* Class Page Wrapper */
 .class-page {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    /*background-color: #f4f4f4;*/
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /*background-color: #f4f4f4;*/
+  min-height: 100vh;
+}
 
-  /* Header */
-  .class-header {
-    background: linear-gradient(180deg, #007BFF, #0056b3);
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+/* Header */
+.class-header {
+  background: linear-gradient(180deg, #007BFF, #0056b3);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
-  /* Class Content */
-  .class-content{
-    padding: 20px;
-  }
+/* Class Content */
+.class-content{
+  padding: 20px;
+}
 
-  /* Recent News Section */
-  .recent-news {
-    margin: 20px 0;
-  }
-  
-  .recent-news h2 {
-    margin-bottom: 10px;
+/* Recent News Section */
+.recent-news {
+  margin: 20px 0;
+}
+
+.recent-news h2 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.news-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.news-card {
+  background: rgb(69,76,90);
+  background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1 1 250px;
+}
+
+.news-card .tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.tag.assignment {
+  background-color: #ffcc00;
+}
+
+.tag.marks {
+  background-color: #28a745;
+}
+
+.tag.announcement {
+  background-color: #007bff;
+}
+
+/* Chat Section */
+.class-chat {
+  margin: 20px 0;
+}
+
+.chat-box {
+  background: #454c5a;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  p{
     color: white;
-  }
-  
-  .news-cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .news-card {
-    background: rgb(69,76,90);
-    background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex: 1 1 250px;
-  }
-  
-  .news-card .tag {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white;
-    font-size: 0.8rem;
-    margin-top: 10px;
-  }
-  
-  .tag.assignment {
-    background-color: #ffcc00;
-  }
-  
-  .tag.marks {
-    background-color: #28a745;
-  }
-  
-  .tag.announcement {
-    background-color: #007bff;
-  }
-  
-  /* Chat Section */
-  .class-chat {
-    margin: 20px 0;
-  }
-  
-  .chat-box {
-    background: #454c5a;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    height: 300px;
-    overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .chat-message {
-    margin-bottom: 10px;
-    p{
+    font-weight: lighter;
+    strong{
       color: white;
-      font-weight: lighter;
-      strong{
-        color: white;
-      }
     }
   }
-  
-  .chat-message strong {
-    color: #333;
+}
+
+.chat-message strong {
+  color: #333;
+}
+
+.chat-message .timestamp {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  color: black;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #0056b3;
+}
+
+.user_and_message{
+  .chat_username{
+    margin-right: 5px;
   }
-  
-  .chat-message .timestamp {
-    display: block;
-    font-size: 0.8rem;
-    color: #888;
-  }
-  
-  .chat-input {
-    display: flex;
-    margin-top: 10px;
-  }
-  
-  .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px 0 0 8px;
-    color: black;
-  }
-  
-  .chat-input button {
-    padding: 10px 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0 8px 8px 0;
+  .chat_username:hover{
+    text-decoration: underline;
     cursor: pointer;
   }
-  
-  .chat-input button:hover {
-    background: #0056b3;
+
+  .chat_user_message{
+
   }
-  
+  display: flex;
+}

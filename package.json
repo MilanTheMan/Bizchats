@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "react-rnd": "^10.4.14"
+  }
+}

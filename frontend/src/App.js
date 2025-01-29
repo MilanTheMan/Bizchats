@@ -40,9 +40,14 @@ import "./components/notfound/style.css"
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
 
+// not sites
+import ProfileCard from "./components/profile_card/ProfileCard";
+import Daycard from './components/schedule/popup/Daycard';
+import "./components/schedule/popup/style.css"
 
 //testing purposes
 import Test from "./components/test/Test";
+
 
 
 function App() {
@@ -62,6 +67,14 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
+
+                {/*remove the below links later*/}
+                
+                <Route path="/profile_card" element={<ProfileCard/>} />
+                <Route path="/day_card" element={<Daycard/>} />
+
+                {/*remove the above links later*/}
+
                 <Route path="/*" element={<NotFound/>} />
             </Routes>
             <Footer/>

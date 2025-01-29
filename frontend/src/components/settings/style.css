@@ -44,6 +44,7 @@
                         border-radius: 20px;
                         border: none;
                         font-size: 20px;
+                        color: black;
                     }
 
                     button{
@@ -66,8 +67,14 @@
                         box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
                         background-color: #1564b2;
                     }
+
+
                 }
             }
         }
     }
+}
+
+textarea{
+    color: black;
 }
