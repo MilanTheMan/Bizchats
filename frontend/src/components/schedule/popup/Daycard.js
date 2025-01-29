@@ -27,14 +27,14 @@ const Daycard = (props) => {
     }
 
     return (
-        <Rnd className={"day_card"}
+        <Rnd className={`day_card`}
              default={{
                  x: 100,
                  y: 100,
                  width: 320,
 
              }}>
-            <div className={"title_container"}>
+            <div className={`title_container col_${titleSpaceColor}`}>
                 <p>{title}</p>
             </div>
             <div className={"actual_content"}>
