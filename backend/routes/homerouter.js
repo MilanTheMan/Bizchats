@@ -1,9 +1,12 @@
 const express = require("express");
 const homeRouter = express.Router();
 
-// Define your routes here
-homeRouter.get("/", (req, res) => {
-    res.send("Welcome to the home route!");
-});
+const sqlDeleteController = require("../controller/sqlDeleteController")
+const sqlGetController = require("../controller/sqlGetController")
+const sqlPostController = require("../controller/sqlPostController")
+const sqlUpdateController = require("../controller/sqlUpdateController")
+
+
+homeRouter.post("/getAllUsers", sqlGetController.getAllUsers);
 
 module.exports = homeRouter;
