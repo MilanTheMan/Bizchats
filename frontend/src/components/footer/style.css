@@ -2,15 +2,12 @@ footer{
     background: rgb(13,58,117);
     background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
 
-    /*margin-top: 100vh;*/
+    margin-top: 100vh;
     height: 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    position: fixed;
-    bottom: 0;
 
     p{
         text-align: center;

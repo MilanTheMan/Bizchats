@@ -50,6 +50,13 @@ const classData = { //this is just sample data
       description: "🦊🦊🦊🦊🦊🦊🦊🦊🦊",
       timestamp: "01/24/2025 3:59 PM",
     },
+    {
+      id: 3,
+      user: "Tres",
+      message: "OI OI OI BAAAAAAAAAKA",
+      description: "Ochinchin suki dayo",
+      timestamp: "02/34/2029 6:69 PM",
+    },
   ],
 };
 

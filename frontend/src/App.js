@@ -1,54 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Bizchats_logo from './img/bizchats_logo.png';
 
 import Login from "./components/login_and_signup/Login";
 import Signup from './components/login_and_signup/Signup';
-import "./components/login_and_signup/style.css";
-
 import HomePage from './components/home/HomePage';
-
 import PersonalUse from "./components/personal/PersonalUse";
-
 import Educational from "./components/educational/Educational";
-
 import Professional from "./components/professional/Professional";
-
 import ClassPage from "./components/class/ClassPage";
-
 import Header from "./components/header/Header";
-import "./components/header/style.css";
-
 import Footer from "./components/footer/Footer";
-import "./components/footer/style.css"
-
 import Mainpage from './components/mainpage/Mainpage';
-import "./components/mainpage/style.css";
-
 import Settings from "./components/settings/Settings";
-import "./components/settings/style.css";
-
 import Schedule from './components/schedule/Schedule';
-import "./components/schedule/style.css"
-
 import NotFound from './components/notfound/notfound';
-import "./components/notfound/style.css"
 
-import Navbar from './components/navbar/Navbar';
-import "./components/navbar/style.css";
-
-// not sites
 import ProfileCard from "./components/profile_card/ProfileCard";
 import Daycard from './components/schedule/popup/Daycard';
-import "./components/schedule/popup/style.css"
-
-//testing purposes
 import Test from "./components/test/Test";
 
-
+// Footer pages
+import TermsConditions from "./components/footer/TermsConditions";
+import PrivacyPolicy from "./components/footer/PrivacyPolicy";
+import Cookies from "./components/footer/Cookies";
+import Accessibility from "./components/footer/Accessibility";
 
 function App() {
   return (
@@ -67,19 +45,19 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/settings" element={<Settings/>} />
                 <Route path="/schedule" element={<Schedule/>} />
-
-                {/*remove the below links later*/}
-                
                 <Route path="/profile_card" element={<ProfileCard/>} />
                 <Route path="/day_card" element={<Daycard/>} />
-
-                {/*remove the above links later*/}
+                
+                {/* Footer pages routes */}
+                <Route path="/terms-conditions" element={<TermsConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/accessibility" element={<Accessibility />} />
 
                 <Route path="/*" element={<NotFound/>} />
             </Routes>
             <Footer/>
         </BrowserRouter>
-
     </div>
   );
 }
