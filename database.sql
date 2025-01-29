@@ -42,7 +42,8 @@
 	create table users
 	(
 		id INT PRIMARY KEY auto_increment,
-		name VARCHAR(50) UNIQUE,
+		name VARCHAR(100),
+		email VARCHAR(100) UNIQUE,
 		password VARCHAR(500),
 		role_id INT NOT NULL,
 		profile_picture BLOB,
