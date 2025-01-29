@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Header from "../header/Header";
 import Daycard from "./popup/Daycard";
+import ProfileCard from "../profile_card/ProfileCard";
 
 const Schedule = () => {
     /*
@@ -158,6 +159,16 @@ const Schedule = () => {
         },
     ]
 
+    const [dayCards, setDaycards] = useState([]);
+    function showDayCard(){
+        console.log("djfsdfsdfdsfdsf");
+
+        setDaycards((prevCards) => [
+            ...prevCards,
+            <Daycard/>
+        ]);
+    }
+
     function getEarliestEvents(array, number){ //
         let returnArray = []
         for (let i = 0; i < number; i++) {
@@ -200,13 +211,17 @@ const Schedule = () => {
     sampleSpecialDays = addToSamples(sampleSpecialDays);
 
     console.log(earliestEvents)
-    console.log("1234567890" + sampleSpecialDays);
+    console.log(sampleSpecialDays);
 
 
 
     
     return(
         <div id={"schedule"}>
+            <div className={"day_card_holder"}>
+                {dayCards.map(dayCard => dayCard)}
+            </div>
+
             <h1>Schedule</h1>
 
             <div id={"schedule_content"}>
@@ -223,7 +238,9 @@ const Schedule = () => {
                     </div>
                     <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
                         {sampleSpecialDays.map((day) => (
-                            <div className={`calendar_day col_${day.titleSpaceColor}`}>
+                            <div className={`calendar_day col_${day.titleSpaceColor}`} onClick={() => {
+                                showDayCard()
+                            }}>
                                 <p className={"calendar_day_number"}>{day.dateHappening}</p>
                                 <p>{day.title}</p>
                             </div>
@@ -391,6 +408,7 @@ const Schedule = () => {
                     <div id={"schedule_event_list"}>
                         {earliestEvents.map((day) => (
                             <div className={`event col_${day.titleSpaceColor}`}>
+                                <p>{day.dateHappening}</p>
                                 <p>{day.title}</p>
                             </div>
                         ))}
