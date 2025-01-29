@@ -160,12 +160,10 @@ const Schedule = () => {
     ]
 
     const [dayCards, setDaycards] = useState([]);
-    function showDayCard(){
-        console.log("djfsdfsdfdsfdsf");
-
+    function showDayCard(id, titleSpaceColor, title = "No title was set.",  dateHappening, instructor, theClass, room, description){
         setDaycards((prevCards) => [
             ...prevCards,
-            <Daycard/>
+            <Daycard id={id} titleSpaceColor={titleSpaceColor} title={title} dateHappening={dateHappening} instructor={instructor} theClass={theClass} room={room} description={description}/>
         ]);
     }
 
@@ -239,7 +237,7 @@ const Schedule = () => {
                     <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
                         {sampleSpecialDays.map((day) => (
                             <div className={`calendar_day col_${day.titleSpaceColor}`} onClick={() => {
-                                showDayCard()
+                                showDayCard(day.id, day.titleSpaceColor, day.title, day.dateHappening, day.instructor, day.theClass, day.room, day.description);
                             }}>
                                 <p className={"calendar_day_number"}>{day.dateHappening}</p>
                                 <p>{day.title}</p>

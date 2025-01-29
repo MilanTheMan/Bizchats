@@ -1,20 +1,20 @@
 import React, {useState} from "react";
 import { Rnd } from 'react-rnd';
 
-const Daycard = () => {
+const Daycard = (props) => {
     
     // if there's no value it won't appear
-    const [titleSpaceColor, setTitleSpaceColor] = useState("#5715d1");
-    const [title, setTitle] = useState("No Title Set")
+    const [titleSpaceColor, setTitleSpaceColor] = useState(props.titleSpaceColor);
+    const [title, setTitle] = useState(props.title)
 
-    const [dateHappening, setDateHappening] = useState("2025-01-23"); // date
-    const [timeHappening, setTimeHappening] = useState("4:20 pm"); // time
-    const [instructor, setInstructor] = useState("Mr. Simon");
-    const [theClass, setTheClass] = useState("Sample");
-    const [room, setRoom] = useState("B32");
+    const [dateHappening, setDateHappening] = useState(props.dateHappening); // date
+    const [timeHappening, setTimeHappening] = useState(props.timeHappening); // time
+    const [instructor, setInstructor] = useState(props.instructor);
+    const [theClass, setTheClass] = useState(props.theClass);
+    const [room, setRoom] = useState(props.room);
 
 
-    const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus dolorum excepturi expedita id itaque labore molestias officiis tempore totam?");
+    const [description, setDescription] = useState(props.description);
 
     const [isOpen, setIsOpen] = useState(true);
 
