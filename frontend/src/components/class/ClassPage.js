@@ -3,7 +3,7 @@ import "./style.css";
 import ProfileCard from "../profile_card/ProfileCard";
 import profileCard from "../profile_card/ProfileCard";
 
-const classData = {
+const classData = { //this is just sample data
   name: "C23 Math Class",
   announcements: [
     {
@@ -33,18 +33,21 @@ const classData = {
       id: 1,
       user: "Fahad",
       message: "We need to finish the Figma Prototype",
+      description: "hsdkofjsdkfsdjklsdjf;lksdf",
       timestamp: "10/30/2024 2:00 PM",
     },
     {
       id: 2,
       user: "Milan",
       message: "Working on it now!",
+      description: "haesdriohuoasrogh[oiawgr9u0",
       timestamp: "10/30/2024 2:14 PM",
     },
     {
       id: 3,
       user: "AAAAAAAAAAAAAAAAAAAAA",
       message: "🦊",
+      description: "🦊🦊🦊🦊🦊🦊🦊🦊🦊",
       timestamp: "01/24/2025 3:59 PM",
     },
   ],
@@ -53,12 +56,10 @@ const classData = {
 const ClassPage = () => {
 
   const [profileCards, setProfileCards] = React.useState([]);
-  const showProfileCard = () => {
-    console.log("djfsdfsdfdsfdsf");
-
+  const showProfileCard = (user, description) => {
     setProfileCards((prevCards) => [
       ...prevCards,
-      <ProfileCard/>
+      <ProfileCard user={user} description={description}/>
     ]);
   }
 
@@ -101,7 +102,7 @@ const ClassPage = () => {
             {classData.chat.map((message) => (
               <div key={message.id} className="chat-message">
                 <div className={"user_and_message"}>
-                  <p className={"chat_username"} onClick={showProfileCard}>{message.user}: </p>
+                  <p className={"chat_username"} onClick={() => {showProfileCard(message.user, message.description)}}>{message.user}: </p>
                   <p className={"chat_user_message"}>{message.message}</p>
                 </div>
                 <span className="timestamp">{message.timestamp}</span>
