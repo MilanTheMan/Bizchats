@@ -75,10 +75,30 @@ function signup(data = {}) {
     });
 }
 
+function getUserChannels(userId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getUserChannels`, { userId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
-    signup
+    signup,
+    getUserChannels
 };
 
 export default sqlService;

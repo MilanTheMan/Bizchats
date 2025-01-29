@@ -90,9 +90,32 @@ async function login(req, res) {
     }
 }
 
+async function getUserChannels(req, res) {
+    try {
+        const { userId } = req.body;
+        const query = `
+            SELECT channels.* 
+            FROM channels 
+            INNER JOIN userstochannels ON channels.id = userstochannels.channelid 
+            WHERE userstochannels.userid = ?`;
+
+        sqlConnection.query(query, [userId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     getUserByEmail,
-    login
+    login,
+    getUserChannels
 };

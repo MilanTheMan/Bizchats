@@ -110,3 +110,19 @@
 	("dummy4", "dummyemail4@fakemail.com", "password", 1, NULL),
 	("dummy5", "dummyemail5@fakemail.com", "password", 1, NULL),
 	("dummy6", "dummyemail6@fakemail.com", "password", 1, NULL);
+
+
+	INSERT INTO channels (name, role_id, profile_picture) VALUES
+	('Geography', 1, NULL),
+	('History', 1, NULL),
+	('Mathematics', 1, NULL),
+	('Science', 1, NULL),
+	('Literature', 1, NULL);
+
+
+	INSERT INTO userstochannels (userid, channelid, name, picture) VALUES
+	(1, 1, 'Geography', NULL),
+	(1, 2, 'History', NULL),
+	(1, 3, 'Mathematics', NULL),
+	(1, 4, 'Science', NULL),
+	(1, 5, 'Literature', NULL);
