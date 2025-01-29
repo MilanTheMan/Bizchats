@@ -25,6 +25,9 @@ import Grades from "./components/grades/Grades";
 
 import Submission from "./components/submission/Submission";
 
+import LandingPage from "./components/landingpage/LandingPage";
+
+
 
 import Header from "./components/header/Header";
 import "./components/header/style.css";
@@ -47,9 +50,6 @@ import "./components/notfound/style.css"
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
 
-import Homepage from './components/homepage/Homepage';
-import "./components/homepage/Homepage.css"
-
 // not sites
 import ProfileCard from "./components/profile_card/ProfileCard";
 import Daycard from './components/schedule/popup/Daycard';
@@ -69,7 +69,6 @@ function App() {
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Test/>} />
-                    <Route path="/homepage" element={<Homepage/>} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/signup" element={<Signup/>} />
                     <Route path="/main_page" element={<Mainpage/>} />
@@ -83,6 +82,8 @@ function App() {
                     <Route path="/announcements" element={<Announcements />} />
                     <Route path="/grades" element={<Grades />} />
                     <Route path="/submission" element={<Submission />} />
+                    <Route path="/landing" element={<LandingPage />} />
+
 
 
                     {/*remove the below links later*/}

@@ -53,6 +53,10 @@ function Test() {
                 <li>
                     <Link to="/submission" className="link_class">Submission Page</Link>
                 </li>
+                <li>
+                    <Link to="/landing" className="link_class">Landing Page</Link>
+                </li>
+
 
 
                 
