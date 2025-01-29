@@ -1,0 +1,17 @@
+#info{
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+
+    #info_container{
+        background: rgb(69,76,90);
+        background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+        border-radius: 15px;
+        padding: 10px;
+
+        p{
+            word-wrap: break-word;
+        }
+    }
+}

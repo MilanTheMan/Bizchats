@@ -38,6 +38,7 @@ import NotFound from './components/notfound/notfound';
 import "./components/notfound/style.css"
 
 import Info from "./components/info/info";
+import "./components/info/style.css"
 
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
