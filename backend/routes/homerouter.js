@@ -8,5 +8,6 @@ const sqlUpdateController = require("../controller/sqlUpdateController");
 
 homeRouter.post("/login", sqlGetController.login);
 homeRouter.post("/getAllUsers", sqlGetController.getAllUsers);
+homeRouter.post("/signup", sqlPostController.signup);
 
 module.exports = homeRouter;

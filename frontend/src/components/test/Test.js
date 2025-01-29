@@ -15,6 +15,9 @@ function Test() {
         <div>
             <ul>
                 <li>
+                    <Link to="/homepage" className="link_class">Homepage</Link>
+                </li>
+                <li>
                     <Link to="/login" className="link_class">Log In</Link>
                 </li>
                 <li>

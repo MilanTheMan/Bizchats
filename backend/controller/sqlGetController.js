@@ -74,7 +74,8 @@ async function login(req, res) {
                 const user = result[0];
                 console.log(`User found: ${user.email}`);
                 if (user.password === password) {
-                    res.send({ data: user });
+                    const { password, ...userWithoutPassword } = user;
+                    res.send({ data: userWithoutPassword });
                 } else {
                     console.log('Invalid password');
                     res.status(401).json({ error: "Invalid password" });

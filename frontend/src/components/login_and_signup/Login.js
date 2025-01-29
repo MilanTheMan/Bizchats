@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
+import { UserContext } from '../../context/UserContext';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { setUser } = useContext(UserContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
-        sqlService.login({ email, password }) // <-- Send email and password directly
+        sqlService.login({ email, password })
             .then(data => {
                 console.log(data);
-                // Handle successful login
+                setUser(data.data); // Update user context
                 alert("Success");
             })
             .catch(err => {
                 console.log(err);
-                // Handle login error
                 alert("Fail");
             });
     };
@@ -29,7 +30,7 @@ function Login() {
                     </div>
                     <div className={"login_details"}>
                         <div className={"login_detail"}>
-                            <label>Username/E-mail</label>
+                            <label>Email</label>
                             <input type={"text"} value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className={"login_detail"}>
