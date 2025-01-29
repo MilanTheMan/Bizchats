@@ -63,6 +63,7 @@ async function getUserByEmail(req, res) {
 async function login(req, res) {
     try {
         const { email, password } = req.body;
+        console.log(`Login attempt for email: ${email}`);
         const query = "SELECT * from users where email = ?";
 
         sqlConnection.query(query, [email], (err, result, fields) => {
@@ -71,12 +72,15 @@ async function login(req, res) {
                 res.status(500).json({ error: err });
             } else if (result.length > 0) {
                 const user = result[0];
+                console.log(`User found: ${user.email}`);
                 if (user.password === password) {
                     res.send({ data: user });
                 } else {
+                    console.log('Invalid password');
                     res.status(401).json({ error: "Invalid password" });
                 }
             } else {
+                console.log('User not found');
                 res.status(404).json({ error: "User not found" });
             }
         });
@@ -84,3 +88,10 @@ async function login(req, res) {
         res.status(500).json({ err: err });
     }
 }
+
+module.exports = {
+    getAllUsers,
+    getUserById,
+    getUserByEmail,
+    login
+};

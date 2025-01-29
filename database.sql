@@ -68,10 +68,10 @@
 	(2, 'admin');
     
     
-	INSERT INTO users (name, password, role_id, profile_picture) VALUES
-	("dummy1", "password", 1, "123"),
-	("dummy2", "password", 1, "123"),
-	("dummy3", "password", 1, "123"),
-	("dummy4", "password", 1, "123"),
-	("dummy5", "password", 1, "123"),
-	("dummy6", "password", 1, "123");
+	INSERT INTO users (name, email, password, role_id, profile_picture) VALUES
+	("dummy1", "dummyemail1@fakemail.com", "password", 1, "123"),
+	("dummy2", "dummyemail2@fakemail.com", "password", 1, "123"),
+	("dummy3", "dummyemail3@fakemail.com", "password", 1, "123"),
+	("dummy4", "dummyemail4@fakemail.com", "password", 1, "123"),
+	("dummy5", "dummyemail5@fakemail.com", "password", 1, "123"),
+	("dummy6", "dummyemail6@fakemail.com", "password", 1, "123");

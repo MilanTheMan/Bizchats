@@ -32,18 +32,18 @@ function getAllUsers(data = {}) {
 function login(data = {}) {
     return new Promise((resolve, reject) => {
         try {
-            let user = getUserFromCookie()
+            let user = getUserFromCookie();
             if (!data.user) {
                 data["user"] = user;
             }
             axios
-                .post(`${serverConstants.baseURL}/login`, { data: data })
-                .then((data) => {
-                    let ret = data.data;
+                .post(`${serverConstants.baseURL}/login`, data) // <-- Send data directly
+                .then((response) => {
+                    let ret = response.data;
                     resolve(ret);
                 })
                 .catch((err) => {
-                    serverResponseErrActions(err)
+                    serverResponseErrActions(err);
                     reject(err);
                 });
         } catch (err) {

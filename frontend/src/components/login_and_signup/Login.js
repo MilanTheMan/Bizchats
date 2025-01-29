@@ -7,7 +7,7 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        sqlService.login({ email, password })
+        sqlService.login({ email, password }) // <-- Send email and password directly
             .then(data => {
                 console.log(data);
                 // Handle successful login
