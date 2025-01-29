@@ -19,7 +19,7 @@ code {
     monospace;
 }
 
-h1, h2, h3, h4, h5, h6, p, input, select, textarea, label {
+h1, h2, h3, h4, h5, h6, a, p, input, select, textarea, label {
   font-family: Montserrat-Regular;
   color: white;
 }
