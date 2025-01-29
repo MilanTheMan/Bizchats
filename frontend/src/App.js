@@ -50,6 +50,12 @@ import "./components/navbar/style.css";
 import Homepage from './components/homepage/Homepage';
 import "./components/homepage/Homepage.css"
 
+import TermsConditions from "./components/footer/TermsConditions";
+import PrivacyPolicy from "./components/footer/PrivacyPolicy";
+import Cookies from "./components/footer/Cookies";
+import Accessibility from "./components/footer/Accessibility";
+
+
 // not sites
 import ProfileCard from "./components/profile_card/ProfileCard";
 import Daycard from './components/schedule/popup/Daycard';
@@ -64,39 +70,43 @@ import { UserProvider } from './context/UserContext';
 function App() {
   return (
     <div className="App">
-        <UserProvider>
-            <BrowserRouter>
-                <Header/>
-                <Routes>
-                    <Route path="/" element={<Test/>} />
-                    <Route path="/homepage" element={<Homepage/>} />
-                    <Route path="/login" element={<Login/>} />
-                    <Route path="/signup" element={<Signup/>} />
-                    <Route path="/main_page" element={<Mainpage/>} />
-                    <Route path="/home" element={<HomePage/>} />
-                    <Route path="/personal" element={<PersonalUse />} />
-                    <Route path="/educational" element={<Educational />} />
-                    <Route path="/professional" element={<Professional />} />
-                    <Route path="/class/:classId" element={<ClassPage />} />
-                    <Route path="/settings" element={<Settings/>} />
-                    <Route path="/schedule" element={<Schedule/>} />
-                    <Route path="/announcements" element={<Announcements />} />
-                    <Route path="/grades" element={<Grades />} />
-                    <Route path="/submission" element={<Submission />} />
+      <UserProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Test />} />
+            <Route path="/homepage" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/main_page" element={<Mainpage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/personal" element={<PersonalUse />} />
+            <Route path="/educational" element={<Educational />} />
+            <Route path="/professional" element={<Professional />} />
+            <Route path="/class/:classId" element={<ClassPage />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/announcements" element={<Announcements />} />
+            <Route path="/grades" element={<Grades />} />
+            <Route path="/submission" element={<Submission />} />
 
 
-                    {/*remove the below links later*/}
-                    
-                    <Route path="/profile_card" element={<ProfileCard/>} />
-                    <Route path="/day_card" element={<Daycard/>} />
+            {/*remove the below links later*/}
 
-                    {/*remove the above links later*/}
+            <Route path="/profile_card" element={<ProfileCard />} />
+            <Route path="/day_card" element={<Daycard />} />
 
-                    <Route path="/*" element={<NotFound/>} />
-                </Routes>
-                <Footer/>
-            </BrowserRouter>
-        </UserProvider>
+            {/* Footer pages routes */}
+            <Route path="/terms-conditions" element={<TermsConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/accessibility" element={<Accessibility />} />
+
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }
