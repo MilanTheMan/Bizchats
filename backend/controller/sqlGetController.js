@@ -112,10 +112,86 @@ async function getUserChannels(req, res) {
     }
 }
 
+async function getChannelById(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * from channels where id = ?";
+
+        sqlConnection.query(query, [channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result[0] });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getChannelAnnouncements(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * from channel_announcements where channel_id = ?";
+
+        sqlConnection.query(query, [channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getChannelAssignments(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * from channel_assignments where channel_id = ?";
+
+        sqlConnection.query(query, [channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getChannelMarks(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * from channel_marks where channel_id = ?";
+
+        sqlConnection.query(query, [channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     getUserByEmail,
     login,
-    getUserChannels
+    getUserChannels,
+    getChannelById,
+    getChannelAnnouncements,
+    getChannelAssignments,
+    getChannelMarks
 };

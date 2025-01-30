@@ -55,7 +55,6 @@ import PrivacyPolicy from "./components/footer/PrivacyPolicy";
 import Cookies from "./components/footer/Cookies";
 import Accessibility from "./components/footer/Accessibility";
 
-
 // not sites
 import ProfileCard from "./components/profile_card/ProfileCard";
 import Daycard from './components/schedule/popup/Daycard';
@@ -66,6 +65,7 @@ import Test from "./components/test/Test";
 
 import React from 'react';
 import { UserProvider } from './context/UserContext';
+import ChannelPage from './components/channel/ChannelPage';
 
 function App() {
   return (
@@ -89,7 +89,7 @@ function App() {
             <Route path="/announcements" element={<Announcements />} />
             <Route path="/grades" element={<Grades />} />
             <Route path="/submission" element={<Submission />} />
-
+            <Route path="/channel/:channelId" element={<ChannelPage />} />
 
             {/*remove the below links later*/}
 

@@ -1,4 +1,4 @@
-	-- ------------------------------------------------------------------------------------ --
+-- ------------------------------------------------------------------------------------ --
 	-- | ONLY DO THIS FOR TESTING. DROPING THE DATABASE WILL REMOVE ALL THE USERS INSIDE! | --
 										drop database IF EXISTS Bizchats;
 	-- ------------------------------------------------------------------------------------ --
@@ -65,6 +65,17 @@
 		profile_picture BLOB,
 		foreign key (role_id) references roles(id)
 	);
+
+    -- ------------------- --
+	-- |Channel Roles| --
+	-- ------------------- --
+
+	drop table if exists channel_roles;
+	create table channel_roles
+	(
+		id INT PRIMARY KEY auto_increment,
+		role_name VARCHAR(40) UNIQUE
+	);
     
     
     -- ------------------- --
@@ -77,12 +88,61 @@
 	(
 		userid INT,
 		channelid INT,
-		name VARCHAR(100),
-		picture BLOB,
+		channelroleid INT NOT NULL,
 		creation_date DATETIME default NOW(),
 		foreign key (userid) references users(id) ON DELETE CASCADE,
 		foreign key (channelid) references channels(id) ON DELETE CASCADE,
+		foreign key (channelroleid) references channel_roles(id) ON DELETE CASCADE,
         PRIMARY KEY(userid, channelid)
+	);
+
+    -- -------------------- --
+	-- |Channel Announcements| --
+	-- -------------------- --
+
+	drop table if exists channel_announcements;
+	create table channel_announcements
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		title VARCHAR(100),
+		content TEXT,
+		creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+
+	-- -------------------- --
+	-- |Channel Assignments| --
+	-- -------------------- --
+
+	drop table if exists channel_assignments;
+	create table channel_assignments
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		title VARCHAR(100),
+		description TEXT,
+		due_date DATETIME,
+		creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+
+	-- -------------------- --
+	-- |Channel Marks| --
+	-- -------------------- --
+
+	drop table if exists channel_marks;
+	create table channel_marks
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		user_id INT NOT NULL,
+		assignment_id INT NOT NULL,
+		mark INT,
+		creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE,
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE
 	);
     
     
@@ -101,6 +161,12 @@
 	VALUES
 	(1, 'user'),
 	(2, 'admin');
+
+	INSERT INTO channel_roles (id, role_name)
+	VALUES
+	(1, 'owner'),
+	(2, 'administrator'),
+	(3, 'member');
     
     
 	INSERT INTO users (name, email, password, role_id, profile_picture) VALUES
@@ -120,9 +186,9 @@
 	('Literature', 1, NULL);
 
 
-	INSERT INTO userstochannels (userid, channelid, name, picture) VALUES
-	(1, 1, 'Geography', NULL),
-	(1, 2, 'History', NULL),
-	(1, 3, 'Mathematics', NULL),
-	(1, 4, 'Science', NULL),
-	(1, 5, 'Literature', NULL);
+	INSERT INTO userstochannels (userid, channelid, channelroleid) VALUES
+	(1, 1, 1),
+	(1, 2, 1),
+	(1, 3, 1),
+	(1, 4, 1),
+	(1, 5, 1);
