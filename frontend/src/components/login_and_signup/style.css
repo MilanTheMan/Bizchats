@@ -30,6 +30,7 @@
         #login_box, #signup_box {
             width: 300px;
             height: 300px;
+
             background-color: gray;
             display: flex;
             flex-direction: column;

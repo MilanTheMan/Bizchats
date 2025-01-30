@@ -403,7 +403,7 @@ const Schedule = () => {
                 </div>
 
                 <aside id={"schedule_events"}>
-                    <h4>Events</h4>
+                    <h4>Upcoming Events</h4>
                     <div id={"schedule_event_list"}>
                         {earliestEvents.map((day) => (
                             <div className={`event col_${day.titleSpaceColor}`} onClick={() => {
