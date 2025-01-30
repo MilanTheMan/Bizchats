@@ -161,10 +161,12 @@ const Schedule = () => {
 
     const [dayCards, setDaycards] = useState([]);
     function showDayCard(id, titleSpaceColor, title = "No title was set.",  dateHappening, instructor, theClass, room, description){
-        setDaycards((prevCards) => [
-            ...prevCards,
-            <Daycard id={id} titleSpaceColor={titleSpaceColor} title={title} dateHappening={dateHappening} instructor={instructor} theClass={theClass} room={room} description={description}/>
-        ]);
+        if(dateHappening != "no"){
+            setDaycards((prevCards) => [
+                ...prevCards,
+                <Daycard id={id} titleSpaceColor={titleSpaceColor} title={title} dateHappening={dateHappening} instructor={instructor} theClass={theClass} room={room} description={description}/>
+            ]);
+        }
     }
 
     function getEarliestEvents(array, number){ //
@@ -232,7 +234,6 @@ const Schedule = () => {
                         <p>Thursday</p>
                         <p>Friday</p>
                         <p>Saturday</p>
-
                     </div>
                     <div id={"calendar_days"}>{/*this will be a 7x5 grid, also every day is a placeholder*/}
                         {sampleSpecialDays.map((day) => (
@@ -405,7 +406,9 @@ const Schedule = () => {
                     <h4>Events</h4>
                     <div id={"schedule_event_list"}>
                         {earliestEvents.map((day) => (
-                            <div className={`event col_${day.titleSpaceColor}`}>
+                            <div className={`event col_${day.titleSpaceColor}`} onClick={() => {
+                                showDayCard(day.id, day.titleSpaceColor, day.title, day.dateHappening, day.instructor, day.theClass, day.room, day.description);
+                            }}>
                                 <p>{day.dateHappening}</p>
                                 <p>{day.title}</p>
                             </div>
