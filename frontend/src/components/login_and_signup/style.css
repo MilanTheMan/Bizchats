@@ -6,6 +6,10 @@
     background-image: url("../../img/signup_image.jpg");
 }
 
+#forgot_password_page{
+    background-image: url("../../img/mountain.jpg");
+}
+
 
 .log_sign{
     background-repeat: no-repeat;
@@ -46,9 +50,13 @@
 
                 p {
                     color: white;
-                    margin: 0;
-                    font-size: 40px;
+                    margin: 10px;
+                    font-size: 30px;
                 }
+            }
+
+            p{
+                text-align: center;
             }
 
             .login_details, .signup_details {
@@ -63,14 +71,19 @@
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
+                    width: 90%;
 
                     input{
                         width: calc(100% - 7px);
                         height: 30px;
-                        border-radius: 20px;
+                        border-radius: 10px;
                         border: none;
-                        font-size: 20px;
+                        font-size: 18px;
                         color: black;
+                    }
+
+                    a{
+                        font-size: 10px;
                     }
                 }
 
@@ -82,7 +95,7 @@
                     color: white;
                     width: 150px;
                     height: 50px;
-                    font-size: 30px;
+                    font-size: 20px;
                     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
                 }
 

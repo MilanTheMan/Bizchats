@@ -21,6 +21,9 @@ function Test() {
                     <Link to="/signup" className="link_class">Sign Up</Link>
                 </li>
                 <li>
+                    <Link to="/forgot_password" className="link_class">Forgot Password (skill issue)</Link>
+                </li>
+                <li>
                     <Link to="/main_page" className="link_class">Main Page</Link>
                 </li>
                 <li>

@@ -7,6 +7,7 @@ import Bizchats_logo from './img/bizchats_logo.png';
 
 import Login from "./components/login_and_signup/Login";
 import Signup from './components/login_and_signup/Signup';
+import ForgotPassword from "./components/login_and_signup/ForgotPassword";
 import "./components/login_and_signup/style.css";
 
 import HomePage from './components/home/HomePage';
@@ -51,8 +52,6 @@ import "./components/schedule/popup/style.css"
 //testing purposes
 import Test from "./components/test/Test";
 
-
-
 function App() {
     return (
         <div className="App">
@@ -62,6 +61,7 @@ function App() {
                     <Route path="/" element={<Test/>} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/signup" element={<Signup/>} />
+                    <Route path="/forgot_password" element={<ForgotPassword/>} />
                     <Route path="/main_page" element={<Mainpage/>} />
                     <Route path="/home" element={<HomePage/>} />
                     <Route path="/personal" element={<PersonalUse />} />
