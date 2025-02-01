@@ -5,7 +5,11 @@ import Header from "../header/Header";
 
 const Settings = (props) => {
     const [currentEmail, setCurrentEmail] = useState("johnathan@gmail.com");
+    const [showPassword, setShowPassword] = useState(false)
 
+    function toggleShowPassword(){
+        setShowPassword(!showPassword)
+    }
 
     return(
         <div id={"settings"}>
@@ -26,13 +30,14 @@ const Settings = (props) => {
                         <div className={"settings_login_detail"}>
                             <label>Reset Password</label>
                             <div className={"label_and_input"}>
-                                <input type={"password"}/>
+                                <input type={showPassword ? 'text' : 'password'}/>
+                                <button className="show_password_button" onClick={toggleShowPassword}>Show Password</button>
                             </div>
                         </div>
                         <div className={"settings_login_detail"}>
                             <label>Confirm Password</label>
                             <div className={"label_and_input"}>
-                                <input type={"password"}/>
+                                <input type={showPassword ? 'text' : 'password'}/>
                                 <button>Change Password</button>
                             </div>
                         </div>
