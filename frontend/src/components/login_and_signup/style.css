@@ -29,7 +29,7 @@
 
         #login_box, #signup_box {
             width: 300px;
-            height: 300px;
+            height: min-content;
 
             background: rgb(69,76,90);
             background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
@@ -87,6 +87,14 @@
                     a{
                         font-size: 10px;
                     }
+
+                    .show_password_button{
+                        font-family: 'Courier New', Courier, monospace;
+                        background: rgb(13,58,117);
+                        background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+                        border-radius: 15px;
+                        border: none;
+                    }
                 }
 
                 .submitButton{
@@ -97,6 +105,7 @@
                     color: white;
                     width: 150px;
                     height: 50px;
+                    margin: 10px;
                     font-size: 20px;
                     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
                 }
