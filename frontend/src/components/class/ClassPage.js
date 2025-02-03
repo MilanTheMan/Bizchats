@@ -77,17 +77,21 @@ const ClassPage = () => {
   }
 
   const addNewMessage = () => {
-    setTestPosts((prevPosts) => [
-      ...prevPosts,
-      {
-        id: testPosts.length,
-        user: testUser.user,
-        pfp: testUser.pfp,
-        message: message,
-        description: testUser.description,
-        timestamp: "10/30/2024 2:00 PM",
-      },
-    ]);
+    if (message !== ""){
+      setTestPosts((prevPosts) => [
+        ...prevPosts,
+        {
+          id: testPosts.length,
+          user: testUser.user,
+          pfp: testUser.pfp,
+          message: message,
+          description: testUser.description,
+          timestamp: "10/30/2024 2:00 PM",
+        },
+      ]);
+    }
+    
+
     setMessage("")
   }
 
