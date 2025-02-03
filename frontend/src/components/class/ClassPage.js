@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 import ProfileCard from "../profile_card/ProfileCard";
 import fox from "../../img/pfp/other_samples/fox.webp"
@@ -33,7 +33,7 @@ const classData = { //this is just sample data
   ],
   chat: [
     {
-      id: 1,
+      id: 0,
       user: "Fahad",
       pfp: squirrel,
       message: "We need to finish the Figma Prototype",
@@ -41,7 +41,7 @@ const classData = { //this is just sample data
       timestamp: "10/30/2024 2:00 PM",
     },
     {
-      id: 2,
+      id: 1,
       user: "Milan",
       pfp: birb,
       message: "Working on it now!",
@@ -49,7 +49,7 @@ const classData = { //this is just sample data
       timestamp: "10/30/2024 2:14 PM",
     },
     {
-      id: 3,
+      id: 2,
       user: "AAAAAAAAAAAAAAAAAAAAA",
       pfp: fox,
       message: "🦊",
@@ -60,13 +60,39 @@ const classData = { //this is just sample data
 };
 
 const ClassPage = () => {
+  const [testUser, setTestUser] = useState({
+    user: "Test",
+    pfp: fox,
+    description: "i exist only for testing purposes"
+  })
+  const [testPosts, setTestPosts] = useState(classData.chat)
+  const [message, setMessage] = useState("")
 
   const [profileCards, setProfileCards] = React.useState([]);
   const showProfileCard = (user, description, pfp) => {
     setProfileCards((prevCards) => [
       ...prevCards,
-      <ProfileCard user={user} description={description} pfp={pfp}/>
+      <ProfileCard user={user} description={description} pfp={pfp} />
     ]);
+  }
+
+  const addNewMessage = () => {
+    setTestPosts((prevPosts) => [
+      ...prevPosts,
+      {
+        id: testPosts.length,
+        user: testUser.user,
+        pfp: testUser.pfp,
+        message: message,
+        description: testUser.description,
+        timestamp: "10/30/2024 2:00 PM",
+      },
+    ]);
+    setMessage("")
+  }
+
+  function handleMessageChange(event){
+    setMessage(event.target.value)
   }
 
 
@@ -105,20 +131,22 @@ const ClassPage = () => {
         <section className="class-chat">
           <h2>Group Chat</h2>
           <div className="chat-box">
-            {classData.chat.map((message) => (
+            {testPosts.map((message) => (
               <div key={message.id} className="chat-message">
                 <div className={"user_and_message"}>
-                  <p className={"chat_username"} onClick={() => {showProfileCard(message.user, message.description, message.pfp)}}>{message.user}: </p>
+                  <p className={"chat_username"} onClick={() => { showProfileCard(message.user, message.description, message.pfp) }}>{message.user}: </p>
                   <p className={"chat_user_message"}>{message.message}</p>
                 </div>
                 <span className="timestamp">{message.timestamp}</span>
               </div>
             ))}
           </div>
-          <div className="chat-input">
-            <input type="text" placeholder="Enter a message..." />
-            <button>Send</button>
-          </div>
+          <form className="chat-input" onSubmit={(event) => {
+              event.preventDefault();
+          }}>
+            <input type="text" placeholder="Enter a message..." value={message} onChange={handleMessageChange}/>
+            <button onClick={addNewMessage} type="submit">Send</button>
+          </form>
         </section>
       </div>
     </div>
