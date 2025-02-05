@@ -28,13 +28,100 @@
     right: 0;
     width: 300px;
     height: 400px;
-    background-color: rgb(70, 70, 70); /* Set background to black */
+    background-color: rgb(70, 70, 70); /* Set background to dark gray */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     color: white; /* Set text color to white */
     animation: slideIn 0.3s ease-out;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.back-button:hover {
+    color: #ccc;
+}
+
+.chatbot-widget ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chatbot-widget li {
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white; /* Ensure text color is white */
+}
+
+.chat-section {
+    margin-top: 20px;
+}
+
+.messages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.message.sent {
+    background-color: #007bff;
+    color: white;
+    text-align: right;
+}
+
+.message.received {
+    background-color: #f1f1f1;
+    color: black;
+    text-align: left;
+}
+
+.message span {
+    display: block;
+    font-size: 0.8em;
+    color: #888;
+}
+
+.chat-section form {
+    display: flex;
+}
+
+.chat-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    color: black; /* Ensure text color is black */
+}
+
+.chat-section button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s;
+}
+
+.chat-section button:hover {
+    background-color: #0056b3;
 }
 
 @keyframes slideIn {
