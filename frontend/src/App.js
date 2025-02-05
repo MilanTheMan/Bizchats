@@ -68,6 +68,7 @@ import { UserProvider } from './context/UserContext';
 import ChannelPage from './components/channel/ChannelPage';
 import ChannelSettings from './components/channel/ChannelSettings';
 import Chatbot from './components/chatbot/Chatbot';
+import FriendsPage from './components/friends/FriendsPage';
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
             <Route path="/submission" element={<Submission />} />
             <Route path="/channel/:channelId" element={<ChannelPage />} />
             <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
+            <Route path="/friends" element={<FriendsPage />} /> {/* Add FriendsPage route */}
 
             {/*remove the below links later*/}
 

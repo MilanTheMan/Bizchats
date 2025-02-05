@@ -160,6 +160,21 @@
 		foreign key (sender_id) references users(id) ON DELETE CASCADE,
 		foreign key (receiver_id) references users(id) ON DELETE CASCADE
 	);
+
+	-- -------------------- --
+	-- |Friends| --
+	-- -------------------- --
+
+	drop table if exists friends;
+	create table friends
+	(
+		id INT PRIMARY KEY auto_increment,
+		user_id INT NOT NULL,
+		friend_id INT NOT NULL,
+		creation_date DATETIME default NOW(),
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (friend_id) references users(id) ON DELETE CASCADE
+	);
     
     
 	-- -------------------- --

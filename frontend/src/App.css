@@ -53,7 +53,7 @@ main {
   align-items: center;
   padding: 20px;
   background-color: #282c34;
-  color: white;
+  /* color: white; */
   box-sizing: border-box;
 }
 

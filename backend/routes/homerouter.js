@@ -24,4 +24,9 @@ homeRouter.post("/removeMember", sqlPostController.removeMember);
 homeRouter.post("/createChat", sqlPostController.createChat);
 homeRouter.post("/getChats", sqlPostController.getChats);
 
+homeRouter.post("/addFriend", sqlPostController.addFriend);
+homeRouter.post("/getFriends", sqlPostController.getFriends);
+homeRouter.post("/deleteFriend", sqlPostController.deleteFriend);
+homeRouter.post("/getUserById", sqlGetController.getUserById);
+
 module.exports = homeRouter;

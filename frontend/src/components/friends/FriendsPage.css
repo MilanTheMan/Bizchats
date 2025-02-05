@@ -1,0 +1,60 @@
+.friends-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: black; /* Make all text black by default */
+}
+
+.friends-page h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.friends-page form {
+    margin-bottom: 20px;
+}
+
+.friends-page input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black; /* Make text black */
+}
+
+.friends-page button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.friends-page button:hover {
+    background-color: #0056b3;
+}
+
+.search-result {
+    margin-bottom: 20px;
+}
+
+.search-result p {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.friends-page ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.friends-page li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black; /* Make text black */
+}

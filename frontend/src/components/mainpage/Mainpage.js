@@ -78,7 +78,7 @@ const Mainpage = () => {
                         </div>
                     ))}
                 </div>
-                <aside className="events">
+                {/* <aside className="events">
                     <h4>Events</h4>
                     <div className={"event_list"}>
                         <div className="event">
@@ -103,7 +103,7 @@ const Mainpage = () => {
                             <p className='description'>short description of the assignment or whatever</p>
                         </div>
                     </div>
-                </aside>
+                </aside> */}
                 <div className="channel_actions">
                     <form onSubmit={handleCreateChannel}>
                         <h3>Create Channel</h3>

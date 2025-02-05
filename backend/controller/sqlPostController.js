@@ -217,6 +217,64 @@ async function getChats(req, res) {
     }
 }
 
+async function addFriend(req, res) {
+    try {
+        const { user_id, friend_id } = req.body;
+        const query = "INSERT INTO friends (user_id, friend_id) VALUES (?, ?)";
+
+        sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(201).json({ message: "Friend added successfully" });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getFriends(req, res) {
+    try {
+        const { user_id } = req.body;
+        const query = `
+            SELECT users.id, users.name, users.email
+            FROM friends
+            INNER JOIN users ON friends.friend_id = users.id
+            WHERE friends.user_id = ?`;
+
+        sqlConnection.query(query, [user_id], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function deleteFriend(req, res) {
+    try {
+        const { user_id, friend_id } = req.body;
+        const query = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
+
+        sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(200).json({ message: "Friend deleted successfully" });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     signup,
     createChannel,
@@ -226,5 +284,8 @@ module.exports = {
     updateUserRole,
     removeMember,
     createChat,
-    getChats
+    getChats,
+    addFriend,
+    getFriends,
+    deleteFriend
 };
