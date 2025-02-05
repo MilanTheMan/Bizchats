@@ -144,6 +144,22 @@
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE
 	);
+
+	-- -------------------- --
+	-- |Messages| --
+	-- -------------------- --
+
+	drop table if exists messages;
+	create table messages
+	(
+		id INT PRIMARY KEY auto_increment,
+		sender_id INT NOT NULL,
+		receiver_id INT NOT NULL,
+		content TEXT,
+		creation_date DATETIME default NOW(),
+		foreign key (sender_id) references users(id) ON DELETE CASCADE,
+		foreign key (receiver_id) references users(id) ON DELETE CASCADE
+	);
     
     
 	-- -------------------- --

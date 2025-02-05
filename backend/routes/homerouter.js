@@ -18,5 +18,10 @@ homeRouter.post("/getChannelAssignments", sqlGetController.getChannelAssignments
 homeRouter.post("/getChannelMarks", sqlGetController.getChannelMarks);
 homeRouter.post("/createAnnouncement", sqlPostController.createAnnouncement);
 homeRouter.post("/createAssignment", sqlPostController.createAssignment);
+homeRouter.post("/getChannelMembers", sqlGetController.getChannelMembers);
+homeRouter.post("/updateUserRole", sqlPostController.updateUserRole);
+homeRouter.post("/removeMember", sqlPostController.removeMember);
+homeRouter.post("/createChat", sqlPostController.createChat);
+homeRouter.post("/getChats", sqlPostController.getChats);
 
 module.exports = homeRouter;

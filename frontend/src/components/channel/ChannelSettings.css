@@ -1,0 +1,47 @@
+.channel-settings {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.channel-settings h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.channel-settings h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.channel-settings ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.channel-settings li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black; /* Make text black */
+}
+
+.channel-settings li p {
+    color: black; /* Ensure paragraph text is black */
+}
+
+.channel-settings button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.channel-settings button:hover {
+    background-color: #0056b3;
+}

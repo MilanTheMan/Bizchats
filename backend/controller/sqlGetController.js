@@ -94,7 +94,7 @@ async function getUserChannels(req, res) {
     try {
         const { userId } = req.body;
         const query = `
-            SELECT channels.* 
+            SELECT channels.*, userstochannels.channelroleid as role
             FROM channels 
             INNER JOIN userstochannels ON channels.id = userstochannels.channelid 
             WHERE userstochannels.userid = ?`;
@@ -184,6 +184,28 @@ async function getChannelMarks(req, res) {
     }
 }
 
+async function getChannelMembers(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = `
+            SELECT users.id, users.name, users.email, userstochannels.channelroleid as role
+            FROM users
+            INNER JOIN userstochannels ON users.id = userstochannels.userid
+            WHERE userstochannels.channelid = ?`;
+
+        sqlConnection.query(query, [channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -193,5 +215,6 @@ module.exports = {
     getChannelById,
     getChannelAnnouncements,
     getChannelAssignments,
-    getChannelMarks
+    getChannelMarks,
+    getChannelMembers
 };

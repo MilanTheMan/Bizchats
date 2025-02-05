@@ -1,0 +1,143 @@
+.channel-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.channel-name {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.add-button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form input,
+.form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black; /* Make text black */
+    background-color: white; /* Ensure background is white */
+}
+
+.form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form button:hover {
+    background-color: #0056b3;
+}
+
+.announcement {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black; /* Make text black */
+}
+
+.announcement h3 {
+    color: black; /* Ensure title text is black */
+}
+
+.announcement p {
+    color: black; /* Ensure paragraph text is black */
+}
+
+.assignment,
+.mark {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black; /* Make text black */
+}
+
+.announcement h3,
+.assignment h3 {
+    margin-top: 0;
+}
+
+.date {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.settings-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    float: right;
+    margin-top: -40px;
+}
+
+.settings-button img {
+    width: 32px; /* Increased size */
+    height: 32px; /* Increased size */
+    transition: transform 0.3s;
+}
+
+.settings-button:hover img {
+    transform: rotate(90deg);
+}
+
+.section-header {
+    color: black;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}

@@ -66,6 +66,8 @@ import Test from "./components/test/Test";
 import React from 'react';
 import { UserProvider } from './context/UserContext';
 import ChannelPage from './components/channel/ChannelPage';
+import ChannelSettings from './components/channel/ChannelSettings';
+import Chatbot from './components/chatbot/Chatbot';
 
 function App() {
   return (
@@ -90,6 +92,7 @@ function App() {
             <Route path="/grades" element={<Grades />} />
             <Route path="/submission" element={<Submission />} />
             <Route path="/channel/:channelId" element={<ChannelPage />} />
+            <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
 
             {/*remove the below links later*/}
 
@@ -105,6 +108,7 @@ function App() {
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <Chatbot /> {/* Add Chatbot component */}
         </BrowserRouter>
       </UserProvider>
     </div>
