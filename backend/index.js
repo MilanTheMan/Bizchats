@@ -53,7 +53,7 @@ routes(app);
 
 
 app.listen(port, () => {
-    console.log(`http://localhost:${port}`)
+    console.log(`Running on port:${port}`)
 
 }).on("close", () => {
     console.log("closing the app");
