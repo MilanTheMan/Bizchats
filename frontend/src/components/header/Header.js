@@ -9,8 +9,7 @@ const Header = () => {
     const loggedInLinks = [
         { id: "notifications", name: "Notifications" },
         { id: "profile", name: "Profile" },
-        { id: "meetings", name: "Meetings" },
-        { id: "friends", name: "Friends" }, // Add Friends link
+        { id: "friends", name: "Friends" },
     ];
 
     const loggedOffLinks = [
