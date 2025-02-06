@@ -7,6 +7,7 @@ import Bizchats_logo from './img/bizchats_logo.png';
 
 import Login from "./components/login_and_signup/Login";
 import Signup from './components/login_and_signup/Signup';
+import ForgotPassword from "./components/login_and_signup/ForgotPassword";
 import "./components/login_and_signup/style.css";
 
 import HomePage from './components/home/HomePage';
@@ -43,6 +44,9 @@ import "./components/schedule/style.css"
 
 import NotFound from './components/notfound/notfound';
 import "./components/notfound/style.css"
+
+import Info from "./components/info/info";
+import "./components/info/style.css"
 
 import Navbar from './components/navbar/Navbar';
 import "./components/navbar/style.css";
@@ -88,6 +92,7 @@ function App() {
             <Route path="/professional" element={<Professional />} />
             <Route path="/class/:classId" element={<ClassPage />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/info/:infoId" element={<Info/>} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/announcements" element={<Announcements />} />
             <Route path="/grades" element={<Grades />} />

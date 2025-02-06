@@ -2,13 +2,12 @@
     background: rgb(17,19,23);
     background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
     border-radius: 15px;
+    border: 1px solid #ddd;
 
     .title_container{
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rebeccapurple; /*placeholder*/
-
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }

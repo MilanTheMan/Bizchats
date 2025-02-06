@@ -34,7 +34,7 @@ const Daycard = (props) => {
                  width: 320,
 
              }}>
-            <div className={"title_container"}>
+            <div className={`title_container col_${titleSpaceColor}`}>
                 <p>{title}</p>
             </div>
             <div className={"actual_content"}>

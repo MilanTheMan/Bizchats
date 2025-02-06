@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useState } from "react";
 import "./style.css";
 import mathImg from "../../img/math.png";
 import scienceImg from "../../img/science.png"; 
@@ -6,7 +6,7 @@ import designImg from "../../img/design.png";
 import {Link} from "react-router-dom";
 
 const Educational = () => {
-  // List of classes with their details
+  // List of classes with their details  
   const classes = [
     {
       id: 1,

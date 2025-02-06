@@ -24,6 +24,9 @@ function Test() {
                     <Link to="/signup" className="link_class">Sign Up</Link>
                 </li>
                 <li>
+                    <Link to="/forgot_password" className="link_class">Forgot Password (skill issue)</Link>
+                </li>
+                <li>
                     <Link to="/main_page" className="link_class">Main Page</Link>
                 </li>
                 <li>
@@ -45,17 +48,17 @@ function Test() {
                     <Link to="/professional" className="link_class">Professional Use</Link>
                 </li>
                 <li>
-                    <Link to="/announcements" className="link_class">Announcements</Link>
+                    <Link to="/info/terms_and_conditions" className="link_class">Terms of conditions</Link>
                 </li>
                 <li>
-                    <Link to="/grades" className="link_class">Grades</Link>
+                    <Link to="/info/privacy_policy" className="link_class">Privacy Policy</Link>
                 </li>
                 <li>
-                    <Link to="/submission" className="link_class">Submission Page</Link>
+                    <Link to="/info/cookies" className="link_class">Cookies</Link>
                 </li>
-
-
-                
+                <li>
+                    <Link to="/info/accessibility" className="link_class">Accessibility</Link>
+                </li>
                 <li>
                     <h3>Classes:</h3>
                     <ul>
@@ -74,11 +77,13 @@ function Test() {
 
 
                 <li>
-                    <Link to="/profile_card" className={"link_class"}>profile card that appears when you click the pfp or name of a user</Link>
+                    <Link to="/profile_card" className={"link_class"}>profile card that appears when you click the pfp
+                        or name of a user</Link>
                 </li>
 
                 <li>
-                    <Link to="/day_card" className={"link_class"}>day card that appears when you click a day on a calendar</Link>
+                    <Link to="/day_card" className={"link_class"}>day card that appears when you click a day on a
+                        calendar</Link>
                 </li>
             </ul>
         </div>

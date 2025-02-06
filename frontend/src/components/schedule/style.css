@@ -14,6 +14,9 @@
             display: flex;
             flex-direction: column;
             width: 80%;
+            border: 1px solid #ddd;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
 
             #calendar_day_names{
                 display: grid;
@@ -40,7 +43,7 @@
             #calendar_days{
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
-                grid-template-rows: 0.4fr repeat(5, 1fr);
+                grid-template-rows: 0.4fr repeat(4, 1fr);
                 
                 flex-direction: row;
 
@@ -71,10 +74,11 @@
             justify-content: center;
             background: rgb(69,76,90);
             background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
+            border: 1px solid #ddd;
             border-radius: 15px;
             width: 200px;
 
-            padding: 20px;
+            padding: 19px;
 
             h4{
                 text-align: center;
@@ -95,7 +99,9 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 10px;
+                    padding: 5px;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
 
 
                     p{

@@ -39,6 +39,7 @@ function Login() {
                         </div>
                         <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin} />
                     </div>
+
                 </div>
             </div>
         </div>

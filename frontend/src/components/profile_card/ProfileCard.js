@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import { Rnd } from 'react-rnd';
-import default_pfp from "../../img/defaulticon.png"
+import default_pfp from "../../img/pfp/defaulticon.png"
+import fox from "../../img/pfp/other_samples/fox.webp"
+import birb from "../../img/pfp/other_samples/birb.webp"
+import squirrel from "../../img/pfp/other_samples/squirrel.webp"
 import "./style.css"
 
 
 const ProfileCard = (props) => {
-    const [pfp, setPfp] = useState(default_pfp);
+    const [pfp, setPfp] = useState(props.pfp);
     const [user, setUser] = useState(props.user);
     const [descripton, setDescripton] = useState(props.description);
 
