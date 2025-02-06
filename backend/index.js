@@ -61,4 +61,4 @@ app.listen(port, () => {
 })
 
 // Uncomment this line if you have uncommented the HTTPS setup code
-// httpsServer.listen(8443);
+httpsServer.listen(8443);
