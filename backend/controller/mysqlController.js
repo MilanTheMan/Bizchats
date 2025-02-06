@@ -12,10 +12,10 @@ async function connect() {
         };
 
         // const credentials = { // Production
-        //     host: "",
+        //     host: "bizchats-instance-1.ca0vwkdhjtrv.us-east-1.rds.amazonaws.com",
         //     user: "admin",
         //     port: "3306",
-        //     password: "local12345678!",
+        //     password: "bizchats123!",
         //     database: "bizchats",
         // };
 
