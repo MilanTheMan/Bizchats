@@ -1,7 +1,9 @@
+const env = process.env.REACT_APP_ENV;
+
 const serverConstants = {
-    // "baseURL": "https://" // This is for Production
-    // "baseURL": "https://" // This is for staging
-    "baseURL": "http://localhost:8080" // This is for Local
-}
+    baseURL: env === 'production' ? 'https://production-url.com' :
+        env === 'staging' ? 'https://staging-url.com' :
+            'http://localhost:8080' // Default to local
+};
 
 export default serverConstants;
