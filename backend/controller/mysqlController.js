@@ -8,7 +8,7 @@ async function connect() {
             user: "root",
             port: "3306",
             password: "local12345678!",
-            database: "bizchats",
+            database: "Bizchats",
         };
 
         // const credentials = { // Production
@@ -16,7 +16,7 @@ async function connect() {
         //     user: "admin",
         //     port: "3306",
         //     password: "bizchats123!",
-        //     database: "bizchats",
+        //     database: "Bizchats",
         // };
 
         try {
