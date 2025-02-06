@@ -14,7 +14,7 @@ const sql = require("./controller/mysqlController");
 
 
 // For HTTPS Setup
-/*
+
 const key = fs.readFileSync("./certificate/private.key");
 const cert = fs.readFileSync("./certificate/certificate.crt");
 
@@ -24,7 +24,7 @@ const credentials = {
 }
 
 const httpsServer = https.createServer(credentials, app);
-*/
+
 
 global.allowConsoleLog = true; // set to false to disable console.log
 
