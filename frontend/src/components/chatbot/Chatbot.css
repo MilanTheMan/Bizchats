@@ -6,16 +6,28 @@
 }
 
 .chatbot-button {
-    background: none;
-    border: none;
+    background: rgb(13,58,117);
+    background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+    border-style: none;
+    padding: 20px;
+    border-radius: 50px;
     cursor: pointer;
     transition: transform 0.3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
+
+.chatbot-button:hover {
+    background: rgb(70,40,0);
+    background: linear-gradient(0deg, rgba(70,40,0,1) 0%, rgba(255,127,0,1) 100%);
+}
+
+
 
 .chatbot-button img {
     width: 50px;
     height: 50px;
     transition: transform 0.3s;
+    filter: invert(100%);
 }
 
 .chatbot-button:hover img {
