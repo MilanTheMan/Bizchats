@@ -1,6 +1,6 @@
 .chatbot-container {
     position: fixed;
-    bottom: 20px;
+    bottom: 50px;
     right: 20px;
     z-index: 1000;
 }
@@ -9,11 +9,12 @@
     background: rgb(13,58,117);
     background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
     border-style: none;
-    padding: 20px;
+    padding: 10px;
     border-radius: 50px;
     cursor: pointer;
     transition: transform 0.3s;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    z-index: 0;
 }
 
 .chatbot-button:hover {
@@ -21,11 +22,15 @@
     background: linear-gradient(0deg, rgba(70,40,0,1) 0%, rgba(255,127,0,1) 100%);
 }
 
+.chatbot-button.active{
+    background: rgb(17,19,23);
+    background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
+}
 
 
 .chatbot-button img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     transition: transform 0.3s;
     filter: invert(100%);
 }
@@ -139,7 +144,7 @@
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateX(20px);
     }
     to {
         opacity: 1;

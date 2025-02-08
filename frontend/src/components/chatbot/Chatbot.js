@@ -67,7 +67,7 @@ const Chatbot = () => {
 
     return (
         <div className="chatbot-container">
-            <button className="chatbot-button" onClick={toggleChatbot}>
+            <button className={`chatbot-button ${isOpen ? 'active' : ''}`} onClick={toggleChatbot}>
                 <img src={chatIcon} alt="Chatbot" />
             </button>
             {isOpen && (
@@ -96,8 +96,8 @@ const Chatbot = () => {
                             </form>
                         </div>
                     ) : (
-                        <>
-                            <h3>Your Friends</h3>
+                        <div>
+                            <h3>Friends</h3>
                             <ul>
                                 {friends.map(friend => (
                                     <li key={friend.id} onClick={() => handleFriendClick(friend)}>
@@ -105,7 +105,7 @@ const Chatbot = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </>
+                        </div>
                     )}
                 </div>
             )}
