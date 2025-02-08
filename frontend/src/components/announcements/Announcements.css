@@ -1,15 +1,16 @@
 .announcements-container {
     padding: 20px;
-    margin: 0 auto;
+    margin: 10px auto;
     max-width: 800px;
-    background-color: #f9f9f9;
+    background: rgb(17,19,23);
+    background: linear-gradient(180deg, rgba(17,19,23,1) 0%, rgba(0,0,0,1) 100%);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .announcements-container h2 {
     text-align: center;
-    color: #333;
+    color: white;
     font-size: 2rem;
     margin-bottom: 20px;
 }
@@ -27,11 +28,12 @@
     font-size: 1.5rem;
     color: #007bff;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .announcement-item p {
     font-size: 1rem;
-    color: #555;
+    color: white;
     margin: 0;
 }
 
