@@ -85,6 +85,7 @@ function App() {
             <Route path="/homepage" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot_password" element={<ForgotPassword />} />
             <Route path="/main_page" element={<Mainpage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/personal" element={<PersonalUse />} />

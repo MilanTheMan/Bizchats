@@ -60,6 +60,24 @@ function Test() {
                     <Link to="/info/accessibility" className="link_class">Accessibility</Link>
                 </li>
                 <li>
+                    <Link to="/announcements" className="link_class">Announcements</Link>
+                </li>
+                <li>
+                    <Link to="/grades" className="link_class">grades</Link>
+                </li>
+                <li>
+                    <Link to="/submission" className="link_class">submission</Link>
+                </li>
+                <li>
+                    <Link to="/channel/channel" className="link_class">channel</Link>
+                </li>
+                <li>
+                    <Link to="/channel/channel/settings" className="link_class">channels settings</Link>
+                </li>
+                <li>
+                    <Link to="/friends" className="link_class">friends</Link>
+                </li>
+                <li>
                     <h3>Classes:</h3>
                     <ul>
                         {classes.map((classItem) => (

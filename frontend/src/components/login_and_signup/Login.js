@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
+import { Link } from "react-router-dom";
 import { UserContext } from '../../context/UserContext';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const { setUser } = useContext(UserContext);
 
     const handleLogin = (e) => {
@@ -21,6 +23,10 @@ function Login() {
             });
     };
 
+    function toggleShowPassword(){
+        setShowPassword(!showPassword)
+    }
+
     return (
         <div id={"login_page"} className={"log_sign"}>
             <div className={"log_sign_content"}>
@@ -35,7 +41,9 @@ function Login() {
                         </div>
                         <div className={"login_detail"}>
                             <label>Password</label>
-                            <input type={"password"} value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <button className="show_password_button" onClick={toggleShowPassword}>Show Password</button>
+                            <Link to={"/forgot_password"}>Forgot your password?</Link>
                         </div>
                         <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin} />
                     </div>
