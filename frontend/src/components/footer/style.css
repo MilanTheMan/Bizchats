@@ -6,6 +6,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
+    font-style: none;
 
     display: flex;
     align-items: center;

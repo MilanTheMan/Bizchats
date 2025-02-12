@@ -48,9 +48,6 @@ import "./components/notfound/style.css"
 import Info from "./components/info/info";
 import "./components/info/style.css"
 
-import Navbar from './components/navbar/Navbar';
-import "./components/navbar/style.css";
-
 import Homepage from './components/homepage/Homepage';
 import "./components/homepage/Homepage.css"
 
@@ -81,8 +78,8 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<Test />} />
-            <Route path="/homepage" element={<Homepage />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/index" element={<Test />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />

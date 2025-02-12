@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import sqlService from '../../services/sqlService';
-import Navbar from '../navbar/Navbar';
-import Header from "../header/Header";
 
 const Mainpage = () => {
     const [channels, setChannels] = useState([]);
@@ -67,7 +65,7 @@ const Mainpage = () => {
 
     return (
         <div id={"main_page"}>
-            <Navbar />
+            {/* <Navbar /> */}
             <h1>Welcome to BizChats!</h1>
             <div className={"actual_content"}>
                 <div className="class_list">
