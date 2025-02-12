@@ -1,3 +1,0 @@
-note: this is only for testing purposes, and it's the default home page.
-
-this will be deleted once we think we should
