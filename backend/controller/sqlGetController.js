@@ -1,5 +1,3 @@
-const sqlConnection = require('./mysqlController').connect;
-
 async function getAllUsers(req, res) {
     try {
         const { data } = req.body;
@@ -7,7 +5,6 @@ async function getAllUsers(req, res) {
 
         const { user } = data;
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -28,7 +25,6 @@ async function getUserById(req, res) {
         const { data } = req.body;
         const query = "SELECT * from users where id = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [data], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -49,7 +45,6 @@ async function getUserByEmail(req, res) {
         const { data } = req.body;
         const query = "SELECT * from users where email = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [data], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -71,7 +66,6 @@ async function login(req, res) {
         console.log(`Login attempt for email: ${email}`);
         const query = "SELECT * from users where email = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [email], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -105,7 +99,6 @@ async function getUserChannels(req, res) {
             INNER JOIN userstochannels ON channels.id = userstochannels.channelid 
             WHERE userstochannels.userid = ?`;
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [userId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -124,7 +117,6 @@ async function getChannelById(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channels where id = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -143,7 +135,6 @@ async function getChannelAnnouncements(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_announcements where channel_id = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -153,7 +144,7 @@ async function getChannelAnnouncements(req, res) {
             }
         });
     } catch (err) {
-        res.status 500).json({ err: err });
+        res.status(500).json({ err: err });
     }
 }
 
@@ -162,7 +153,6 @@ async function getChannelAssignments(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_assignments where channel_id = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -181,7 +171,6 @@ async function getChannelMarks(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_marks where channel_id = ?";
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -204,7 +193,6 @@ async function getChannelMembers(req, res) {
             INNER JOIN userstochannels ON users.id = userstochannels.userid
             WHERE userstochannels.channelid = ?`;
 
-        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
