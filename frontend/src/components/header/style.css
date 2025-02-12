@@ -25,9 +25,10 @@ li {
 a, button.link_class {
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 15px 25px; /* Increase padding for bigger links */
     border: 2px solid transparent;
     border-radius: 5px;
+    font-size: 1.2em; /* Increase font size */
     transition: background-color 0.3s, border-color 0.3s;
 }
 

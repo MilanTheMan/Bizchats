@@ -14,8 +14,8 @@ const Header = () => {
     };
 
     const loggedInLinks = [
-        { id: "notifications", name: "Notifications" },
-        { id: "profile", name: "Profile" },
+        // { id: "notifications", name: "Notifications" },
+        { id: "settings", name: "Profile" },
         { id: "friends", name: "Friends" },
     ];
 
@@ -39,7 +39,7 @@ const Header = () => {
                 ))}
                 {user && (
                     <li>
-                        <button onClick={handleLogout} className="link_class">Logout</button>
+                        <Link to="#" onClick={handleLogout} className="link_class">Logout</Link>
                     </li>
                 )}
             </ul>

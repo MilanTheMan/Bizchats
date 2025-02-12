@@ -23,7 +23,7 @@ function Signup() {
                 console.log(data);
                 setUser(data.data); // Update user context
                 alert("Signup Success");
-                navigate('/main_page'); // Redirect to main page
+                navigate('/home'); // Redirect to main page
             })
             .catch(err => {
                 console.log(err);
