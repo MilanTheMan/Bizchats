@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import sqlService from '../../services/sqlService';
+import './style.css';
 
 const Mainpage = () => {
     const [channels, setChannels] = useState([]);
@@ -65,10 +66,9 @@ const Mainpage = () => {
     };
 
     return (
-        <div id={"main_page"}>
-            {/* <Navbar /> */}
+        <div id="main_page">
             <h1>Welcome to BizChats!</h1>
-            <div className={"actual_content"}>
+            <div className="actual_content">
                 <div className="class_list">
                     {channels.map(channel => (
                         <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
@@ -77,32 +77,6 @@ const Mainpage = () => {
                         </div>
                     ))}
                 </div>
-                {/* <aside className="events">
-                    <h4>Events</h4>
-                    <div className={"event_list"}>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                    </div>
-                </aside> */}
                 <div className="channel_actions">
                     <form onSubmit={handleCreateChannel}>
                         <h3>Create Channel</h3>
