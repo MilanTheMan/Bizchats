@@ -14,10 +14,11 @@ const Mainpage = () => {
         if (user) {
             sqlService.getUserChannels(user.id)
                 .then(data => {
-                    setChannels(data.data);
+                    setChannels(data.data || []);
                 })
                 .catch(err => {
                     console.log(err);
+                    setChannels([]);
                 });
         }
     }, [user]);
@@ -46,7 +47,7 @@ const Mainpage = () => {
                     // Optionally, fetch channels again to update the list
                     sqlService.getUserChannels(user.id)
                         .then(data => {
-                            setChannels(data.data);
+                            setChannels(data.data || []);
                         })
                         .catch(err => {
                             console.log(err);
