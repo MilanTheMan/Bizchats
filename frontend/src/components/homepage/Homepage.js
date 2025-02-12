@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import './Homepage.css';
-import ManIpad from '../../img/ManIpad.jpg';
-import Meeting from '../../img/Meeting.jpg';
-import WomanShake from '../../img/WomanShake.jpg';
+import ManIpad from '../../img/ManIpad-min.jpg';
+import Meeting from '../../img/Meeting-min.jpg';
+import WomanShake from '../../img/WomanShake-min.jpg';
 
 function Homepage() {
     const { user } = useContext(UserContext);
@@ -13,7 +13,10 @@ function Homepage() {
             <main className="main-content">
                 <section className="welcome-section">
                     {user ? (
-                        <h1>Welcome, {user.name}!</h1>
+                        <>
+                            <h1>Welcome, {user.name}!</h1>
+                            <a href="/main_page" className="btn">Go to Main Page</a>
+                        </>
                     ) : (
                         <h1>Welcome to BizChats!</h1>
                     )}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext';
+import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -22,7 +23,6 @@ function Login() {
             .catch(err => {
                 console.log(err);
                 alert("Fail");
-
             });
     };
 
@@ -50,7 +50,6 @@ function Login() {
                         </div>
                         <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin} />
                     </div>
-
                 </div>
             </div>
         </div>

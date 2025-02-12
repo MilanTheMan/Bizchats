@@ -21,7 +21,9 @@ const Header = () => {
 
     return (
         <header className="header">
-            <img src={Bizchats_logo} className="bizchats_logo" alt="Bizchats Logo" />
+            <Link to="/">
+                <img src={Bizchats_logo} className="bizchats_logo" alt="Bizchats Logo" />
+            </Link>
             <ul>
                 {links.map((linksItem) => (
                     <li key={linksItem.id}>

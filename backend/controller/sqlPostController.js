@@ -9,7 +9,21 @@ async function signup(req, res) {
                 console.log(err);
                 res.status(500).json({ error: err });
             } else {
+                const userId = result.insertId;
                 const userWithoutPassword = { name, email, role_id, profile_picture };
+                
+                // Add user to default channels as an administrator
+                const defaultChannels = [1, 2, 3, 4, 5]; // IDs of default channels
+                const linkQuery = "INSERT INTO userstochannels (userid, channelid, channelroleid) VALUES (?, ?, 2)"; // 2 for 'administrator'
+                
+                defaultChannels.forEach(channelId => {
+                    sqlConnection.query(linkQuery, [userId, channelId], (linkErr, linkResult, linkFields) => {
+                        if (linkErr) {
+                            console.log(linkErr);
+                        }
+                    });
+                });
+
                 res.status(201).json({ message: "User created successfully", data: userWithoutPassword });
             }
         });
