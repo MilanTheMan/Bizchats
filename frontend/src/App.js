@@ -48,9 +48,6 @@ import "./components/notfound/style.css"
 import Info from "./components/info/info";
 import "./components/info/style.css"
 
-import Navbar from './components/navbar/Navbar';
-import "./components/navbar/style.css";
-
 import Homepage from './components/homepage/Homepage';
 import "./components/homepage/Homepage.css"
 
