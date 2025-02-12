@@ -1,4 +1,4 @@
-const sqlConnection = require('../database/connection'); // Ensure you have the correct path to your database connection
+const mysqlController = require('./mysqlController');
 
 async function signup(req, res) {
     try {
@@ -6,6 +6,7 @@ async function signup(req, res) {
         console.log(`Signup attempt for email: ${email}`);
         const query = "INSERT INTO users (name, email, password, role_id, profile_picture) VALUES (?, ?, ?, ?, ?)";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [name, email, password, role_id, profile_picture], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -39,6 +40,7 @@ async function createChannel(req, res) {
         const { name, role_id, profile_picture, userId } = req.body;
         const query = "INSERT INTO channels (name, role_id, profile_picture) VALUES (?, ?, ?)";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [name, role_id, profile_picture], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -66,6 +68,7 @@ async function joinChannel(req, res) {
         const { userId, channelId } = req.body;
         const query = "INSERT INTO userstochannels (userid, channelid, channelroleid) VALUES (?, ?, 3)"; // 3 for 'member'
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [userId, channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -83,7 +86,8 @@ async function createAnnouncement(req, res) {
     try {
         const { userId, channelId, title, content } = req.body;
         const roleQuery = "SELECT channelroleid FROM userstochannels WHERE userid = ? AND channelid = ?";
-        
+
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(roleQuery, [userId, channelId], (roleErr, roleResult, roleFields) => {
             if (roleErr) {
                 console.log(roleErr);
@@ -111,7 +115,8 @@ async function createAssignment(req, res) {
     try {
         const { userId, channelId, title, description, due_date } = req.body;
         const roleQuery = "SELECT channelroleid FROM userstochannels WHERE userid = ? AND channelid = ?";
-        
+
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(roleQuery, [userId, channelId], (roleErr, roleResult, roleFields) => {
             if (roleErr) {
                 console.log(roleErr);
@@ -140,6 +145,7 @@ async function updateUserRole(req, res) {
         const { userId, channelId, roleId } = req.body;
         const query = "UPDATE userstochannels SET channelroleid = ? WHERE userid = ? AND channelid = ?";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [roleId, userId, channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -157,7 +163,8 @@ async function removeMember(req, res) {
     try {
         const { userId, channelId, memberId } = req.body;
         const roleQuery = "SELECT channelroleid FROM userstochannels WHERE userid = ? AND channelid = ?";
-        
+
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(roleQuery, [userId, channelId], (roleErr, roleResult, roleFields) => {
             if (roleErr) {
                 console.log(roleErr);
@@ -196,6 +203,7 @@ async function createChat(req, res) {
         const { sender_id, receiver_id, content } = req.body;
         const query = "INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [sender_id, receiver_id, content], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -220,6 +228,7 @@ async function getChats(req, res) {
             WHERE sender_id = ? OR receiver_id = ?
             ORDER BY creation_date ASC`;
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [userId, userId], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -238,6 +247,7 @@ async function addFriend(req, res) {
         const { user_id, friend_id } = req.body;
         const query = "INSERT INTO friends (user_id, friend_id) VALUES (?, ?)";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -260,6 +270,7 @@ async function getFriends(req, res) {
             INNER JOIN users ON friends.friend_id = users.id
             WHERE friends.user_id = ?`;
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [user_id], (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -278,6 +289,7 @@ async function deleteFriend(req, res) {
         const { user_id, friend_id } = req.body;
         const query = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
             if (err) {
                 console.log(err);
