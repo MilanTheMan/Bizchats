@@ -79,7 +79,7 @@ function getUserChannels(userId) {
     return new Promise((resolve, reject) => {
         try {
             axios
-                .post('/api/getUserChannels', { userId })
+                .post('/getUserChannels', { userId })
                 .then((response) => {
                     let ret = response.data;
                     resolve(ret);
@@ -102,7 +102,7 @@ function createChannel(data = {}) {
                 data["userId"] = user.id;
             }
             axios
-                .post('/api/createChannel', data)
+                .post('/createChannel', data)
                 .then((response) => {
                     let ret = response.data;
                     resolve(ret);
@@ -121,7 +121,7 @@ function joinChannel(data = {}) {
     return new Promise((resolve, reject) => {
         try {
             axios
-                .post('/api/joinChannel', data)
+                .post('/joinChannel', data)
                 .then((response) => {
                     let ret = response.data;
                     resolve(ret);
