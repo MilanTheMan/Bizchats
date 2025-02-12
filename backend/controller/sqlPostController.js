@@ -1,3 +1,5 @@
+const sqlConnection = require('../database/connection'); // Ensure you have the correct path to your database connection
+
 async function signup(req, res) {
     try {
         const { name, email, password, role_id, profile_picture } = req.body;
@@ -10,7 +12,7 @@ async function signup(req, res) {
                 res.status(500).json({ error: err });
             } else {
                 const userId = result.insertId;
-                const userWithoutPassword = { name, email, role_id, profile_picture };
+                const userWithoutPassword = { id: userId, name, email, role_id, profile_picture };
                 
                 // Add user to default channels as an administrator
                 const defaultChannels = [1, 2, 3, 4, 5]; // IDs of default channels
