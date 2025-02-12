@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Footer from "../footer/Footer"
-import Header from "../header/Header";
-import HeaderLoggedOut from "../header/HeaderLoggedOut";
+import './index.css';
 
 function Test() {
     const classes = [
@@ -12,8 +10,8 @@ function Test() {
     ];
 
     return (
-        <div>
-            <ul>
+        <div className="index-page">
+            <ul className="link-list">
                 <li>
                     <Link to="/homepage" className="link_class">Homepage</Link>
                 </li>
@@ -92,13 +90,10 @@ function Test() {
                 <li>
                     <Link to="/*" className={"link_class"}>not found page</Link>
                 </li>
-
-
                 <li>
                     <Link to="/profile_card" className={"link_class"}>profile card that appears when you click the pfp
                         or name of a user</Link>
                 </li>
-
                 <li>
                     <Link to="/day_card" className={"link_class"}>day card that appears when you click a day on a
                         calendar</Link>

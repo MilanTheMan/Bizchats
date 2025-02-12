@@ -1,0 +1,27 @@
+.index-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.link-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Arrange links in a column */
+    align-items: flex-start; /* Align links to the start */
+}
+
+.link-list li {
+    margin-bottom: 10px;
+}
+
+.link_class {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link_class:hover {
+    color: #0056b3;
+}

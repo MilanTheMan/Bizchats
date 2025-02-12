@@ -62,7 +62,7 @@ import Daycard from './components/schedule/popup/Daycard';
 import "./components/schedule/popup/style.css"
 
 //testing purposes
-import Test from "./components/test/Test";
+import Index from "./components/index";
 
 import React from 'react';
 import { UserProvider } from './context/UserContext';
@@ -79,7 +79,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/index" element={<Test />} />
+            <Route path="/index" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
