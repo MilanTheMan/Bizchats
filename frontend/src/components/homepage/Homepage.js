@@ -15,7 +15,7 @@ function Homepage() {
                     {user ? (
                         <>
                             <h1>Welcome, {user.name}!</h1>
-                            <a href="/main_page" className="btn">Go to Main Page</a>
+                            <a href="/main_page" className="btn main-page-btn">Go to Main Page</a>
                         </>
                     ) : (
                         <h1>Welcome to BizChats!</h1>

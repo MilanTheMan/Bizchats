@@ -59,6 +59,23 @@
     background-color: #0056b3;
 }
 
+.main-page-btn {
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.main-page-btn:hover {
+    background-color: #0056b3;
+}
+
 .features-section {
     padding: 80px 50px;
 }

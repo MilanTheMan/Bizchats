@@ -1,10 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Bizchats_logo from "../../img/bizchats_logo.png";
 import { UserContext } from '../../context/UserContext';
 
 const Header = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setUser(null);
+        navigate('/');
+    };
 
     const loggedInLinks = [
         { id: "notifications", name: "Notifications" },
@@ -30,6 +37,11 @@ const Header = () => {
                         <Link to={`/${linksItem.id}`} className="link_class">{linksItem.name}</Link>
                     </li>
                 ))}
+                {user && (
+                    <li>
+                        <button onClick={handleLogout} className="link_class">Logout</button>
+                    </li>
+                )}
             </ul>
         </header>
     );
