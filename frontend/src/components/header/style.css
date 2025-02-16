@@ -4,6 +4,8 @@
     background: rgb(13,58,117);
     background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
     align-items: center;
+
+    height: 10px;
 }
 
 .bizchats_logo {
@@ -25,7 +27,7 @@ li {
 a, button.link_class {
     color: white;
     text-decoration: none;
-    padding: 15px 25px; /* Increase padding for bigger links */
+    padding: 3px 3px; /* Increase padding for bigger links */
     border: 2px solid transparent;
     border-radius: 5px;
     font-size: 1.2em; /* Increase font size */
