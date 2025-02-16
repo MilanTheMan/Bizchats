@@ -70,10 +70,12 @@ import ChannelPage from './components/channel/ChannelPage';
 import ChannelSettings from './components/channel/ChannelSettings';
 import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
+import MobileUserDetector from "./components/mobile_user_detector/MobileUserDetector";
 
 function App() {
   return (
     <div className="App">
+      <MobileUserDetector/>
       <UserProvider>
         <BrowserRouter>
           <Header />
