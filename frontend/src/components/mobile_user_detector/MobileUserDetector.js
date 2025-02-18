@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import googlePlayBadge from "./img/badges/google_play_badge.png"
+import appStoreBadge from "./img/badges/download-on-the-app-store.svg"
 
 function MobileUserDetector() {
     const [isMobile, setIsMobile] = useState(function() {
@@ -10,7 +12,9 @@ function MobileUserDetector() {
 
     return(
         <div className={isMobile ? 'show mobileUserDetector' : 'mobileUserDetector'}>
-            <p>mobile test</p>
+            <h2 className={"white_text"}>We have a mobile app!</h2>
+            <img src={googlePlayBadge}/>
+            <img src={appStoreBadge}/>
         </div>
     )
 }
