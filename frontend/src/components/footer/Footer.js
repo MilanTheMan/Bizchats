@@ -8,19 +8,19 @@ const Footer = () => {
         <footer className="educational-footer">
             <ul>
                 <li>
-                    <Link to="/info/terms_and_conditions" className="link_class">Terms of conditions</Link>
+                    <Link to="/info/terms_and_conditions" className="link_class white_text">Terms of conditions</Link>
                 </li>
                 <li>
-                    <Link to="/info/privacy_policy" className="link_class">Privacy Policy</Link>
+                    <Link to="/info/privacy_policy" className="link_class white_text">Privacy Policy</Link>
                 </li>
                 <li>
-                    <Link to="/info/cookies" className="link_class">Cookies</Link>
+                    <Link to="/info/cookies" className="link_class white_text">Cookies</Link>
                 </li>
                 <li>
-                    <Link to="/info/accessibility" className="link_class">Accessibility</Link>
+                    <Link to="/info/accessibility" className="link_class white_text">Accessibility</Link>
                 </li>
                 <li>
-                    <Link to="/index" className="link_class">Index</Link>
+                    <Link to="/index" className="link_class white_text">Index</Link>
                 </li>
             </ul>
         </footer>

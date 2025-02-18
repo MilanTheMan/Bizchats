@@ -60,6 +60,7 @@ import Accessibility from "./components/footer/Accessibility";
 import ProfileCard from "./components/profile_card/ProfileCard";
 import Daycard from './components/schedule/popup/Daycard';
 import "./components/schedule/popup/style.css"
+import "./components/mobile_user_detector/style.css"
 
 //testing purposes
 import Index from "./components/index";

@@ -25,3 +25,14 @@
 .link_class:hover {
     color: #0056b3;
 }
+
+.link_class.white_text {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link_class.white_text:hover {
+    color: lightgray;
+}

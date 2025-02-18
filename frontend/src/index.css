@@ -23,3 +23,15 @@ code {
   font-family: Montserrat-Regular;
   color: white;
 } */
+
+h1, h2, h3, h4, h5, h6, a, p, button, input, select, textarea, label {
+  font-family: Montserrat-Regular;
+}
+
+a {
+  color: white;
+}
+
+.white_text{
+  color: white;
+}

@@ -9,7 +9,7 @@ function MobileUserDetector() {
     });
 
     return(
-        <div className="MobileUserDetector">
+        <div className={isMobile ? 'show mobileUserDetector' : 'mobileUserDetector'}>
             <p>mobile test</p>
         </div>
     )

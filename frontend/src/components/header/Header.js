@@ -34,12 +34,12 @@ const Header = () => {
             <ul>
                 {links.map((linksItem) => (
                     <li key={linksItem.id}>
-                        <Link to={`/${linksItem.id}`} className="link_class">{linksItem.name}</Link>
+                        <Link to={`/${linksItem.id}`} className="link_class white_text">{linksItem.name}</Link>
                     </li>
                 ))}
                 {user && (
                     <li>
-                        <Link to="#" onClick={handleLogout} className="link_class">Logout</Link>
+                        <Link to="#" onClick={handleLogout} className="link_class white_text">Logout</Link>
                     </li>
                 )}
             </ul>

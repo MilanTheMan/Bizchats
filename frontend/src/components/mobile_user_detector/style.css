@@ -1,0 +1,13 @@
+.mobileUserDetector {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    border-radius: 15px;
+    background: rgb(13,58,117);
+    background: linear-gradient(180deg, rgba(13,58,117,1) 0%, rgba(6,27,56,1) 100%);
+}
+
+.mobileUserDetector.show {
+    display: block;
+}

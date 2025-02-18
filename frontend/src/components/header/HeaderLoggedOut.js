@@ -12,10 +12,10 @@ const HeaderLoggedOut = () => {
 
             <ul>
                 <li>
-                    <Link to="/Login" className={"link_class"}>Log In</Link>
+                    <Link to="/Login" className={"link_class white_text"}>Log In</Link>
                 </li>
                 <li>
-                    <Link to="/Signup" className={"link_class"}>Sign Up</Link>
+                    <Link to="/Signup" className={"link_class white_text"}>Sign Up</Link>
                 </li>
             </ul>
         </header>
