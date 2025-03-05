@@ -24,7 +24,6 @@ const FriendsPage = () => {
     const handleAddFriend = (friendId) => {
         sqlService.addFriend({ user_id: user.id, friend_id: friendId })
             .then(data => {
-                alert("Friend added successfully");
                 setFriends([...friends, searchResult]);
                 setSearchResult(null);
             })

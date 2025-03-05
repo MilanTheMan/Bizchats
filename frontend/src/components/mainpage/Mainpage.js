@@ -29,8 +29,7 @@ const Mainpage = () => {
         if (user) {
             sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id })
                 .then(data => {
-                    alert("Channel created successfully");
-                    setChannels([...channels, { id: data.channelId, name: newChannelName }]);
+                    window.location.reload(); // Refresh the screen
                 })
                 .catch(err => {
                     console.log(err);
@@ -44,7 +43,6 @@ const Mainpage = () => {
         if (user) {
             sqlService.joinChannel({ userId: user.id, channelId: joinChannelId, roleId: 3 }) // 3 for 'member'
                 .then(data => {
-                    alert("Joined channel successfully");
                     // Optionally, fetch channels again to update the list
                     sqlService.getUserChannels(user.id)
                         .then(data => {
@@ -72,7 +70,7 @@ const Mainpage = () => {
                 <div className="class_list">
                     {channels.map(channel => (
                         <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
-                            <img src='https://geology.com/world/world-map.gif' alt="Channel" />
+                            <img src={channel.profile_picture} alt="Channel" />
                             <p>{channel.name}</p>
                         </div>
                     ))}

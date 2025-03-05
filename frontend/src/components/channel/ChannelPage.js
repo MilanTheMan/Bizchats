@@ -70,7 +70,6 @@ const ChannelPage = () => {
         const content = e.target.content.value;
         sqlService.createAnnouncement({ userId: user.id, channelId, title, content })
             .then(data => {
-                alert("Announcement created successfully");
                 setAnnouncements([...announcements, { title, content, creation_date: new Date().toISOString() }]);
                 setShowAnnouncementForm(false);
             })
@@ -87,7 +86,6 @@ const ChannelPage = () => {
         const due_date = e.target.due_date.value;
         sqlService.createAssignment({ userId: user.id, channelId, title, description, due_date })
             .then(data => {
-                alert("Assignment created successfully");
                 setAssignments([...assignments, { title, description, due_date, creation_date: new Date().toISOString() }]);
             })
             .catch(err => {

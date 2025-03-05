@@ -17,7 +17,6 @@ function Login() {
             .then(data => {
                 console.log(data);
                 setUser(data.data); // Update user context
-                alert("Success");
                 navigate('/home'); // Redirect to main page
             })
             .catch(err => {

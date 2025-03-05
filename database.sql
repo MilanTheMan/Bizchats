@@ -62,7 +62,7 @@
 		id INT PRIMARY KEY auto_increment,
 		name VARCHAR(100),
 		role_id INT NOT NULL,
-		profile_picture BLOB,
+		profile_picture VARCHAR(1000),
 		foreign key (role_id) references roles(id)
 	);
 
@@ -210,11 +210,11 @@
 
 
 	INSERT INTO channels (name, role_id, profile_picture) VALUES
-	('Geography', 1, NULL),
-	('History', 1, NULL),
-	('Mathematics', 1, NULL),
-	('Science', 1, NULL),
-	('Literature', 1, NULL);
+	('Geography', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(1).jpg"),
+	('History', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(2).jpg"),
+	('Mathematics', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(3).jpg"),
+	('Science', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(4).jpg"),
+	('Literature', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(5).jpg");
 
 
 	INSERT INTO userstochannels (userid, channelid, channelroleid) VALUES
