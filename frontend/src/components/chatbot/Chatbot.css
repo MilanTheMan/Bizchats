@@ -71,6 +71,8 @@
 .chatbot-widget ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-direction: column; /* Arrange friends in a column */
 }
 
 .chatbot-widget li {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import sqlService from '../../services/sqlService';
+import Navbar from '../navbar/Navbar';
 import Header from "../header/Header";
 
 const Mainpage = () => {
@@ -15,10 +16,11 @@ const Mainpage = () => {
         if (user) {
             sqlService.getUserChannels(user.id)
                 .then(data => {
-                    setChannels(data.data);
+                    setChannels(data.data || []);
                 })
                 .catch(err => {
                     console.log(err);
+                    setChannels([]);
                 });
         }
     }, [user]);
@@ -28,8 +30,7 @@ const Mainpage = () => {
         if (user) {
             sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id })
                 .then(data => {
-                    alert("Channel created successfully");
-                    setChannels([...channels, { id: data.channelId, name: newChannelName }]);
+                    window.location.reload(); // Refresh the screen
                 })
                 .catch(err => {
                     console.log(err);
@@ -43,11 +44,10 @@ const Mainpage = () => {
         if (user) {
             sqlService.joinChannel({ userId: user.id, channelId: joinChannelId, roleId: 3 }) // 3 for 'member'
                 .then(data => {
-                    alert("Joined channel successfully");
                     // Optionally, fetch channels again to update the list
                     sqlService.getUserChannels(user.id)
                         .then(data => {
-                            setChannels(data.data);
+                            setChannels(data.data || []);
                         })
                         .catch(err => {
                             console.log(err);
@@ -66,42 +66,17 @@ const Mainpage = () => {
 
     return (
         <div id={"main_page"}>
+            <Navbar />
             <h1>Welcome to BizChats!</h1>
-            <div className={"actual_content"}>
+            <div className="actual_content">
                 <div className="class_list">
                     {channels.map(channel => (
                         <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
-                            <img src='https://geology.com/world/world-map.gif' alt="Channel" />
+                            <img src={channel.profile_picture} alt="Channel" />
                             <p>{channel.name}</p>
                         </div>
                     ))}
                 </div>
-                {/* <aside className="events">
-                    <h4>Events</h4>
-                    <div className={"event_list"}>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                        <div className="event">
-                            <div className="date">
-                                <p className="day">2</p>
-                                <p className="month">February</p>
-                            </div>
-                            <p className='description'>short description of the assignment or whatever</p>
-                        </div>
-                    </div>
-                </aside> */}
                 <div className="channel_actions">
                     <form onSubmit={handleCreateChannel}>
                         <h3>Create Channel</h3>

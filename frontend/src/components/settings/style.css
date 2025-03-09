@@ -29,6 +29,7 @@
                 border-top-right-radius: 15px;
                 display: flex;
                 justify-content: center;
+                color: white; /* Make text white */
             }
 
             .related_settings{
@@ -42,6 +43,7 @@
                         width: 100%;
                         text-align: left;
                         margin-left: 10px;
+                        color: white; /* Make text white */
                     }
 
                     .label_and_input{
@@ -95,6 +97,7 @@
                         align-items: center;
                         justify-content: center;
                         align-self: center;
+                        color: white; /* Make text white */
                         
                     }
                 }

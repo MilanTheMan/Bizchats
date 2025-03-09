@@ -1,0 +1,48 @@
+.log_sign {
+    background-color: #007BFF;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.log_sign_content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.signup_detail {
+    margin-bottom: 20px;
+}
+
+.signup_detail label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup_detail input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #003f7f;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

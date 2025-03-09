@@ -1,14 +1,21 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Bizchats_logo from "../../img/bizchats_logo.png";
 import { UserContext } from '../../context/UserContext';
 
 const Header = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setUser(null);
+        navigate('/');
+    };
 
     const loggedInLinks = [
-        { id: "notifications", name: "Notifications" },
-        { id: "profile", name: "Profile" },
+        // { id: "notifications", name: "Notifications" },
+        { id: "settings", name: "Profile" },
         { id: "friends", name: "Friends" },
     ];
 
@@ -21,13 +28,20 @@ const Header = () => {
 
     return (
         <header className="header">
-            <img src={Bizchats_logo} className="bizchats_logo" alt="Bizchats Logo" />
+            <Link to="/">
+                <img src={Bizchats_logo} className="bizchats_logo" alt="Bizchats Logo" />
+            </Link>
             <ul>
                 {links.map((linksItem) => (
                     <li key={linksItem.id}>
                         <Link to={`/${linksItem.id}`} className="link_class">{linksItem.name}</Link>
                     </li>
                 ))}
+                {user && (
+                    <li>
+                        <Link to="#" onClick={handleLogout} className="link_class">Logout</Link>
+                    </li>
+                )}
             </ul>
         </header>
     );

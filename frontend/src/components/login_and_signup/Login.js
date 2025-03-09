@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext';
+import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -15,7 +17,7 @@ function Login() {
             .then(data => {
                 console.log(data);
                 setUser(data.data); // Update user context
-                alert("Success");
+                navigate('/home'); // Redirect to main page
             })
             .catch(err => {
                 console.log(err);
@@ -47,7 +49,6 @@ function Login() {
                         </div>
                         <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin} />
                     </div>
-
                 </div>
             </div>
         </div>

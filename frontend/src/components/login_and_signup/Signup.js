@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+import './Signup.css';
 
 function Signup() {
     const [name, setName] = useState('');
@@ -8,6 +10,7 @@ function Signup() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleSignup = (e) => {
         e.preventDefault();
@@ -19,7 +22,7 @@ function Signup() {
             .then(data => {
                 console.log(data);
                 setUser(data.data); // Update user context
-                alert("Signup Success");
+                navigate('/home'); // Redirect to main page
             })
             .catch(err => {
                 console.log(err);

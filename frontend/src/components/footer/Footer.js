@@ -19,6 +19,9 @@ const Footer = () => {
                 <li>
                     <Link to="/info/accessibility" className="link_class">Accessibility</Link>
                 </li>
+                <li>
+                    <Link to="/index" className="link_class">Index</Link>
+                </li>
             </ul>
         </footer>
 
