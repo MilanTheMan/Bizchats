@@ -409,7 +409,7 @@ const Schedule = () => {
                             <div className={`event col_${day.titleSpaceColor}`} onClick={() => {
                                 showDayCard(day.id, day.titleSpaceColor, day.title, day.dateHappening, day.instructor, day.theClass, day.room, day.description);
                             }}>
-                                <p>{day.dateHappening}</p>
+                                <p className={"bold"}>{day.dateHappening}</p>
                                 <p>{day.title}</p>
                             </div>
                         ))}
