@@ -20,8 +20,10 @@
     color: #007bff;
     font-weight: bold;
     transition: color 0.3s ease;
+    color: white;
+    padding: 5px;
 }
 
 .link_class:hover {
-    color: #0056b3;
+    color: #AEAEAE;
 }
