@@ -9,6 +9,7 @@
     text-align: center;
 }
 
+
 .submission-container h2 {
     color: white;
     font-size: 2rem;
@@ -20,6 +21,11 @@
     flex-direction: column;
     gap: 15px;
     margin-bottom: 20px;  
+
+
+    label{
+        color: white;
+    }
 }
 
 .submission-comment {
@@ -39,9 +45,6 @@
     font-size: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
-    color: white;
-    background: rgb(69,76,90);
-    background: linear-gradient(180deg, rgba(69,76,90,1) 0%, rgba(29,32,39,1) 100%);
 }
 
 .submission-button {
