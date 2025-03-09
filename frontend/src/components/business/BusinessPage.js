@@ -11,21 +11,21 @@ const classData = { //this is just sample data
   announcements: [
     {
       id: 1,
-      title: "Assignment two has been posted",
+      title: "Task two has been posted",
       date: "Nov 10th 2024",
       details: "Due: Nov 20th 2024 | Weight: 20%",
       type: "Assignment",
     },
     {
       id: 2,
-      title: "Marks for Assignment One have been assigned",
+      title: "Reports have been made",
       date: "Nov 5th 2024",
       details: "",
       type: "Marks",
     },
     {
       id: 3,
-      title: "Lab class for Nov 2nd will be held online",
+      title: "Meeting for Nov 2nd will be held online",
       date: "Nov 1st 2024",
       details: "",
       type: "Announcement",
