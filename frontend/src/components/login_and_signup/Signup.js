@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css';
+//import './Signup.css';
 
 function Signup() {
     const [name, setName] = useState('');
