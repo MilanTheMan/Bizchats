@@ -108,19 +108,19 @@ const BusinessPage = () => {
 
 
   return (
-    <div className="class-page">
+    <div className="business-page">
       {/* Header (not the one that appears on evey page) */}
 
       <div className={"profile_card_holder"}>
         {profileCards.map(profileCard => profileCard)}
       </div>
 
-      <header className="class-header">
+      <header className="business-header">
         <h1>{businessData.name}</h1>
       </header>
 
 
-      <div className={"class-content"}>
+      <div className={"business-content"}>
         {/* Recent News Section */}
         <section className="recent-news">
           <h2>Recent News</h2>
@@ -139,7 +139,7 @@ const BusinessPage = () => {
         </section>
 
         {/* Chat Section */}
-        <section className="class-chat">
+        <section className="business-chat">
           <h2>Group Chat</h2>
           <div className="chat-box">
             {testPosts.map((message) => (

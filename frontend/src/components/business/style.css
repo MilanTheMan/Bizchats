@@ -1,5 +1,5 @@
-/* Class Page Wrapper */
-.class-page {
+/* Business Page Wrapper */
+.business-page {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -8,15 +8,15 @@
 }
 
 /* Header */
-.class-header {
+.business-header {
   background: linear-gradient(180deg, #007BFF, #0056b3);
   color: white;
   padding: 20px;
   text-align: center;
 }
 
-/* Class Content */
-.class-content{
+/* Business Content */
+.business-content{
   padding: 20px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 /* Chat Section */
-.class-chat {
+.business-chat {
   margin: 20px 0;
 }
 
