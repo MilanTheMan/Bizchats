@@ -16,7 +16,7 @@ const Header = () => {
     const loggedInLinks = [
         // { id: "notifications", name: "Notifications" },
         { id: "settings", name: "Profile" },
-        { id: "friends", name: "Friends" },
+        // { id: "friends", name: "sFriends" },
     ];
 
     const loggedOffLinks = [

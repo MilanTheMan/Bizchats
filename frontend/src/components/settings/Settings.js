@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet, Link} from 'react-router-dom';
 import Header from "../header/Header";
+import FriendsPage from "../friends/FriendsPage"
 
 
 const Settings = (props) => {
@@ -43,6 +44,7 @@ const Settings = (props) => {
                         </div>
                     </div>
                 </div>
+                <FriendsPage/>
                 <div className={"settings_category"}>
                     <div className={"top"}>
                         <h2>Profile</h2>

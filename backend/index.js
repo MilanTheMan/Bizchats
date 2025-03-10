@@ -26,7 +26,7 @@ const credentials = {
 const httpsServer = https.createServer(credentials, app);
 
 
-global.allowConsoleLog = true; // set to false to disable console.log
+global.allowConsoleLog = true;
 
 sql.connect().then(connection => {
     console.log("SQL Connected")
@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cors({
     //everytime amplify rebuild then we need to update amplify url website until we assign amplify to a domain
     // also update recpatch allowed domains
-    origin: ["http://localhost:3000", "http://www.localhost:3000/#/", "http://www.localhost:3000", "https://main.dn5s0tbye754g.amplifyapp.com"],
+    origin: ["http://localhost:3000", "http://www.localhost:3000/#/", "http://www.localhost:3000", "http://localhost:8080", "http://www.localhost:8080/#/", "http://www.localhost:8080", "https://main.dn5s0tbye754g.amplifyapp.com"],
     methods: "GET,POST,PUT,DELETE,OPTIONS",
     credentials: true,
 }))

@@ -3,8 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
 import './ChannelPage.css';
-import settingsIcon from '../../img/settings-icon.png'; // Ensure the path to the settings icon is correct
-
+import settingsIcon from '../../img/settings-icon.png';
 const ChannelPage = () => {
     const { channelId } = useParams();
     const navigate = useNavigate();
@@ -102,7 +101,7 @@ const ChannelPage = () => {
     console.log("User Role:", userRole); // Debugging line to check the user's role
 
     return (
-        <div className="channel-page">
+        <div className="channel-page" style={{ backgroundImage: `url(${channel.profile_picture})`, backgroundSize: 'cover' }}>
             <h1 className="channel-name">{channel.name}</h1>
             {userRole === 1 && (
                 <button className="settings-button" onClick={() => navigate(`/channel/${channelId}/settings`)}>
