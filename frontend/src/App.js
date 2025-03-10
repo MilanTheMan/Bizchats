@@ -72,6 +72,7 @@ import ChannelSettings from './components/channel/ChannelSettings';
 import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
 import MobileUserDetector from "./components/mobile_user_detector/MobileUserDetector";
+import BusinessPage from "./components/business/BusinessPage";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
             <Route path="/educational" element={<Educational />} />
             <Route path="/professional" element={<Professional />} />
             <Route path="/class/:classId" element={<ClassPage />} />
+            <Route path="/business/:businessId" element={<BusinessPage />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/info/:infoId" element={<Info/>} />
             <Route path="/schedule" element={<Schedule />} />

@@ -6,8 +6,8 @@ import birb from "../../img/pfp/other_samples/birb.webp"
 import squirrel from "../../img/pfp/other_samples/squirrel.webp"
 
 
-const classData = { //this is just sample data
-  name: "C23 Math Class",
+const businessData = { //this is just sample data
+  name: "",
   announcements: [
     {
       id: 1,
@@ -66,13 +66,13 @@ const classData = { //this is just sample data
   ],
 };
 
-const ClassPage = () => {
+const BusinessPage = () => {
   const [testUser, setTestUser] = useState({
     user: "Test",
     pfp: fox,
     description: "i exist only for testing purposes"
   })
-  const [testPosts, setTestPosts] = useState(classData.chat)
+  const [testPosts, setTestPosts] = useState(businessData.chat)
   const [message, setMessage] = useState("")
 
   const [profileCards, setProfileCards] = React.useState([]);
@@ -116,7 +116,7 @@ const ClassPage = () => {
       </div>
 
       <header className="class-header">
-        <h1>{classData.name}</h1>
+        <h1>{businessData.name}</h1>
       </header>
 
 
@@ -125,7 +125,7 @@ const ClassPage = () => {
         <section className="recent-news">
           <h2>Recent News</h2>
           <div className="news-cards">
-            {classData.announcements.map((announcement) => (
+            {businessData.announcements.map((announcement) => (
               <div key={announcement.id} className="news-card">
                 <h3>{announcement.title}</h3>
                 <p>{announcement.date}</p>
@@ -164,4 +164,4 @@ const ClassPage = () => {
   );
 };
 
-export default ClassPage;
+export default BusinessPage
