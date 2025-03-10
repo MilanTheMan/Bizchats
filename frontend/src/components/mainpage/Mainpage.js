@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import sqlService from '../../services/sqlService';
-import './style.css';
+// import Navbar from '../navbar/Navbar';
+import Header from "../header/Header";
 
 const Mainpage = () => {
     const [channels, setChannels] = useState([]);
@@ -29,8 +30,7 @@ const Mainpage = () => {
         if (user) {
             sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id })
                 .then(data => {
-                    alert("Channel created successfully");
-                    setChannels([...channels, { id: data.channelId, name: newChannelName }]);
+                    window.location.reload(); // Refresh the screen
                 })
                 .catch(err => {
                     console.log(err);
@@ -44,7 +44,6 @@ const Mainpage = () => {
         if (user) {
             sqlService.joinChannel({ userId: user.id, channelId: joinChannelId, roleId: 3 }) // 3 for 'member'
                 .then(data => {
-                    alert("Joined channel successfully");
                     // Optionally, fetch channels again to update the list
                     sqlService.getUserChannels(user.id)
                         .then(data => {
@@ -66,13 +65,14 @@ const Mainpage = () => {
     };
 
     return (
-        <div id="main_page">
+        <div id={"main_page"}>
+            {/*<Navbar />*/}
             <h1>Welcome to BizChats!</h1>
             <div className="actual_content">
                 <div className="class_list">
                     {channels.map(channel => (
                         <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
-                            <img src='https://geology.com/world/world-map.gif' alt="Channel" />
+                            <img src={channel.profile_picture} alt="Channel" />
                             <p>{channel.name}</p>
                         </div>
                     ))}

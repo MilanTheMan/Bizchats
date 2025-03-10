@@ -101,6 +101,10 @@ function createChannel(data = {}) {
             if (!data.userId) {
                 data["userId"] = user.id;
             }
+            if (!data.profile_picture) {
+                const randomNumber = Math.floor(Math.random() * 30) + 1;
+                data.profile_picture = `https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(${randomNumber}).jpg`;
+            }
             axios
                 .post(`${serverConstants.baseURL}/createChannel`, data)
                 .then((response) => {

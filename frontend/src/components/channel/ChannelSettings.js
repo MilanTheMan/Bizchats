@@ -22,7 +22,6 @@ const ChannelSettings = () => {
     const handleMakeAdmin = (userId) => {
         sqlService.updateUserRole({ userId, channelId, roleId: 2 }) // 2 for 'administrator'
             .then(data => {
-                alert("User role updated successfully");
                 setMembers(members.map(member => member.id === userId ? { ...member, role: 2 } : member));
             })
             .catch(err => {
@@ -34,7 +33,6 @@ const ChannelSettings = () => {
     const handleRemoveMember = (memberId) => {
         sqlService.removeMember({ userId: user.id, channelId, memberId })
             .then(data => {
-                alert("Member removed successfully");
                 setMembers(members.filter(member => member.id !== memberId));
             })
             .catch(err => {

@@ -22,7 +22,6 @@ function Signup() {
             .then(data => {
                 console.log(data);
                 setUser(data.data); // Update user context
-                alert("Signup Success");
                 navigate('/home'); // Redirect to main page
             })
             .catch(err => {
