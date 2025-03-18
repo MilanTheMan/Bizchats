@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useLocation } from 'react-router-dom'
 import "./style.css";
 import ProfileCard from "../profile_card/ProfileCard";
 import fox from "../../img/pfp/other_samples/fox.webp"
@@ -7,7 +8,6 @@ import squirrel from "../../img/pfp/other_samples/squirrel.webp"
 
 
 const businessData = { //this is just sample data
-  name: "",
   announcements: [
     {
       id: 1,
@@ -66,7 +66,11 @@ const businessData = { //this is just sample data
   ],
 };
 
-const BusinessPage = () => {
+const BusinessPage = (props) => {
+  const [title, setTitle] = useState(props.title)
+
+  console.log("title: " + title)
+
   const [testUser, setTestUser] = useState({
     user: "Test",
     pfp: fox,
@@ -116,7 +120,7 @@ const BusinessPage = () => {
       </div>
 
       <header className="business-header">
-        <h1>{businessData.name}</h1>
+        <h1>{title}</h1>
       </header>
 
 

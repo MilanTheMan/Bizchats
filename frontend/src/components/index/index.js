@@ -8,6 +8,11 @@ function Test() {
         { id: "c24-science", name: "C24 Science Class" },
         { id: "b68-design", name: "B68 Design Class" },
     ];
+    
+    const businesses = [
+        { id: "chesstopia", name: "Chesstopia" },
+        { id: "freelance-group", name: "Freelance Group" },
+    ];
 
     return (
         <div className="index-page">
@@ -22,7 +27,7 @@ function Test() {
                     <Link to="/signup" className="link_class">Sign Up</Link>
                 </li>
                 <li>
-                    <Link to="/forgot_password" className="link_class">Forgot Password (skill issue)</Link>
+                    <Link to="/forgot_password" className="link_class">Forgot Password</Link>
                 </li>
                 <li>
                     <Link to="/main_page" className="link_class">Main Page</Link>
@@ -82,6 +87,18 @@ function Test() {
                             <li key={classItem.id}>
                                 <Link to={`/class/${classItem.id}`} className="link_class">
                                     {classItem.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
+                <li>
+                    <h3>Businesses:</h3>
+                    <ul>
+                        {businesses.map((businessItem) => (
+                            <li key={businessItem.id}>
+                                <Link to={`/business/${businessItem.id}`} state={{ title: businessItem.name }} className="link_class">
+                                    {businessItem.name}
                                 </Link>
                             </li>
                         ))}
