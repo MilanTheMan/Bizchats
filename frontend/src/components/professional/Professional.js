@@ -3,6 +3,7 @@ import "./style.css";
 import chessImg from "../../img/chess.jpg"; 
 import freelanceImg from "../../img/workplace.jpg";
 import Header from "../header/Header";
+import { Link } from "react-router-dom";
 
 const Professional = () => {
   // List of businesses with their details
@@ -32,15 +33,20 @@ const Professional = () => {
       {/* Business List Section */}
       <div className="business-list">
         {businesses.map((business) => (
-          <div key={business.id} className="business-card">
-            <img
-              src={business.image}
-              alt={business.name}
-              className="business-image"
-            />
-            <h3>{business.name}</h3>
-            <p>{business.members}</p>
-          </div>
+          <Link to={`/business/${business.id}`}>
+            <div key={business.id} className="business-card">
+              <img
+                src={business.image}
+                alt={business.name}
+                className="business-image"
+              />
+              <h3>{business.name}</h3>
+              <p>{business.members}</p>
+            </div>
+          </Link>
+
+
+
         ))}
       </div>
 
