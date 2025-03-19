@@ -36,18 +36,25 @@ function Login() {
                     <div className={"top"}>
                         <p>Login</p>
                     </div>
-                    <div className={"login_details"}>
-                        <div className={"login_detail"}>
-                            <label>Email</label>
-                            <input type={"text"} value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <div className={"box_content"}>
+                        <div className={"login_details"}>
+                            <div className={"login_detail"}>
+                                <label>Email</label>
+                                <input type={"text"} value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div className={"login_detail"}>
+                                <label>Password</label>
+                                <input type={showPassword ? 'text' : 'password'} value={password}
+                                       onChange={(e) => setPassword(e.target.value)}/>
+                                <button className="show_password_button" onClick={toggleShowPassword}>Show Password
+                                </button>
+                                <Link to={"/forgot_password"}>Forgot your password?</Link>
+                            </div>
+                            <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin}/>
                         </div>
-                        <div className={"login_detail"}>
-                            <label>Password</label>
-                            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button className="show_password_button" onClick={toggleShowPassword}>Show Password</button>
-                            <Link to={"/forgot_password"}>Forgot your password?</Link>
-                        </div>
-                        <input className={"submitButton"} type={"submit"} value={"Log in"} onClick={handleLogin} />
+                        <aside className={"login"}>
+
+                        </aside>
                     </div>
                 </div>
             </div>

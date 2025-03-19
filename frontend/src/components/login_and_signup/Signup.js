@@ -37,25 +37,33 @@ function Signup() {
                     <div className={"top"}>
                         <p>Signup</p>
                     </div>
-                    <div className={"signup_details"}>
-                        <div className={"signup_detail"}>
-                            <label>Name</label>
-                            <input type={"text"} value={name} onChange={(e) => setName(e.target.value)} />
+                    <div className={"box_content"}>
+                        <div className={"signup_details"}>
+                            <div className={"signup_detail"}>
+                                <label>Name</label>
+                                <input type={"text"} value={name} onChange={(e) => setName(e.target.value)}/>
+                            </div>
+                            <div className={"signup_detail"}>
+                                <label>Email</label>
+                                <input type={"text"} value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div className={"signup_detail"}>
+                                <label>Password</label>
+                                <input type={"password"} value={password}
+                                       onChange={(e) => setPassword(e.target.value)}/>
+                            </div>
+                            <div className={"signup_detail"}>
+                                <label>Confirm Password</label>
+                                <input type={"password"} value={confirmPassword}
+                                       onChange={(e) => setConfirmPassword(e.target.value)}/>
+                            </div>
+                            <input className={"submitButton"} type={"submit"} value={"Sign Up"} onClick={handleSignup}/>
                         </div>
-                        <div className={"signup_detail"}>
-                            <label>Email</label>
-                            <input type={"text"} value={email} onChange={(e) => setEmail(e.target.value)} />
-                        </div>
-                        <div className={"signup_detail"}>
-                            <label>Password</label>
-                            <input type={"password"} value={password} onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                        <div className={"signup_detail"}>
-                            <label>Confirm Password</label>
-                            <input type={"password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                        </div>
-                        <input className={"submitButton"} type={"submit"} value={"Sign Up"} onClick={handleSignup} />
+                        <aside className={"signup"}>
+
+                        </aside>
                     </div>
+
                 </div>
             </div>
         </div>
