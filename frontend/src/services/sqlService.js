@@ -425,6 +425,63 @@ function getUserById(data = {}) {
     });
 }
 
+function getChannelMessages(channelId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getChannelMessages`, { channelId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function createChannelMessage(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/createChannelMessage`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function updateProfilePicture(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/updateProfilePicture`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -446,7 +503,10 @@ const sqlService = {
     addFriend,
     getFriends,
     deleteFriend,
-    getUserById // Add getUserById function
+    getUserById,
+    getChannelMessages,
+    createChannelMessage,
+    updateProfilePicture
 };
 
 export default sqlService;

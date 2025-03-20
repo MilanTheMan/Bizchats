@@ -1,4 +1,5 @@
 const mysqlController = require('./mysqlController');
+const awsController = require('./awsController');
 
 async function signup(req, res) {
     try {
@@ -310,6 +311,46 @@ async function deleteFriend(req, res) {
     }
 }
 
+async function createChannelMessage(req, res) {
+    try {
+        const { userId, channelId, content } = req.body;
+        const query = "INSERT INTO channel_messages (user_id, channel_id, content) VALUES (?, ?, ?)";
+
+        const sqlConnection = await mysqlController.connect();
+        sqlConnection.query(query, [userId, channelId, content], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(201).json({ message: "Message sent successfully" });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function updateProfilePicture(req, res) {
+    try {
+        const { userId, profilePicture } = req.body;
+        const fileType = profilePicture.split(';')[0].split('/')[1];
+        const profilePictureUrl = await awsController.uploadImg(profilePicture, fileType, 'profile_picture', userId, 'profile_pictures', 'profile');
+
+        const query = "UPDATE users SET profile_picture = ? WHERE id = ?";
+        const sqlConnection = await mysqlController.connect();
+        sqlConnection.query(query, [profilePictureUrl, userId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(200).json({ message: "Profile picture updated successfully", profilePictureUrl });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     signup,
     createChannel,
@@ -322,5 +363,7 @@ module.exports = {
     getChats,
     addFriend,
     getFriends,
-    deleteFriend
+    deleteFriend,
+    createChannelMessage,
+    updateProfilePicture
 };

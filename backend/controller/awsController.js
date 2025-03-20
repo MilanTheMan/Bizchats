@@ -20,46 +20,61 @@ let s3 = new AWS.S3(
 let bucketName = "bizchats";
 
 
-
 async function uploadImg(imageBase64, fileType, contact_name, id, subfolder, type) {
     return new Promise(async (resolve, reject) => {
         try {
-            //let file = dataURLtoFile(imageBase64, "FileNAME");
             let file = dataURLtoUnit8Array(imageBase64);
-            // upload file to the bucket
-            // console.log("dd", file)
-            const d = new Date()
+            const d = new Date();
 
             const time = d.toLocaleString("en-US", { timeZone: "America/New_York" }).split(" ").join("-");
-            //console.log(tim)
-            //const time = d.toUTCString({}).split(" ").join("-")
-            const t2 = time.split(",").join("")
-            const t3 = t2.split(":").join("-")
-            const t4 = t3.split("/").join("-")
-            if (allowConsoleLog) console.log(t4)
-            const key = type === 'blog' ? `blog_${t4}.${fileType}` : `${contact_name}_${id}_honeyydo_${t4}.${fileType}`
+            const t2 = time.split(",").join("");
+            const t3 = t2.split(":").join("-");
+            const t4 = t3.split("/").join("-");
+            if (allowConsoleLog) console.log(t4);
+
+            const key = type === 'blog' 
+                ? `blog_${t4}.${fileType}` 
+                : `${contact_name}_${id}_honeyydo_${t4}.${fileType}`;
+
+            // Normalize fileType to proper MIME type
+            const contentTypeMap = {
+                jpg: 'image/jpeg',
+                jpeg: 'image/jpeg',
+                png: 'image/png',
+                gif: 'image/gif',
+                webp: 'image/webp',
+                bmp: 'image/bmp',
+                svg: 'image/svg+xml',
+                tiff: 'image/tiff',
+                ico: 'image/x-icon'
+            };
+
+            const normalizedType = fileType.toLowerCase();
+            const mimeType = contentTypeMap[normalizedType] || 'application/octet-stream';
+
             const params = {
                 Bucket: `${bucketName}/${subfolder}`,
                 Key: key,
-                Body: file
+                Body: file,
+                ContentType: mimeType,
+                ContentDisposition: 'inline'
             };
+
             await s3.upload(params, (err, data) => {
                 if (err) {
-                    console.log(err)
+                    console.log(err);
                     reject({ "err": `Error uploading data: ${err}` });
                 } else {
                     console.log(`Successfully uploaded data`);
-
-                    // get the link
                     let link = data.Location;
-                    resolve(link)
+                    resolve(link);
                 }
             });
         }
         catch (err) {
             reject({ "err": "awsController UploadImg something went wrong" });
         }
-    })
+    });
 }
 
 

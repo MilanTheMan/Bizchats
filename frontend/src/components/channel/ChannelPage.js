@@ -4,6 +4,7 @@ import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
 import './ChannelPage.css';
 import settingsIcon from '../../img/settings-icon.png';
+
 const ChannelPage = () => {
     const { channelId } = useParams();
     const navigate = useNavigate();
@@ -11,6 +12,8 @@ const ChannelPage = () => {
     const [announcements, setAnnouncements] = useState([]);
     const [assignments, setAssignments] = useState([]);
     const [marks, setMarks] = useState([]);
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
     const [activeTab, setActiveTab] = useState('announcements');
     const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
     const { user, setUser } = useContext(UserContext);
@@ -43,6 +46,14 @@ const ChannelPage = () => {
         sqlService.getChannelMarks(channelId)
             .then(data => {
                 setMarks(data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        sqlService.getChannelMessages(channelId)
+            .then(data => {
+                setMessages(data.data);
             })
             .catch(err => {
                 console.log(err);
@@ -93,6 +104,19 @@ const ChannelPage = () => {
             });
     };
 
+    const handleSendMessage = (e) => {
+        e.preventDefault();
+        sqlService.createChannelMessage({ userId: user.id, channelId, content: newMessage })
+            .then(data => {
+                setMessages([...messages, { user_id: user.id, channel_id: channelId, content: newMessage, sender_name: user.name, creation_date: new Date().toISOString() }]);
+                setNewMessage('');
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Failed to send message");
+            });
+    };
+
     if (!channel) {
         return <div>Loading...</div>;
     }
@@ -112,6 +136,7 @@ const ChannelPage = () => {
                 <button className={`tab-button ${activeTab === 'announcements' ? 'active' : ''}`} onClick={() => setActiveTab('announcements')}>Announcements</button>
                 <button className={`tab-button ${activeTab === 'assignments' ? 'active' : ''}`} onClick={() => setActiveTab('assignments')}>Assignments</button>
                 <button className={`tab-button ${activeTab === 'marks' ? 'active' : ''}`} onClick={() => setActiveTab('marks')}>Marks</button>
+                <button className={`tab-button ${activeTab === 'messages' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}>Messages</button>
             </div>
             <div className="tab-content">
                 {activeTab === 'announcements' && (
@@ -174,6 +199,29 @@ const ChannelPage = () => {
                                 <p className="date">{new Date(mark.creation_date).toLocaleString()}</p>
                             </div>
                         ))}
+                    </div>
+                )}
+                {activeTab === 'messages' && (
+                    <div>
+                        <h2 className="section-header">Messages</h2>
+                        <div className="messages">
+                            {messages.map(message => (
+                                <div key={message.id} className="message">
+                                    <p><strong>{message.sender_name}:</strong> {message.content}</p>
+                                    <p className="date">{new Date(message.creation_date).toLocaleString()}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <form className="form" onSubmit={handleSendMessage}>
+                            <input
+                                type="text"
+                                value={newMessage}
+                                onChange={(e) => setNewMessage(e.target.value)}
+                                placeholder="Type a message"
+                                required
+                            />
+                            <button type="submit">Send</button>
+                        </form>
                     </div>
                 )}
             </div>

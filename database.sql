@@ -46,7 +46,7 @@
 		email VARCHAR(100) UNIQUE,
 		password VARCHAR(500),
 		role_id INT NOT NULL,
-		profile_picture BLOB,
+		profile_picture VARCHAR(9999),
 		foreign key (role_id) references roles(id)
 	);
     
@@ -174,6 +174,22 @@
 		creation_date DATETIME default NOW(),
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (friend_id) references users(id) ON DELETE CASCADE
+	);
+
+	-- -------------------- --
+	-- |Channel Messages| --
+	-- -------------------- --
+
+	drop table if exists channel_messages;
+	create table channel_messages
+	(
+		id INT PRIMARY KEY auto_increment,
+		user_id INT NOT NULL,
+		channel_id INT NOT NULL,
+		content TEXT,
+		creation_date DATETIME default NOW(),
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
     
     
