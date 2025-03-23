@@ -14,9 +14,8 @@ const Header = () => {
     };
 
     const loggedInLinks = [
-        // { id: "notifications", name: "Notifications" },
+        { id: "home", name: "Channels" }, // New button for Channels
         { id: "settings", name: "Profile" },
-        // { id: "friends", name: "sFriends" },
     ];
 
     const loggedOffLinks = [

@@ -38,7 +38,7 @@ async function signup(req, res) {
 
 async function createChannel(req, res) {
     try {
-        const { name, role_id, profile_picture, userId } = req.body;
+        const { name, role_id, profile_picture, userId, category } = req.body;
         let finalProfilePicture = profile_picture;
 
         if (!finalProfilePicture) {
@@ -46,10 +46,10 @@ async function createChannel(req, res) {
             finalProfilePicture = `https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(${randomNumber}).jpg`;
         }
 
-        const query = "INSERT INTO channels (name, role_id, profile_picture) VALUES (?, ?, ?)";
+        const query = "INSERT INTO channels (name, role_id, category, profile_picture) VALUES (?, ?, ?, ?)";
 
         const sqlConnection = await mysqlController.connect();
-        sqlConnection.query(query, [name, role_id, finalProfilePicture], (err, result, fields) => {
+        sqlConnection.query(query, [name, role_id, category, finalProfilePicture], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });

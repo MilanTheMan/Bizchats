@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import sqlService from '../../services/sqlService';
 import './style.css';
@@ -10,6 +10,7 @@ const Mainpage = () => {
     const [joinChannelId, setJoinChannelId] = useState('');
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
+    const { category } = useParams();
 
     useEffect(() => {
         if (user) {
@@ -27,7 +28,8 @@ const Mainpage = () => {
     const handleCreateChannel = (e) => {
         e.preventDefault();
         if (user) {
-            sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id })
+            const categoryId = getCategoryFromPath();
+            sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id, category: categoryId })
                 .then(data => {
                     window.location.reload(); // Refresh the screen
                 })
@@ -63,12 +65,21 @@ const Mainpage = () => {
         navigate(`/channel/${channelId}`);
     };
 
+    const getCategoryFromPath = () => {
+        if (category === 'personal') return 1;
+        if (category === 'educational') return 2;
+        if (category === 'professional') return 3;
+        return null;
+    };
+
+    const filteredChannels = channels.filter(channel => channel.category === getCategoryFromPath());
+
     return (
         <div id="main_page">
             <h1>Welcome to BizChats!</h1>
             <div className="actual_content">
                 <div className="class_list">
-                    {channels.map(channel => (
+                    {filteredChannels.map(channel => (
                         <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
                             <img src={channel.profile_picture} alt="Channel" />
                             <p>{channel.name}</p>

@@ -98,9 +98,9 @@ async function getUserChannels(req, res) {
     try {
         const { userId } = req.body;
         const query = `
-            SELECT channels.*, userstochannels.channelroleid as role
-            FROM channels 
-            INNER JOIN userstochannels ON channels.id = userstochannels.channelid 
+            SELECT channels.*, userstochannels.channelroleid as role, channels.category
+            FROM channels
+            INNER JOIN userstochannels ON channels.id = userstochannels.channelid
             WHERE userstochannels.userid = ?`;
 
         sqlConnection.query(query, [userId], (err, result, fields) => {

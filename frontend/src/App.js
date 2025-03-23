@@ -83,7 +83,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
-            <Route path="/main_page" element={<Mainpage />} />
+            <Route path="/main_page/:category" element={<Mainpage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/personal" element={<PersonalUse />} />
             <Route path="/educational" element={<Educational />} />

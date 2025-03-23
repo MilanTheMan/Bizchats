@@ -33,6 +33,18 @@
 		role_name varchar(40)
 	);
     
+    
+    -- ------------------ --
+	-- |Channel Catagory| --
+	-- ------------------ --
+
+
+	CREATE TABLE catagories
+	(
+		id INT PRIMARY KEY,
+		catagory_name varchar(40)
+	);
+    
 	-- ------- --
 	-- |Users| --
 	-- ------- --
@@ -63,7 +75,26 @@
 		name VARCHAR(100),
 		role_id INT NOT NULL,
 		profile_picture VARCHAR(1000),
+        category INT,
+		foreign key (category) references catagories(id),
 		foreign key (role_id) references roles(id)
+	);
+    
+    
+    -- -------------------- --
+	-- |Channel Catagories| --
+	-- -------------------- --
+
+
+	drop table if exists channels_to_categories;
+	create table channels_to_categories
+	(
+		category INT,
+		channelid INT,
+		creation_date DATETIME default NOW(),
+		foreign key (category) references catagories(id) ON DELETE CASCADE,
+		foreign key (channelid) references channels(id) ON DELETE CASCADE,
+        PRIMARY KEY(category, channelid)
 	);
 
     -- ------------------- --
@@ -96,9 +127,9 @@
         PRIMARY KEY(userid, channelid)
 	);
 
-    -- -------------------- --
+    -- ----------------------- --
 	-- |Channel Announcements| --
-	-- -------------------- --
+	-- ----------------------- --
 
 	drop table if exists channel_announcements;
 	create table channel_announcements
@@ -127,9 +158,9 @@
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
 
-	-- -------------------- --
+	-- --------------- --
 	-- |Channel Marks| --
-	-- -------------------- --
+	-- --------------- --
 
 	drop table if exists channel_marks;
 	create table channel_marks
@@ -145,9 +176,9 @@
 		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE
 	);
 
-	-- -------------------- --
+	-- ---------- --
 	-- |Messages| --
-	-- -------------------- --
+	-- ---------- --
 
 	drop table if exists messages;
 	create table messages
@@ -161,9 +192,9 @@
 		foreign key (receiver_id) references users(id) ON DELETE CASCADE
 	);
 
-	-- -------------------- --
+	-- --------- --
 	-- |Friends| --
-	-- -------------------- --
+	-- --------- --
 
 	drop table if exists friends;
 	create table friends
@@ -198,16 +229,20 @@
 	-- |Insert Statements| --
 	-- -------------------- --
 	-- -------------------- --
-    
-	-- ------------ --
-	-- |Role Types| --
-	-- ------------ --
 
 
 	INSERT INTO roles (id, role_name)
 	VALUES
 	(1, 'user'),
 	(2, 'admin');
+    
+    
+	INSERT INTO catagories (id, catagory_name)
+	VALUES
+	(1, 'Personal'),
+    (2, 'Educational'),
+	(3, 'Professional');
+
 
 	INSERT INTO channel_roles (id, role_name)
 	VALUES
@@ -225,12 +260,15 @@
 	("dummy6", "dummyemail6@fakemail.com", "password", 1, NULL);
 
 
-	INSERT INTO channels (name, role_id, profile_picture) VALUES
-	('Geography', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(1).jpg"),
-	('History', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(2).jpg"),
-	('Mathematics', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(3).jpg"),
-	('Science', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(4).jpg"),
-	('Literature', 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(5).jpg");
+	INSERT INTO channels (name, role_id, category, profile_picture) VALUES
+	('Geography', 1, 2, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(1).jpg"),
+	('History', 1, 2, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(2).jpg"),
+	('Mathematics', 1, 2, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(3).jpg"),
+	('Science', 1, 2, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(4).jpg"),
+	('Literature', 1, 2, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(5).jpg"),
+    ('Torontonians', 1, 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(6).jpg"),
+    ('Friends', 1, 1, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(7).jpg"),
+    ('Game Dev', 1, 3, "https://bizchats.s3.us-east-2.amazonaws.com/channels/wallpapers/generic/Wallpaper+(8).jpg");
 
 
 	INSERT INTO userstochannels (userid, channelid, channelroleid) VALUES

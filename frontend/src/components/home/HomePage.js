@@ -9,8 +9,8 @@ import professionalImg from '../../img/professional_logo.jpg';
 const Home = () => {
     const navigate = useNavigate();
 
-    const handleOptionClick = () => {
-        navigate('/main_page');
+    const handleOptionClick = (category) => {
+        navigate(`/main_page/${category}`);
     };
 
     return (
@@ -21,15 +21,15 @@ const Home = () => {
                 <p>How will you use BizChats?</p>
 
                 <div className="options">
-                    <div className="option" onClick={handleOptionClick}>
+                    <div className="option" onClick={() => handleOptionClick('personal')}>
                         <img src={personalImg} alt="Personal" />
                         <h3>Personal</h3>
                     </div>
-                    <div className="option" onClick={handleOptionClick}>
+                    <div className="option" onClick={() => handleOptionClick('educational')}>
                         <img src={educationalImg} alt="Educational" />
                         <h3>Educational</h3>
                     </div>
-                    <div className="option" onClick={handleOptionClick}>
+                    <div className="option" onClick={() => handleOptionClick('professional')}>
                         <img src={professionalImg} alt="Professional" />
                         <h3>Professional</h3>
                     </div>
