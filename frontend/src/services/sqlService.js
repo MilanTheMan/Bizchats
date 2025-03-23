@@ -425,11 +425,11 @@ function getUserById(data = {}) {
     });
 }
 
-function getChannelMessages(channelId) {
+function updateUserEmail(data = {}) {
     return new Promise((resolve, reject) => {
         try {
             axios
-                .post(`${serverConstants.baseURL}/getChannelMessages`, { channelId })
+                .post(`${serverConstants.baseURL}/updateUserEmail`, data)
                 .then((response) => {
                     let ret = response.data;
                     resolve(ret);
@@ -444,11 +444,11 @@ function getChannelMessages(channelId) {
     });
 }
 
-function createChannelMessage(data = {}) {
+function resetUserPassword(data = {}) {
     return new Promise((resolve, reject) => {
         try {
             axios
-                .post(`${serverConstants.baseURL}/createChannelMessage`, data)
+                .post(`${serverConstants.baseURL}/resetUserPassword`, data)
                 .then((response) => {
                     let ret = response.data;
                     resolve(ret);
@@ -504,9 +504,9 @@ const sqlService = {
     getFriends,
     deleteFriend,
     getUserById,
-    getChannelMessages,
-    createChannelMessage,
-    updateProfilePicture
+    updateUserEmail,
+    resetUserPassword,
+    updateProfilePicture // Add the new function to the exports
 };
 
 export default sqlService;

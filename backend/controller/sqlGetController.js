@@ -1,3 +1,7 @@
+const express = require('express');
+const router = express.Router();
+const sqlPostController = require('./sqlPostController');
+
 async function getAllUsers(req, res) {
     try {
         const { data } = req.body;

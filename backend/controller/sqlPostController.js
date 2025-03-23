@@ -1,5 +1,5 @@
 const mysqlController = require('./mysqlController');
-const awsController = require('./awsController');
+const { uploadImg } = require('./awsController');
 
 async function signup(req, res) {
     try {
@@ -311,18 +311,37 @@ async function deleteFriend(req, res) {
     }
 }
 
-async function createChannelMessage(req, res) {
+async function updateUserEmail(req, res) {
     try {
-        const { userId, channelId, content } = req.body;
-        const query = "INSERT INTO channel_messages (user_id, channel_id, content) VALUES (?, ?, ?)";
+        const { userId, newEmail } = req.body;
+        const query = "UPDATE users SET email = ? WHERE id = ?";
 
         const sqlConnection = await mysqlController.connect();
-        sqlConnection.query(query, [userId, channelId, content], (err, result, fields) => {
+        sqlConnection.query(query, [newEmail, userId], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
             } else {
-                res.status(201).json({ message: "Message sent successfully" });
+                res.status(200).json({ message: "Email updated successfully" });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function resetUserPassword(req, res) {
+    try {
+        const { userId, newPassword } = req.body;
+        const query = "UPDATE users SET password = ? WHERE id = ?";
+
+        const sqlConnection = await mysqlController.connect();
+        sqlConnection.query(query, [newPassword, userId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(200).json({ message: "Password reset successfully" });
             }
         });
     } catch (err) {
@@ -334,16 +353,18 @@ async function updateProfilePicture(req, res) {
     try {
         const { userId, profilePicture } = req.body;
         const fileType = profilePicture.split(';')[0].split('/')[1];
-        const profilePictureUrl = await awsController.uploadImg(profilePicture, fileType, 'profile_picture', userId, 'profile_pictures', 'profile');
+        const contact_name = "user"; // You can replace this with actual user name if available
+
+        const s3Url = await uploadImg(profilePicture, fileType, contact_name, userId, 'profile_pictures', 'profile');
 
         const query = "UPDATE users SET profile_picture = ? WHERE id = ?";
         const sqlConnection = await mysqlController.connect();
-        sqlConnection.query(query, [profilePictureUrl, userId], (err, result, fields) => {
+        sqlConnection.query(query, [s3Url, userId], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
             } else {
-                res.status(200).json({ message: "Profile picture updated successfully", profilePictureUrl });
+                res.status(200).json({ message: "Profile picture updated successfully", profilePictureUrl: s3Url });
             }
         });
     } catch (err) {
@@ -364,6 +385,7 @@ module.exports = {
     addFriend,
     getFriends,
     deleteFriend,
-    createChannelMessage,
+    updateUserEmail,
+    resetUserPassword,
     updateProfilePicture
 };

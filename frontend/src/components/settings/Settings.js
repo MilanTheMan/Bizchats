@@ -9,6 +9,8 @@ import './style.css';
 const Settings = () => {
     const { user, setUser } = useContext(UserContext);
     const [currentEmail, setCurrentEmail] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [profilePicture, setProfilePicture] = useState('');
 
@@ -44,6 +46,29 @@ const Settings = () => {
             });
     };
 
+    const handleUpdateEmail = () => {
+        sqlService.updateUserEmail({ userId: user.id, newEmail })
+            .then(() => {
+                setUser({ ...user, email: newEmail });
+                alert("Email updated successfully");
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Failed to update email");
+            });
+    };
+
+    const handleResetPassword = () => {
+        sqlService.resetUserPassword({ userId: user.id, newPassword })
+            .then(() => {
+                alert("Password reset successfully");
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Failed to reset password");
+            });
+    };
+
     return (
         <div id="settings">
             <h1>Settings</h1>
@@ -57,21 +82,16 @@ const Settings = () => {
                             <label>E-mail</label>
                             <div className="label_and_input">
                                 <input type="text" value={currentEmail} readOnly />
-                                <button>Change Email</button>
+                                <input type="text" placeholder="New Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                                <button onClick={handleUpdateEmail}>Change Email</button>
                             </div>
                         </div>
                         <div className="settings_login_detail">
                             <label>Reset Password</label>
                             <div className="label_and_input">
-                                <input type={showPassword ? 'text' : 'password'} />
+                                <input type={showPassword ? 'text' : 'password'} placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                                 <button className="show_password_button" onClick={toggleShowPassword}>Show Password</button>
-                            </div>
-                        </div>
-                        <div className="settings_login_detail">
-                            <label>Confirm Password</label>
-                            <div className="label_and_input">
-                                <input type={showPassword ? 'text' : 'password'} />
-                                <button>Change Password</button>
+                                <button onClick={handleResetPassword}>Change Password</button>
                             </div>
                         </div>
                     </div>
@@ -84,7 +104,11 @@ const Settings = () => {
                         <div className="settings_login_detail">
                             <label>Current Profile Picture</label>
                             <div className="label_and_input">
-                                <img src={profilePicture} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+                                {profilePicture ? (
+                                    <img src={profilePicture} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+                                ) : (
+                                    <p>No profile picture</p>
+                                )}
                                 <input type="file" accept="image/*" onChange={handleProfilePictureChange} />
                                 <button onClick={handleProfilePictureUpload}>Upload</button>
                             </div>

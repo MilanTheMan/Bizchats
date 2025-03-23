@@ -23,15 +23,13 @@ homeRouter.post("/updateUserRole", sqlPostController.updateUserRole);
 homeRouter.post("/removeMember", sqlPostController.removeMember);
 homeRouter.post("/createChat", sqlPostController.createChat);
 homeRouter.post("/getChats", sqlPostController.getChats);
+homeRouter.post("/resetUserPassword", sqlPostController.resetUserPassword);
+homeRouter.post("/updateUserEmail", sqlPostController.updateUserEmail);
+homeRouter.post("/updateProfilePicture", sqlPostController.updateProfilePicture);
 
 homeRouter.post("/addFriend", sqlPostController.addFriend);
 homeRouter.post("/getFriends", sqlPostController.getFriends);
 homeRouter.post("/deleteFriend", sqlPostController.deleteFriend);
 homeRouter.post("/getUserById", sqlGetController.getUserById);
-
-homeRouter.post("/createChannelMessage", sqlPostController.createChannelMessage);
-homeRouter.post("/getChannelMessages", sqlGetController.getChannelMessages);
-
-homeRouter.post("/updateProfilePicture", sqlPostController.updateProfilePicture);
 
 module.exports = homeRouter;

@@ -32,9 +32,9 @@ async function uploadImg(imageBase64, fileType, contact_name, id, subfolder, typ
             const t4 = t3.split("/").join("-");
             if (allowConsoleLog) console.log(t4);
 
-            const key = type === 'blog' 
-                ? `blog_${t4}.${fileType}` 
-                : `${contact_name}_${id}_honeyydo_${t4}.${fileType}`;
+            const key = type === 'blog'
+                ? `blog_${t4}.${fileType}`
+                : `${contact_name}_${id}_bizchats_${t4}.${fileType}`;
 
             // Normalize fileType to proper MIME type
             const contentTypeMap = {
@@ -173,7 +173,7 @@ async function uploadFile(imageBase64, fileType, contact_name, id, subfolder, na
             const t3 = t2.split(":").join("-")
             const t4 = t3.split("/").join("-")
             if (allowConsoleLog) console.log(t4)
-            const key = subfolder === 'email_attachment' ? `${t4}_${name}` : `${contact_name}_${id}_honeyydo_file_${t4}.${fileType}`
+            const key = subfolder === 'email_attachment' ? `${t4}_${name}` : `${contact_name}_${id}_bizchats_file_${t4}.${fileType}`
             const params = {
                 Bucket: `${bucketName}/${subfolder}`,
                 Key: key,
