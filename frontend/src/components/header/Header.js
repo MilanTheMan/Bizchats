@@ -14,7 +14,7 @@ const Header = () => {
     };
 
     const loggedInLinks = [
-        { id: "home", name: "Channels" }, // New button for Channels
+        { id: "home", name: "Channels" },
         { id: "settings", name: "Profile" },
     ];
 
