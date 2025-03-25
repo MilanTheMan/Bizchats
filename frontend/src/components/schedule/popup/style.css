@@ -10,6 +10,9 @@
         justify-content: center;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
+        color: white;
+        padding: 15px;
+
     }
 
     .actual_content{
@@ -18,6 +21,7 @@
         margin: 10px;
         p{
             word-wrap: break-word;
+            color: white;
         }   
     }
 
