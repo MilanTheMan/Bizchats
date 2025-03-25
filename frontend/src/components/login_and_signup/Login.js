@@ -2,17 +2,25 @@ import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState(null); // Store captcha value
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        sqlService.login({ email, password })
+
+        if (!captchaValue) {
+            alert('Please complete the reCAPTCHA');
+            return;
+        }
+
+        sqlService.login({ email, password, captcha: captchaValue })
             .then(data => {
                 console.log(data);
                 setUser(data.data);
@@ -22,6 +30,10 @@ function Login() {
                 console.log(err);
                 alert("Login failed!");
             });
+    };
+
+    const handleCaptchaChange = (value) => {
+        setCaptchaValue(value); // Store the value returned by reCAPTCHA
     };
 
     return (
@@ -67,6 +79,14 @@ function Login() {
                         <Link to="/forgot_password" className="text-gray-400 hover:text-white transition-all text-sm">
                             Forgot your password?
                         </Link>
+                    </div>
+
+                    {/* Google reCAPTCHA Widget */}
+                    <div className="mb-6">
+                        <ReCAPTCHA
+                            sitekey="6LcMH_8qAAAAAIZGbzjDfe-rXqqG8hBzVfbZmnvI"  // site key
+                            onChange={handleCaptchaChange}
+                        />
                     </div>
 
                     {/* Login Button */}

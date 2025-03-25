@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';  // Added Link here
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [captchaValue, setCaptchaValue] = useState(null); // Store captcha value
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -17,7 +19,13 @@ function Signup() {
             alert("Passwords do not match");
             return;
         }
-        sqlService.signup({ name, email, password, role_id: 1, profile_picture: null })
+
+        if (!captchaValue) {
+            alert('Please complete the reCAPTCHA');
+            return;
+        }
+
+        sqlService.signup({ name, email, password, role_id: 1, profile_picture: null, captcha: captchaValue })
             .then(data => {
                 console.log(data);
                 setUser(data.data);
@@ -27,6 +35,10 @@ function Signup() {
                 console.log(err);
                 alert("Signup Failed");
             });
+    };
+
+    const handleCaptchaChange = (value) => {
+        setCaptchaValue(value); // Store the value returned by reCAPTCHA
     };
 
     return (
@@ -82,6 +94,14 @@ function Signup() {
                         />
                     </div>
 
+                    {/* Google reCAPTCHA Widget */}
+                    <div className="mb-6">
+                        <ReCAPTCHA
+                            sitekey="6LcMH_8qAAAAAIZGbzjDfe-rXqqG8hBzVfbZmnvI"  // Site key
+                            onChange={handleCaptchaChange}
+                        />
+                    </div>
+
                     {/* Signup Button */}
                     <button
                         type="submit"
@@ -91,12 +111,12 @@ function Signup() {
                     </button>
                 </form>
 
-                {/* Already Have an Account? */}
+                {/* Login Link */}
                 <div className="mt-6 text-center">
                     <p className="text-gray-400">Already have an account? 
-                        <a href="/login" className="text-blue-400 hover:text-blue-300 ml-1 transition-all">
-                            Log In
-                        </a>
+                        <Link to="/login" className="text-blue-400 hover:text-blue-300 ml-1 transition-all">
+                            Login
+                        </Link>
                     </p>
                 </div>
             </div>
