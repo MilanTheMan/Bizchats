@@ -482,6 +482,25 @@ function updateProfilePicture(data = {}) {
     });
 }
 
+function getChannelMessages(channelId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getChannelMessages`, { channelId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -506,7 +525,8 @@ const sqlService = {
     getUserById,
     updateUserEmail,
     resetUserPassword,
-    updateProfilePicture // Add the new function to the exports
+    updateProfilePicture,
+    getChannelMessages
 };
 
 export default sqlService;
