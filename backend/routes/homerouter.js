@@ -31,5 +31,6 @@ homeRouter.post("/addFriend", sqlPostController.addFriend);
 homeRouter.post("/getFriends", sqlPostController.getFriends);
 homeRouter.post("/deleteFriend", sqlPostController.deleteFriend);
 homeRouter.post("/getUserById", sqlGetController.getUserById);
+homeRouter.post("/getChannelMessages", sqlGetController.getChannelMessages);
 
 module.exports = homeRouter;

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mysqlController = require('./mysqlController');
 const sqlPostController = require('./sqlPostController');
 
 async function getAllUsers(req, res) {
@@ -220,6 +221,7 @@ async function getChannelMessages(req, res) {
             WHERE channel_messages.channel_id = ?
             ORDER BY channel_messages.creation_date ASC`;
 
+        const sqlConnection = await mysqlController.connect();
         sqlConnection.query(query, [channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
