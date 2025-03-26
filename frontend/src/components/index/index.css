@@ -17,11 +17,11 @@
 
 .link_class {
     text-decoration: none;
-    color: #007bff;
+    color: #ffffff;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .link_class:hover {
-    color: #0056b3;
+    color: #ffffff;
 }
