@@ -4,16 +4,6 @@
     background-color: #f4f4f4;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 50px;
-    background-color: #007BFF;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .logo {
     font-size: 32px;
     font-weight: bold;
