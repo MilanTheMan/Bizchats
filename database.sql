@@ -97,9 +97,9 @@
         PRIMARY KEY(category, channelid)
 	);
 
-    -- ------------------- --
+    -- --------------- --
 	-- |Channel Roles| --
-	-- ------------------- --
+	-- --------------- --
 
 	drop table if exists channel_roles;
 	create table channel_roles
@@ -141,8 +141,9 @@
 		creation_date DATETIME default NOW(),
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
-
-	-- -------------------- --
+    
+    
+    -- -------------------- --
 	-- |Channel Assignments| --
 	-- -------------------- --
 
@@ -158,12 +159,50 @@
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
 
-	-- --------------- --
-	-- |Channel Marks| --
-	-- --------------- --
 
-	drop table if exists channel_marks;
-	create table channel_marks
+	-- ------------------------- --
+	-- |Assignments Submissions| --
+	-- ------------------------- --
+
+	drop table if exists assignment_submissions;
+	create table assignment_submissions
+	(
+		id INT PRIMARY KEY auto_increment,
+        user_id INT NOT NULL,
+		channel_id INT NOT NULL,
+		assignment_id INT NOT NULL,
+		comments TEXT,
+		submission_date DATETIME default NOW(),
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE,
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+    
+    
+    -- ------------------------ --
+	-- |Submission Attachments| --
+	-- ------------------------ --
+
+	drop table if exists submission_attachments;
+	create table submission_attachments
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		assignment_id INT NOT NULL,
+		user_id INT NOT NULL,
+        attachment_link TEXT,
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE,
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+
+
+	-- ---------------------- --
+	-- |Marks to Assignments| --
+	-- ---------------------- --
+
+	drop table if exists channel_marks_assignments;
+	create table channel_marks_assignments
 	(
 		id INT PRIMARY KEY auto_increment,
 		channel_id INT NOT NULL,
@@ -175,6 +214,40 @@
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE
 	);
+    
+    
+	-- ---------------- --
+	-- |Marks to Users| --
+	-- ---------------- --
+
+	drop table if exists channel_marks_users;
+	create table channel_marks_users
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		user_id INT NOT NULL,
+		average_mark INT,
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE,
+		foreign key (user_id) references users(id) ON DELETE CASCADE
+	);
+    
+    
+	-- --------------- --
+	-- |Channel Marks| --
+	-- --------------- --
+
+	drop table if exists channel_marks;
+	create table channel_marks
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+		user_id INT NOT NULL,
+		mark INT,
+		creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE,
+		foreign key (user_id) references users(id) ON DELETE CASCADE
+	);
+
 
 	-- ---------- --
 	-- |Messages| --

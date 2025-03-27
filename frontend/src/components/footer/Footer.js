@@ -1,32 +1,28 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {Outlet, Link} from 'react-router-dom';
-import Bizchats_logo from "../../img/bizchats_logo.png"
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    return (
-        <footer className="educational-footer">
-            <ul>
-                <li>
-                    <Link to="/info/terms_and_conditions" className="link_class">Terms of conditions</Link>
-                </li>
-                <li>
-                    <Link to="/info/privacy_policy" className="link_class">Privacy Policy</Link>
-                </li>
-                <li>
-                    <Link to="/info/cookies" className="link_class">Cookies</Link>
-                </li>
-                <li>
-                    <Link to="/info/accessibility" className="link_class">Accessibility</Link>
-                </li>
-                <li>
-                    <Link to="/index" className="link_class">Index</Link>
-                </li>
-            </ul>
-        </footer>
-
-
-    )
-}
+  return (
+    <footer className="w-full bg-gradient-to-b from-blue-900 to-blue-950 text-white text-sm fixed bottom-0 left-0 px-4 py-2 z-50">
+      <div className="flex justify-center space-x-4">
+        <Link to="/info/terms_and_conditions" className="hover:text-blue-300 transition">
+          Terms & Conditions
+        </Link>
+        <Link to="/info/privacy_policy" className="hover:text-blue-300 transition">
+          Privacy Policy
+        </Link>
+        <Link to="/info/cookies" className="hover:text-blue-300 transition">
+          Cookies
+        </Link>
+        <Link to="/info/accessibility" className="hover:text-blue-300 transition">
+          Accessibility
+        </Link>
+        <Link to="/index" className="hover:text-blue-300 transition">
+          Index
+        </Link>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

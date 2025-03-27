@@ -30,7 +30,6 @@ async function uploadImg(imageBase64, fileType, contact_name, id, subfolder, typ
             const t2 = time.split(",").join("");
             const t3 = t2.split(":").join("-");
             const t4 = t3.split("/").join("-");
-            if (allowConsoleLog) console.log(t4);
 
             const key = type === 'blog'
                 ? `blog_${t4}.${fileType}`
@@ -62,10 +61,8 @@ async function uploadImg(imageBase64, fileType, contact_name, id, subfolder, typ
 
             await s3.upload(params, (err, data) => {
                 if (err) {
-                    console.log(err);
                     reject({ "err": `Error uploading data: ${err}` });
                 } else {
-                    console.log(`Successfully uploaded data`);
                     let link = data.Location;
                     resolve(link);
                 }
@@ -88,15 +85,10 @@ async function deleteImg(link, subfolder) {
                 Bucket: `${bucketName}/${subfolder}`,
                 Key: key
             };
-            if (allowConsoleLog) console.log(key)
             await s3.deleteObject(params, (err, data) => {
                 if (err) {
-                    console.log(err)
                     reject({ "err": `Error uploading data: ${err}` });
                 } else {
-                    console.log(`Successfully deleted data`);
-
-                    // get the link
                     let link = data.Location;
                     resolve(link)
                 }
@@ -110,7 +102,6 @@ async function deleteImg(link, subfolder) {
 
 
 function dataURLtoFile(dataurl, filename) {
-    if (allowConsoleLog) console.log("dsf", filename)
     var arr = dataurl.split(','),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[arr.length - 1]),
@@ -119,9 +110,7 @@ function dataURLtoFile(dataurl, filename) {
     while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
     }
-    if (allowConsoleLog) console.log("dsfvvv")
     const f = new File([u8arr], filename, { type: mime });
-    if (allowConsoleLog) console.log(f)
     return f;
 }
 
@@ -153,56 +142,91 @@ function dataURLtoUnit8Array(dataurl) {
 
 //Usage example:
 // var file = dataURLtoFile('data:text/plain;base64,aGVsbG8=', 'hello.txt');
-// if (allowConsoleLog) console.log(file);
 
-async function uploadFile(imageBase64, fileType, contact_name, id, subfolder, name) {
+function dataURLtoUint8Array(dataURL) {
+    if (!dataURL) {
+        throw new Error("Invalid base64 string");
+    }
+    let base64String;
+    // Check if the string is in the data URL format
+    if (dataURL.indexOf(',') !== -1) {
+        base64String = dataURL.split(',')[1];
+    } else {
+        base64String = dataURL;
+    }
+    // Convert base64 string to a buffer (which is a Uint8Array)
+    return Buffer.from(base64String, 'base64');
+}
 
+async function uploadFile(base64, fileType, contact_name, id, channelName, assignmentName) {
     return new Promise(async (resolve, reject) => {
         try {
-            //let file = dataURLtoFile(imageBase64, "FileNAME");
-            let file = dataURLtoUnit8Array(imageBase64);
+            if (!base64 || !fileType || !contact_name || !id || !channelName || !assignmentName) {
+                throw new Error("One or more required parameters are missing");
+            }
 
-            // upload file to the bucket
-            // console.log("dd", file)
-            const d = new Date()
+            let file = dataURLtoUint8Array(base64);
+            const d = new Date();
+            const time = d.toLocaleString("en-US", { timeZone: "America/New_York" })
+                .split(" ").join("-")
+                .split(",").join("")
+                .split(":").join("-")
+                .split("/").join("-");
+            const key = `${contact_name}_${id}_bizchats_${time}.${fileType}`;
+            const s3Path = `channels/submissions/${channelName}/${assignmentName}/${key}`;
 
-            const time = d.toLocaleString("en-US", { timeZone: "America/New_York" }).split(" ").join("-");
-            //console.log(tim)
-            //const time = d.toUTCString({}).split(" ").join("-")
-            const t2 = time.split(",").join("")
-            const t3 = t2.split(":").join("-")
-            const t4 = t3.split("/").join("-")
-            if (allowConsoleLog) console.log(t4)
-            const key = subfolder === 'email_attachment' ? `${t4}_${name}` : `${contact_name}_${id}_bizchats_file_${t4}.${fileType}`
+            const contentTypeMap = {
+                jpg: 'image/jpeg',
+                jpeg: 'image/jpeg',
+                png: 'image/png',
+                gif: 'image/gif',
+                webp: 'image/webp',
+                bmp: 'image/bmp',
+                svg: 'image/svg+xml',
+                tiff: 'image/tiff',
+                ico: 'image/x-icon',
+                pdf: 'application/pdf',
+                doc: 'application/msword',
+                docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                xls: 'application/vnd.ms-excel',
+                xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                ppt: 'application/vnd.ms-powerpoint',
+                pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                txt: 'text/plain',
+                csv: 'text/csv',
+                mp4: 'video/mp4',
+                mp3: 'audio/mpeg',
+                zip: 'application/zip',
+                rar: 'application/x-rar-compressed'
+            };
+
+            const normalizedType = fileType.toLowerCase();
+            const mimeType = contentTypeMap[normalizedType] || 'application/octet-stream';
+
             const params = {
-                Bucket: `${bucketName}/${subfolder}`,
-                Key: key,
+                Bucket: bucketName,
+                Key: s3Path,
                 Body: file,
-                // ContentType: 'pdf'
+                ContentType: mimeType,
+                ContentDisposition: 'inline'
             };
 
             await s3.upload(params, (err, data) => {
                 if (err) {
-                    console.log(err)
                     reject({ "err": `Error uploading data: ${err}` });
                 } else {
-                    console.log(`Successfully uploaded data`);
-
-                    // get the link
                     let link = data.Location;
-                    resolve(link)
+                    resolve(link);
                 }
             });
+        } catch (err) {
+            reject({ "err": "awsController uploadFile something went wrong" });
         }
-        catch (err) {
-            console.log(err)
-            reject({ "err": "awsController UploadImg something went wrong" });
-        }
-    })
+    });
 }
 
 module.exports = {
     uploadImg,
     deleteImg,
     uploadFile
-}
+};

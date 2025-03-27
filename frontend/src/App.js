@@ -68,6 +68,12 @@ import React from 'react';
 import { UserProvider } from './context/UserContext';
 import ChannelPage from './components/channel/ChannelPage';
 import ChannelSettings from './components/channel/ChannelSettings';
+import ChannelAnnouncements from './components/channel/ChannelAnnouncements';
+import ChannelWork from './components/channel/ChannelWork';
+import ChannelMarks from './components/channel/ChannelMarks';
+import ChannelMarksAdmin from './components/channel/ChannelMarksAdmin';
+import ChannelMessages from './components/channel/ChannelMessages';
+import AssignmentDetails from './components/channel/AssignmentDetails';
 import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
 
@@ -95,9 +101,16 @@ function App() {
             <Route path="/announcements" element={<Announcements />} />
             <Route path="/grades" element={<Grades />} />
             <Route path="/submission" element={<Submission />} />
-            <Route path="/channel/:channelId" element={<ChannelPage />} />
+            <Route path="/channel/:channelId" element={<ChannelPage />}>
+              <Route path="announcements" element={<ChannelAnnouncements />} />
+              <Route path="assignments" element={<ChannelWork />} />
+              <Route path="marks" element={<ChannelMarks />} />
+              <Route path="marks-admin" element={<ChannelMarksAdmin />} />
+              <Route path="messages" element={<ChannelMessages />} />
+              <Route path="assignments/:assignmentId/details" element={<AssignmentDetails />} />
+            </Route>
             <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
-            <Route path="/friends" element={<FriendsPage />} /> {/* Add FriendsPage route */}
+            <Route path="/friends" element={<FriendsPage />} />
 
             {/*remove the below links later*/}
 

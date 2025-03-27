@@ -33,4 +33,16 @@ homeRouter.post("/deleteFriend", sqlPostController.deleteFriend);
 homeRouter.post("/getUserById", sqlGetController.getUserById);
 homeRouter.post("/getChannelMessages", sqlGetController.getChannelMessages);
 
+homeRouter.post("/deleteAnnouncement", sqlDeleteController.deleteAnnouncement);
+homeRouter.post("/updateAnnouncement", sqlUpdateController.updateAnnouncement);
+homeRouter.post("/deleteAssignment", sqlDeleteController.deleteAssignment);
+homeRouter.post("/updateAssignment", sqlUpdateController.updateAssignment);
+homeRouter.post("/uploadAttachment", sqlPostController.uploadAttachment);
+homeRouter.post("/addComment", sqlPostController.addComment);
+
+homeRouter.post("/getSubmissionDetails", sqlGetController.getSubmissionDetails);
+homeRouter.post("/submitMark", sqlPostController.submitMark);
+homeRouter.post("/getSubmissions", sqlGetController.getSubmissions);
+homeRouter.post("/submitResults", sqlPostController.submitResults);
+
 module.exports = homeRouter;

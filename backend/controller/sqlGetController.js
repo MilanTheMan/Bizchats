@@ -8,18 +8,9 @@ async function getAllUsers(req, res) {
         const { data } = req.body;
         const query = "SELECT * from users";
 
-        const { user } = data;
+        const [result] = await sqlConnection.promise().query(query);
 
-        sqlConnection.query(query, (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else if (result) {
-                res.send({ data: result });
-            } else {
-                res.status(500).json({ error: "something went wrong" });
-            }
-        });
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -30,16 +21,9 @@ async function getUserById(req, res) {
         const { data } = req.body;
         const query = "SELECT * from users where id = ?";
 
-        sqlConnection.query(query, [data], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else if (result) {
-                res.send({ data: result });
-            } else {
-                res.status(500).json({ error: "something went wrong" });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [data]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -50,16 +34,9 @@ async function getUserByEmail(req, res) {
         const { data } = req.body;
         const query = "SELECT * from users where email = ?";
 
-        sqlConnection.query(query, [data], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else if (result) {
-                res.send({ data: result });
-            } else {
-                res.status(500).json({ error: "something went wrong" });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [data]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -71,25 +48,22 @@ async function login(req, res) {
         console.log(`Login attempt for email: ${email}`);
         const query = "SELECT * from users where email = ?";
 
-        sqlConnection.query(query, [email], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else if (result.length > 0) {
-                const user = result[0];
-                console.log(`User found: ${user.email}`);
-                if (user.password === password) {
-                    const { password, ...userWithoutPassword } = user;
-                    res.send({ data: userWithoutPassword });
-                } else {
-                    console.log('Invalid password');
-                    res.status(401).json({ error: "Invalid password" });
-                }
+        const [result] = await sqlConnection.promise().query(query, [email]);
+
+        if (result.length > 0) {
+            const user = result[0];
+            console.log(`User found: ${user.email}`);
+            if (user.password === password) {
+                const { password, ...userWithoutPassword } = user;
+                res.send({ data: userWithoutPassword });
             } else {
-                console.log('User not found');
-                res.status(404).json({ error: "User not found" });
+                console.log('Invalid password');
+                res.status(401).json({ error: "Invalid password" });
             }
-        });
+        } else {
+            console.log('User not found');
+            res.status(404).json({ error: "User not found" });
+        }
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -104,14 +78,9 @@ async function getUserChannels(req, res) {
             INNER JOIN userstochannels ON channels.id = userstochannels.channelid
             WHERE userstochannels.userid = ?`;
 
-        sqlConnection.query(query, [userId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [userId]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -122,14 +91,9 @@ async function getChannelById(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channels where id = ?";
 
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result[0] });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result[0] });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -140,14 +104,9 @@ async function getChannelAnnouncements(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_announcements where channel_id = ?";
 
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -158,14 +117,9 @@ async function getChannelAssignments(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_assignments where channel_id = ?";
 
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -176,14 +130,9 @@ async function getChannelMarks(req, res) {
         const { channelId } = req.body;
         const query = "SELECT * from channel_marks where channel_id = ?";
 
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -198,14 +147,9 @@ async function getChannelMembers(req, res) {
             INNER JOIN userstochannels ON users.id = userstochannels.userid
             WHERE userstochannels.channelid = ?`;
 
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
     } catch (err) {
         res.status(500).json({ err: err });
     }
@@ -221,16 +165,46 @@ async function getChannelMessages(req, res) {
             WHERE channel_messages.channel_id = ?
             ORDER BY channel_messages.creation_date ASC`;
 
-        const sqlConnection = await mysqlController.connect();
-        sqlConnection.query(query, [channelId], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.send({ data: result });
-            }
-        });
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
     } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getSubmissionDetails(req, res) {
+    try {
+        const { userId, assignmentId } = req.body;
+        const query = `
+            SELECT assignment_submissions.*, submission_attachments.attachment_link
+            FROM assignment_submissions
+            LEFT JOIN submission_attachments ON assignment_submissions.id = submission_attachments.assignment_id
+            WHERE assignment_submissions.user_id = ? AND assignment_submissions.assignment_id = ?`;
+
+        const [result] = await sqlConnection.promise().query(query, [userId, assignmentId]);
+
+        res.send({ data: result });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getSubmissions(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = `
+            SELECT assignment_submissions.*, users.name as user_name, channel_assignments.title as assignment_title
+            FROM assignment_submissions
+            INNER JOIN users ON assignment_submissions.user_id = users.id
+            INNER JOIN channel_assignments ON assignment_submissions.assignment_id = channel_assignments.id
+            WHERE assignment_submissions.channel_id = ?`;
+
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+
+        res.send({ data: result });
+    } catch (err) {
+        console.log(err);
         res.status(500).json({ err: err });
     }
 }
@@ -246,5 +220,7 @@ module.exports = {
     getChannelAssignments,
     getChannelMarks,
     getChannelMembers,
-    getChannelMessages
+    getChannelMessages,
+    getSubmissionDetails,
+    getSubmissions
 };
