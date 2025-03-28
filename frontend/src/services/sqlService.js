@@ -710,6 +710,25 @@ function submitResults(data = {}) {
     });
 }
 
+function updateChannel(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/updateChannel`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -746,7 +765,8 @@ const sqlService = {
     getSubmissionDetails,
     submitMark,
     getSubmissions,
-    submitResults
+    submitResults,
+    updateChannel
 };
 
 export default sqlService;

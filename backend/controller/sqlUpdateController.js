@@ -1,4 +1,5 @@
 const mysqlController = require('./mysqlController');
+const { uploadImg } = require('./awsController');
 
 async function updateAnnouncement(req, res) {
     try {
@@ -36,7 +37,33 @@ async function updateAssignment(req, res) {
     }
 }
 
+async function updateChannel(req, res) {
+    try {
+        const { channelId, name, profile_picture } = req.body;
+
+        let profilePictureUrl = null;
+        if (profile_picture) {
+            const fileType = profile_picture.split(';')[0].split('/')[1];
+            profilePictureUrl = await uploadImg(profile_picture, fileType, 'channel', channelId, 'channels/wallpapers/uploaded', 'profile');
+        }
+
+        const query = "UPDATE channels SET name = ?, profile_picture = ? WHERE id = ?";
+        sqlConnection.query(query, [name, profilePictureUrl, channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(200).json({ message: "Channel updated successfully", profilePictureUrl });
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     updateAnnouncement,
-    updateAssignment
+    updateAssignment,
+    updateChannel
 };

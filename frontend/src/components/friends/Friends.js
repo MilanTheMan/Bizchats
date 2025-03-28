@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { FaPaperPlane, FaUserPlus } from "react-icons/fa";
+import { FaPaperPlane, FaUserPlus, FaTrashAlt } from "react-icons/fa";
+import placeholderImage from '../../img/Placeholder.jpg';
 
 const Friends = () => {
     const { user } = useContext(UserContext);
@@ -13,43 +14,79 @@ const Friends = () => {
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        sqlService.getFriends(user.id).then((data) => setFriends(data.data));
-    }, [user.id]);
+        if (user) {
+            sqlService.getFriends(user.id).then((data) => setFriends(data.data));
+        }
+    }, [user]);
 
     const handleFriendClick = (friend) => {
         setSelectedFriend(friend);
-        sqlService.getChats(user.id).then((data) => {
-            const friendMessages = data.data.filter(
-                (msg) => (msg.sender_id === user.id && msg.receiver_id === friend.id) || (msg.sender_id === friend.id && msg.receiver_id === user.id)
-            );
-            setMessages(friendMessages);
-        });
+        if (user) {
+            sqlService.getChats(user.id).then((data) => {
+                const friendMessages = data.data.filter(
+                    (msg) => (msg.sender_id === user.id && msg.receiver_id === friend.id) || (msg.sender_id === friend.id && msg.receiver_id === user.id)
+                );
+                setMessages(friendMessages);
+            });
+        }
     };
 
     const handleSendMessage = (e) => {
         e.preventDefault();
-        sqlService.createChat({ sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage }).then(() => {
-            setMessages([...messages, { sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage, creation_date: new Date().toISOString() }]);
-            setNewMessage("");
-        });
+        if (user && selectedFriend) {
+            sqlService.createChat({ sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage }).then(() => {
+                setMessages([...messages, { sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage, creation_date: new Date().toISOString() }]);
+                setNewMessage("");
+            });
+        }
     };
 
     const handleSearch = () => {
-        sqlService.getAllUsers().then((data) => {
-            const friendIds = friends.map((friend) => friend.id);
-            const results = data.data.filter(
-                (u) => u.name.toLowerCase().includes(searchQuery.toLowerCase()) && u.id !== user.id && !friendIds.includes(u.id)
-            );
-            setSearchResults(results);
-        });
+        if (user) {
+            sqlService.getAllUsers().then((data) => {
+                const friendIds = friends.map((friend) => friend.id);
+                const results = data.data.filter(
+                    (u) => u.name.toLowerCase().includes(searchQuery.toLowerCase()) && u.id !== user.id && !friendIds.includes(u.id)
+                );
+                setSearchResults(results);
+            });
+        }
     };
 
     const handleAddFriend = (friendId) => {
-        sqlService.addFriend({ user_id: user.id, friend_id: friendId }).then(() => {
-            sqlService.getFriends(user.id).then((data) => setFriends(data.data));
-            alert("Friend added successfully!");
-        });
+        if (friends.some(friend => friend.id === friendId)) {
+            alert("This user is already your friend.");
+            return;
+        }
+        if (user) {
+            sqlService.addFriend({ user_id: user.id, friend_id: friendId }).then(() => {
+                sqlService.getFriends(user.id).then((data) => setFriends(data.data));
+                alert("Friend added successfully!");
+            }).catch(err => {
+                console.log(err);
+                alert("Failed to add friend. Please try again.");
+            });
+        }
     };
+
+    const handleUnfriend = (friendId) => {
+        if (user) {
+            sqlService.deleteFriend({ user_id: user.id, friend_id: friendId }).then(() => {
+                setFriends(friends.filter((friend) => friend.id !== friendId));
+                if (selectedFriend?.id === friendId) {
+                    setSelectedFriend(null);
+                }
+                alert("Friend removed successfully!");
+            }).catch(err => {
+                console.log(err);
+                alert("Failed to remove friend. Please try again.");
+            });
+        }
+    };
+
+    if (!user) {
+        return <div className="text-center text-gray-600 text-lg">Please log in to view your friends.</div>;
+    }
 
     return (
         <div className="flex">
@@ -59,10 +96,15 @@ const Friends = () => {
                     {friends.map((friend) => (
                         <li
                             key={friend.id}
-                            className={`p-2 rounded cursor-pointer ${selectedFriend?.id === friend.id ? "bg-blue-500 text-white" : "hover:bg-gray-200"}`}
+                            className={`p-2 rounded cursor-pointer flex items-center gap-3 ${selectedFriend?.id === friend.id ? "bg-blue-500 text-white" : "hover:bg-gray-200"}`}
                             onClick={() => handleFriendClick(friend)}
                         >
-                            {friend.name}
+                            <img
+                                src={friend.profile_picture || placeholderImage}
+                                alt={friend.name}
+                                className="w-10 h-10 rounded-full"
+                            />
+                            <span>{friend.name}</span>
                         </li>
                     ))}
                 </ul>
@@ -93,7 +135,13 @@ const Friends = () => {
             <div className="w-3/4 p-4">
                 {selectedFriend ? (
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Chat with {selectedFriend.name}</h3>
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-lg font-semibold">Chat with {selectedFriend.name}</h3>
+                            <FaTrashAlt
+                                className="text-red-500 cursor-pointer"
+                                onClick={() => handleUnfriend(selectedFriend.id)}
+                            />
+                        </div>
                         <div className="space-y-3 mb-4">
                             {messages.map((msg, i) => (
                                 <div key={i} className={`p-2 rounded ${msg.sender_id === user.id ? "bg-blue-100 text-right" : "bg-gray-100 text-left"}`}>

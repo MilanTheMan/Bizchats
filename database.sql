@@ -74,7 +74,7 @@
 		id INT PRIMARY KEY auto_increment,
 		name VARCHAR(100),
 		role_id INT NOT NULL,
-		profile_picture VARCHAR(1000),
+		profile_picture TEXT,
         category INT,
 		foreign key (category) references catagories(id),
 		foreign key (role_id) references roles(id)
