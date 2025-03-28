@@ -244,9 +244,9 @@ async function getChats(req, res) {
 async function addFriend(req, res) {
     try {
         const { user_id, friend_id } = req.body;
-        const query = "INSERT INTO friends (user_id, friend_id) VALUES (?, ?)";
+        const query = "INSERT INTO friends (user_id, friend_id) VALUES (?, ?), (?, ?)";
 
-        sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
+        sqlConnection.query(query, [user_id, friend_id, friend_id, user_id], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
@@ -433,9 +433,9 @@ async function submitResults(req, res) {
 
         const query = `
             INSERT INTO channel_marks_users (channel_id, user_id, average_mark)
-            SELECT 
-                channel_id, 
-                user_id, 
+            SELECT
+                channel_id,
+                user_id,
                 AVG(mark) AS average_mark
             FROM channel_marks_assignments
             WHERE channel_id = ?
@@ -448,6 +448,24 @@ async function submitResults(req, res) {
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: err });
+    }
+}
+
+async function createChannelMessage(req, res) {
+    try {
+        const { userId, channelId, content } = req.body;
+        const query = "INSERT INTO channel_messages (user_id, channel_id, content) VALUES (?, ?, ?)";
+
+        sqlConnection.query(query, [userId, channelId, content], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(201).json({ message: "Message sent successfully" });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
     }
 }
 
@@ -470,5 +488,6 @@ module.exports = {
     uploadAttachment,
     addComment,
     submitMark,
-    submitResults
+    submitResults,
+    createChannelMessage
 };

@@ -76,6 +76,7 @@ import ChannelMessages from './components/channel/ChannelMessages';
 import AssignmentDetails from './components/channel/AssignmentDetails';
 import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
+import Friends from './components/friends/Friends';
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
               <Route path="assignments/:assignmentId/details" element={<AssignmentDetails />} />
             </Route>
             <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
+            <Route path="/friends" element={<Friends />} />
             <Route path="/friends" element={<FriendsPage />} />
 
             {/*remove the below links later*/}
@@ -126,7 +128,7 @@ function App() {
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
-          <Chatbot /> {/* Add Chatbot component */}
+          {/* <Chatbot /> */}
         </BrowserRouter>
       </UserProvider>
     </div>

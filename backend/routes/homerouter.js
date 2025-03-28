@@ -32,6 +32,7 @@ homeRouter.post("/getFriends", sqlPostController.getFriends);
 homeRouter.post("/deleteFriend", sqlPostController.deleteFriend);
 homeRouter.post("/getUserById", sqlGetController.getUserById);
 homeRouter.post("/getChannelMessages", sqlGetController.getChannelMessages);
+homeRouter.post("/createChannelMessage", sqlPostController.createChannelMessage);
 
 homeRouter.post("/deleteAnnouncement", sqlDeleteController.deleteAnnouncement);
 homeRouter.post("/updateAnnouncement", sqlUpdateController.updateAnnouncement);

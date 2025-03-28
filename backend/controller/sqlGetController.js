@@ -128,7 +128,13 @@ async function getChannelAssignments(req, res) {
 async function getChannelMarks(req, res) {
     try {
         const { channelId } = req.body;
-        const query = "SELECT * from channel_marks where channel_id = ?";
+        const query = `
+            SELECT
+                channel_marks_assignments.assignment_id,
+                channel_marks_assignments.user_id,
+                channel_marks_assignments.mark
+            FROM channel_marks_assignments
+            WHERE channel_marks_assignments.channel_id = ?`;
 
         const [result] = await sqlConnection.promise().query(query, [channelId]);
 
@@ -209,6 +215,28 @@ async function getSubmissions(req, res) {
     }
 }
 
+async function getFriends(req, res) {
+    try {
+        const { user_id } = req.body;
+        const query = `
+            SELECT users.id, users.name, users.email
+            FROM friends
+            INNER JOIN users ON friends.friend_id = users.id
+            WHERE friends.user_id = ?`;
+
+        sqlConnection.query(query, [user_id], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.send({ data: result });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -222,5 +250,6 @@ module.exports = {
     getChannelMembers,
     getChannelMessages,
     getSubmissionDetails,
-    getSubmissions
+    getSubmissions,
+    getFriends
 };

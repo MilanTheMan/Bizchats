@@ -501,6 +501,25 @@ function getChannelMessages(channelId) {
     });
 }
 
+function createChannelMessage(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/createChannelMessage`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 function deleteAnnouncement(data = {}) {
     return new Promise((resolve, reject) => {
         try {
@@ -717,6 +736,7 @@ const sqlService = {
     resetUserPassword,
     updateProfilePicture,
     getChannelMessages,
+    createChannelMessage,
     deleteAnnouncement,
     updateAnnouncement,
     deleteAssignment,
