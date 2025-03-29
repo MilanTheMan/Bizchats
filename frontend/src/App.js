@@ -120,8 +120,8 @@ function App() {
             <Route path="/day_card" element={<Daycard />} />
 
             {/* Footer pages routes */}
-            <Route path="/terms-conditions" element={<TermsConditions />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/termsconditions" element={<TermsConditions />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/accessibility" element={<Accessibility />} />
 

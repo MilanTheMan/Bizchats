@@ -76,7 +76,7 @@ const Mainpage = () => {
 
     return (
         <div id="main_page">
-            <h1>Welcome to BizChats!</h1>
+            {/* <h1>Welcome to BizChats!</h1> */}
             <div className="actual_content">
                 <div className="class_list">
                     {filteredChannels.map(channel => (

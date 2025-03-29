@@ -35,7 +35,7 @@ const Educational = () => {
     <div className="educational-page">
       {/* Header Section */}
       <header className="educational-header">
-        <h1>Welcome to BizChats</h1>
+        {/* <h1>Welcome to BizChats</h1> */}
         <p>Your Classes:</p>
       </header>
 

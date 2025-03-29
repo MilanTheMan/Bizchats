@@ -39,7 +39,7 @@ const ChannelPage = () => {
     };
 
     return (
-        <div className="bg-gray-100 min-h-screen p-8">
+        <div className="bg-gray-100 min-h-[80vh] p-8">
             <div className="bg-gradient-to-br from-gray-100 to-gray-200 shadow-md rounded-xl p-6 border border-gray-300">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-semibold text-gray-800">{channel.name}</h1>

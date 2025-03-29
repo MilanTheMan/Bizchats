@@ -72,7 +72,7 @@ const Settings = () => {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white p-6 overflow-y-auto">
+        <div className="flex flex-col items-center min-h-[85vh] bg-gray-900 text-white p-6 overflow-y-auto">
             <h1 className="text-3xl font-bold mb-6">Settings</h1>
 
             <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -100,12 +100,12 @@ const Settings = () => {
                 </div>
             </div>
 
-            <div className="mt-6 w-full max-w-4xl bg-gray-800 rounded-lg shadow-lg p-6">
+            {/* <div className="mt-6 w-full max-w-4xl bg-gray-800 rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-semibold mb-4 text-center">Friends</h2>
                 <div className="w-full">
                     <FriendsPage />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

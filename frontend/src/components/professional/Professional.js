@@ -25,7 +25,7 @@ const Professional = () => {
     <div className="professional-page">
       {/* Header Section */}
       <header className="professional-header">
-        <h1>Welcome to BizChats</h1>
+        {/* <h1>Welcome to BizChats</h1> */}
         <p>Your Businesses:</p>
       </header>
 

@@ -31,7 +31,7 @@ const PersonalUse = () => {
     <div className="personal-use">
       {/* Header Section */}
       <header className="personal-header">
-        <h1>Welcome to BizChats</h1>
+        {/* <h1>Welcome to BizChats</h1> */}
         <p>Your Classes:</p>
       </header>
 

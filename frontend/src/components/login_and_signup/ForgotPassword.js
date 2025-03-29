@@ -1,44 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 
 function ForgotPassword() {
-
     const [email, setEmail] = useState("");
 
-    function handleSendEmail(){
-        if (email.search(/@/) != -1){
-            alert(`We have sent you an E-Mail at "${email}" to reset your password. If you don't see it in your inbox, please check your junk e-mails.`)
+    const handleSendEmail = () => {
+        if (email.includes('@')) {
+            alert(`We have sent an email to "${email}" with instructions to reset your password.`);
+        } else {
+            alert(`"${email}" is not a valid email address.`);
         }
-        else{
-            alert(`"${email}" is not a valid email.`)
-        }
+    };
 
-
-    }
-
-    function handleChange(event){
-        setEmail(event.target.value)
-    }
-
-    return(
-        <div id={"forgot_password_page"} className={"log_sign"}>
-            <div className={"log_sign_content"}>
-                <div id={"login_box"}>
-                    <div className={"top"}>
-                        <p>Forgot Password?</p>
-                    </div>
-                    <p>Put your email in the box below, then we will send you an email to help you reset your password.</p>
-                    <div className={"login_details"}>
-                        <div className={"login_detail"}>
-                            <label id={"email"}>Username/E-mail</label>
-                            <input type={"text"} value={email} onChange={handleChange}/>
-                        </div>
-                        <input className={"submitButton"} type={"submit"} value={"Send E-Mail"} onClick={handleSendEmail}/>
-                    </div>
-                </div>
+    return (
+        <div className="min-h-screen bg-gray-200 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 rounded-xl shadow-xl w-full max-w-md mx-4">
+                <h2 className="text-2xl font-bold text-center mb-4">Forgot Password?</h2>
+                <p className="text-sm text-center text-gray-300 mb-6">
+                    Enter your email address below and we’ll send you a link to reset your password.
+                </p>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="w-full px-4 py-2 rounded-lg mb-4 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <button
+                    onClick={handleSendEmail}
+                    className="w-full bg-blue-600 hover:bg-blue-700 transition-colors duration-300 text-white py-2 rounded-lg font-semibold"
+                >
+                    Send Email
+                </button>
             </div>
-
         </div>
-    )
+    );
 }
 
 export default ForgotPassword;
