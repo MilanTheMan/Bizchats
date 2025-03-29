@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import sqlService from "../../services/sqlService";
+import Cookies from "js-cookie";
 import FriendsPage from "../friends/FriendsPage";
 
 const Settings = () => {
@@ -34,7 +35,9 @@ const Settings = () => {
     const handleProfilePictureUpload = () => {
         sqlService.updateProfilePicture({ userId: user.id, profilePicture })
             .then(data => {
-                setUser({ ...user, profile_picture: data.profilePictureUrl });
+                const updatedUser = { ...user, profile_picture: data.profilePictureUrl };
+                setUser(updatedUser);
+                Cookies.set('user', JSON.stringify(updatedUser), { expires: 7 }); // Update cookie
                 alert("Profile picture updated successfully");
             })
             .catch(err => {
@@ -46,7 +49,9 @@ const Settings = () => {
     const handleUpdateEmail = () => {
         sqlService.updateUserEmail({ userId: user.id, newEmail })
             .then(() => {
-                setUser({ ...user, email: newEmail });
+                const updatedUser = { ...user, email: newEmail };
+                setUser(updatedUser);
+                Cookies.set('user', JSON.stringify(updatedUser), { expires: 7 }); // Update cookie
                 alert("Email updated successfully");
             })
             .catch(err => {

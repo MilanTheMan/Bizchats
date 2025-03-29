@@ -31,7 +31,7 @@ const ChannelSettings = () => {
     }, [channelId]);
 
     const handleUpdateChannelName = () => {
-        sqlService.updateChannel({ channelId, name: channelName })
+        sqlService.updateChannelName({ channelId, name: channelName })
             .then(() => {
                 alert("Channel name updated successfully!");
             })
@@ -51,7 +51,7 @@ const ChannelSettings = () => {
     };
 
     const handleUpdateProfilePicture = () => {
-        sqlService.updateChannel({ channelId, profile_picture: profilePicture })
+        sqlService.updateChannelPicture({ channelId, profile_picture: profilePicture })
             .then((data) => {
                 setProfilePicture(data.profilePictureUrl); // Update the profile picture with the S3 URL
                 alert("Profile picture updated successfully!");

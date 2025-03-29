@@ -15,6 +15,7 @@ const Header = () => {
 
   const links = user
     ? [
+        { id: "", name: "About" },
         { id: "home", name: "Channels" },
         { id: "friends", name: "Friends" },
         { id: "settings", name: "Profile" },

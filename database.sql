@@ -1,4 +1,4 @@
--- ------------------------------------------------------------------------------------ --
+	-- ------------------------------------------------------------------------------------ --
 	-- | ONLY DO THIS FOR TESTING. DROPING THE DATABASE WILL REMOVE ALL THE USERS INSIDE! | --
 										drop database IF EXISTS Bizchats;
 	-- ------------------------------------------------------------------------------------ --
@@ -9,8 +9,8 @@
 	-- |Database| --
 	-- ---------- --
 	-- ---------- --
-    
-    
+
+
 	create database Bizchats;
 
 	use Bizchats;
@@ -21,7 +21,8 @@
 	-- |Tables| --
 	-- -------- --
 	-- -------- --
-    
+
+
 	-- ------- --
 	-- |Roles| --
 	-- ------- --
@@ -32,8 +33,8 @@
 		id INT PRIMARY KEY,
 		role_name varchar(40)
 	);
-    
-    
+
+
     -- ------------------ --
 	-- |Channel Catagory| --
 	-- ------------------ --
@@ -44,7 +45,8 @@
 		id INT PRIMARY KEY,
 		catagory_name varchar(40)
 	);
-    
+
+
 	-- ------- --
 	-- |Users| --
 	-- ------- --
@@ -58,11 +60,11 @@
 		email VARCHAR(100) UNIQUE,
 		password VARCHAR(500),
 		role_id INT NOT NULL,
-		profile_picture VARCHAR(9999),
+		profile_picture VARCHAR(255) DEFAULT 'https://bizchats.s3.us-east-2.amazonaws.com/profile_pictures/Placeholder.jpg',
 		foreign key (role_id) references roles(id)
 	);
-    
-    
+
+
 	-- ---------- --
 	-- |Channels| --
 	-- ---------- --
@@ -79,8 +81,8 @@
 		foreign key (category) references catagories(id),
 		foreign key (role_id) references roles(id)
 	);
-    
-    
+
+
     -- -------------------- --
 	-- |Channel Catagories| --
 	-- -------------------- --
@@ -97,9 +99,11 @@
         PRIMARY KEY(category, channelid)
 	);
 
+
     -- --------------- --
 	-- |Channel Roles| --
 	-- --------------- --
+
 
 	drop table if exists channel_roles;
 	create table channel_roles
@@ -107,8 +111,8 @@
 		id INT PRIMARY KEY auto_increment,
 		role_name VARCHAR(40) UNIQUE
 	);
-    
-    
+
+
     -- ------------------- --
 	-- |Users to Channels| --
 	-- ------------------- --
@@ -127,9 +131,11 @@
         PRIMARY KEY(userid, channelid)
 	);
 
+
     -- ----------------------- --
 	-- |Channel Announcements| --
 	-- ----------------------- --
+
 
 	drop table if exists channel_announcements;
 	create table channel_announcements
@@ -141,11 +147,12 @@
 		creation_date DATETIME default NOW(),
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
-    
-    
+
+
     -- -------------------- --
 	-- |Channel Assignments| --
 	-- -------------------- --
+
 
 	drop table if exists channel_assignments;
 	create table channel_assignments
@@ -164,6 +171,7 @@
 	-- |Assignments Submissions| --
 	-- ------------------------- --
 
+
 	drop table if exists assignment_submissions;
 	create table assignment_submissions
 	(
@@ -177,11 +185,12 @@
 		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE,
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
-    
-    
+
+
     -- ------------------------ --
 	-- |Submission Attachments| --
 	-- ------------------------ --
+
 
 	drop table if exists submission_attachments;
 	create table submission_attachments
@@ -201,6 +210,7 @@
 	-- |Marks to Assignments| --
 	-- ---------------------- --
 
+
 	drop table if exists channel_marks_assignments;
 	create table channel_marks_assignments
 	(
@@ -214,11 +224,12 @@
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (assignment_id) references channel_assignments(id) ON DELETE CASCADE
 	);
-    
-    
+
+
 	-- ---------------- --
 	-- |Marks to Users| --
 	-- ---------------- --
+
 
 	drop table if exists channel_marks_users;
 	create table channel_marks_users
@@ -230,11 +241,12 @@
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE,
 		foreign key (user_id) references users(id) ON DELETE CASCADE
 	);
-    
-    
+
+
 	-- --------------- --
 	-- |Channel Marks| --
 	-- --------------- --
+
 
 	drop table if exists channel_marks;
 	create table channel_marks
@@ -253,6 +265,7 @@
 	-- |Messages| --
 	-- ---------- --
 
+
 	drop table if exists messages;
 	create table messages
 	(
@@ -265,9 +278,11 @@
 		foreign key (receiver_id) references users(id) ON DELETE CASCADE
 	);
 
+
 	-- --------- --
 	-- |Friends| --
 	-- --------- --
+
 
 	drop table if exists friends;
 	create table friends
@@ -280,9 +295,11 @@
 		foreign key (friend_id) references users(id) ON DELETE CASCADE
 	);
 
+
 	-- -------------------- --
 	-- |Channel Messages| --
 	-- -------------------- --
+
 
 	drop table if exists channel_messages;
 	create table channel_messages
@@ -295,8 +312,8 @@
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
-    
-    
+
+
 	-- -------------------- --
 	-- -------------------- --
 	-- |Insert Statements| --
@@ -308,8 +325,8 @@
 	VALUES
 	(1, 'user'),
 	(2, 'admin');
-    
-    
+
+
 	INSERT INTO catagories (id, catagory_name)
 	VALUES
 	(1, 'Personal'),
@@ -322,8 +339,8 @@
 	(1, 'owner'),
 	(2, 'administrator'),
 	(3, 'member');
-    
-    
+
+
 	INSERT INTO users (name, email, password, role_id, profile_picture) VALUES
 	("dummy1", "dummyemail1@fakemail.com", "password", 1, NULL),
 	("dummy2", "dummyemail2@fakemail.com", "password", 1, NULL),

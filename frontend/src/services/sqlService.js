@@ -729,6 +729,42 @@ function updateChannel(data = {}) {
     });
 }
 
+function updateChannelName(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/updateChannelName`, data)
+                .then((response) => {
+                    resolve(response.data);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function updateChannelPicture(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/updateChannelPicture`, data)
+                .then((response) => {
+                    resolve(response.data);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -766,7 +802,9 @@ const sqlService = {
     submitMark,
     getSubmissions,
     submitResults,
-    updateChannel
+    updateChannel,
+    updateChannelName,
+    updateChannelPicture
 };
 
 export default sqlService;
