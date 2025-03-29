@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# 📘 BizChats – Web & Mobile Collaboration Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**BizChats** is a modern communication and collaboration tool designed to support educational institutions and professional teams. The platform combines real-time messaging, structured communication channels, and file sharing — all in a secure, user-friendly environment. Whether you're managing a classroom, coordinating a project team, or running business meetings remotely, BizChats offers an all-in-one digital workspace tailored to your needs.
 
-## Available Scripts
+The application is available as both a **web app** and a **mobile app**, ensuring that users can stay connected and productive from any device, anywhere.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🌐 Live Web App
+🔗 [https://main.dn5s0tbye754g.amplifyapp.com](https://main.dn5s0tbye754g.amplifyapp.com)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+### 💬 Real-Time Messaging
+- Send and receive instant messages with no delay.
+- Designed for high responsiveness to foster smooth, fluid conversations.
+- Ideal for both formal updates and informal team chats.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🧵 Channel Management
+- Create organized chat channels by topic, team, or project.
+- Keep discussions focused and relevant.
+- Easily switch between channels to manage different conversations simultaneously.
 
-### `npm run build`
+### 📂 File Sharing
+- Upload, access, and share documents directly within chats.
+- Eliminates the need to switch between different platforms for collaboration.
+- Supports seamless file exchanges for assignments, resources, and reports.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🔒 Secure Authentication
+- Integrated with Google reCAPTCHA to prevent unauthorized access and bot attacks.
+- Simple and clean login/signup flow for both web and mobile versions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📱 Cross-Platform Support
+- **Web App** for desktop/laptop users, hosted on AWS Amplify.
+- **Mobile App** built using React Native, compatible with Android emulators and Expo Go for real-device testing.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ☁️ Cloud Storage
+- Files are uploaded securely via **AWS S3**, allowing reliable storage and quick retrieval.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Frontend:** React (Web), React Native (Mobile), Tailwind CSS
+- **Backend:** Node.js
+- **Database:** MySQL
+- **Cloud Hosting:** AWS Amplify
+- **Storage:** AWS S3
+- **Security:** Google reCAPTCHA
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 How to Run Locally
 
-## Learn More
+### 🌐 Web Application (React + Node.js)
+1. **Clone the repository**
+2. Navigate to the `frontend` folder and run:
+   ```bash
+   npm install
+   npm start
+   ```
+3. In a separate terminal, go to the `backend` folder and run:
+   ```bash
+   npm install
+   node server.js
+   ```
+4. Visit `http://localhost:3000` in your browser.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📱 Mobile Application (React Native)
+1. Install the **Expo Go** app on your mobile device.
+2. Navigate to the mobile app project folder and run:
+   ```bash
+   npm install
+   npx expo start
+   ```
+3. Scan the QR code with Expo Go or launch an emulator through Android Studio.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🔐 Demo Login Credentials
+- **Email:** `test@gmail.com`
+- **Password:** `password`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📦 Dependencies
+Install required dependencies for both frontend and backend:
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 👥 Contributors
+- **Daniel John D. Fajardo III**
+- **Alexis Gorospe**
+- **Milan Mislov**
+- **Lara Alkhatabi**
+- **Fahad Al-Hadeethi**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📝 Notes
+- The **mobile app** is currently not deployed and must be run locally.
+- The **web app** is live and publicly accessible via AWS Amplify.
+- This project was developed as part of a collaborative academic assignment for COMP3059/COMP3078.
