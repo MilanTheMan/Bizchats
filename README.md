@@ -61,12 +61,13 @@ The application is available as both a **web app** and a **mobile app**, ensurin
    npm install
    npm start
    ```
-3. In a separate terminal, go to the `backend` folder and run:
+3. Copy the content of the provided SQL file (located in the project root directory) and run it as a query in your MySQL database to initialize required tables and data.
+4. In a separate terminal, go to the `backend` folder and run:
    ```bash
    npm install
    node server.js
    ```
-4. Visit `http://localhost:3000` in your browser.
+5. Visit `http://localhost:3000` in your browser.
 
 ### 📱 Mobile Application (React Native)
 1. Install the **Expo Go** app on your mobile device.
@@ -80,16 +81,8 @@ The application is available as both a **web app** and a **mobile app**, ensurin
 ---
 
 ## 🔐 Demo Login Credentials
-- **Email:** `test@gmail.com`
+- **Email:** `dummyemail1@fakemail.com`
 - **Password:** `password`
-
----
-
-## 📦 Dependencies
-Install required dependencies for both frontend and backend:
-```bash
-npm install
-```
 
 ---
 
@@ -104,5 +97,5 @@ npm install
 
 ## 📝 Notes
 - The **mobile app** is currently not deployed and must be run locally.
-- The **web app** is live and publicly accessible via AWS Amplify.
-- This project was developed as part of a collaborative academic assignment for COMP3059/COMP3078.
+- The **web app** is live and publicly accessible via AWS.
+- This project was developed as part of a collaborative academic assignment for COMP3059.
