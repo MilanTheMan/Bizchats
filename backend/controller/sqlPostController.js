@@ -1,5 +1,5 @@
 const mysqlController = require('./mysqlController');
-const { uploadFile } = require('./awsController');
+const { uploadFile, uploadImg } = require('./awsController');
 
 async function signup(req, res) {
     try {

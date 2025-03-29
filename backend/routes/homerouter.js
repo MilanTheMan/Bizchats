@@ -46,6 +46,7 @@ homeRouter.post("/submitMark", sqlPostController.submitMark);
 homeRouter.post("/getSubmissions", sqlGetController.getSubmissions);
 homeRouter.post("/submitResults", sqlPostController.submitResults);
 
-homeRouter.post("/updateChannel", sqlUpdateController.updateChannel);
+homeRouter.post("/updateChannelName", sqlUpdateController.updateChannelName);
+homeRouter.post("/updateChannelPicture", sqlUpdateController.updateChannelPicture);
 
 module.exports = homeRouter;

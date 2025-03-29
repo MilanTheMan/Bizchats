@@ -37,9 +37,28 @@ async function updateAssignment(req, res) {
     }
 }
 
-async function updateChannel(req, res) {
+async function updateChannelName(req, res) {
     try {
-        const { channelId, name, profile_picture } = req.body;
+        const { channelId, name } = req.body;
+
+        const query = "UPDATE channels SET name = ? WHERE id = ?";
+        sqlConnection.query(query, [name, channelId], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ error: err });
+            } else {
+                res.status(200).json({ message: "Channel name updated successfully" });
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: err });
+    }
+}
+
+async function updateChannelPicture(req, res) {
+    try {
+        const { channelId, profile_picture } = req.body;
 
         let profilePictureUrl = null;
         if (profile_picture) {
@@ -47,13 +66,13 @@ async function updateChannel(req, res) {
             profilePictureUrl = await uploadImg(profile_picture, fileType, 'channel', channelId, 'channels/wallpapers/uploaded', 'profile');
         }
 
-        const query = "UPDATE channels SET name = ?, profile_picture = ? WHERE id = ?";
-        sqlConnection.query(query, [name, profilePictureUrl, channelId], (err, result, fields) => {
+        const query = "UPDATE channels SET profile_picture = ? WHERE id = ?";
+        sqlConnection.query(query, [profilePictureUrl, channelId], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
             } else {
-                res.status(200).json({ message: "Channel updated successfully", profilePictureUrl });
+                res.status(200).json({ message: "Channel profile picture updated successfully", profilePictureUrl });
             }
         });
     } catch (err) {
@@ -65,5 +84,6 @@ async function updateChannel(req, res) {
 module.exports = {
     updateAnnouncement,
     updateAssignment,
-    updateChannel
+    updateChannelName,
+    updateChannelPicture
 };
