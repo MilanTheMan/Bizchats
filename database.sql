@@ -1,4 +1,4 @@
-	-- ------------------------------------------------------------------------------------ --
+-- ------------------------------------------------------------------------------------ --
 	-- | ONLY DO THIS FOR TESTING. DROPING THE DATABASE WILL REMOVE ALL THE USERS INSIDE! | --
 										drop database IF EXISTS Bizchats;
 	-- ------------------------------------------------------------------------------------ --
@@ -273,6 +273,7 @@
 		sender_id INT NOT NULL,
 		receiver_id INT NOT NULL,
 		content TEXT,
+		file_url TEXT,
 		creation_date DATETIME default NOW(),
 		foreign key (sender_id) references users(id) ON DELETE CASCADE,
 		foreign key (receiver_id) references users(id) ON DELETE CASCADE
@@ -308,6 +309,7 @@
 		user_id INT NOT NULL,
 		channel_id INT NOT NULL,
 		content TEXT,
+		file_url TEXT,
 		creation_date DATETIME default NOW(),
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE

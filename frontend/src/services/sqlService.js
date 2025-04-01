@@ -765,6 +765,41 @@ function updateChannelPicture(data = {}) {
     });
 }
 
+function sendMessage({ userId, channelId, content, file, folder }) {
+    return new Promise((resolve, reject) => {
+        try {
+            const fileData = file
+                ? {
+                      base64: file.base64,
+                      fileType: file.type.split('/')[1],
+                      folder
+                  }
+                : null;
+
+            axios
+                .post(`${serverConstants.baseURL}/createChannelMessage`, {
+                    userId,
+                    channelId,
+                    content,
+                    file: fileData
+                })
+                .then((response) => resolve(response.data.data))
+                .catch((err) => reject(err));
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = (error) => reject(error);
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -804,7 +839,8 @@ const sqlService = {
     submitResults,
     updateChannel,
     updateChannelName,
-    updateChannelPicture
+    updateChannelPicture,
+    sendMessage
 };
 
 export default sqlService;

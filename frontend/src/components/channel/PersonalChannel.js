@@ -2,23 +2,57 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane, FaFileUpload } from "react-icons/fa";
 
 const PersonalChannel = () => {
     const { channelId } = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const [file, setFile] = useState(null);
     const { user } = useContext(UserContext);
 
     useEffect(() => {
         sqlService.getChannelMessages(channelId).then((data) => setMessages(data.data));
     }, [channelId]);
 
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
-        sqlService.createChannelMessage({ userId: user.id, channelId, content: newMessage }).then(() => {
-            setMessages([...messages, { sender_name: user.name, content: newMessage, creation_date: new Date().toISOString() }]);
+        let fileUrl = null;
+        if (file) {
+            const fileType = file.type.split('/')[1];
+            const base64 = await toBase64(file);
+            fileUrl = await sqlService.uploadAttachment({
+                base64,
+                fileType,
+                userId: user.id,
+                channelId,
+                folder: `messages/personal/${channelId}`
+            });
+        }
+
+        sqlService.createChannelMessage({
+            userId: user.id,
+            channelId,
+            content: newMessage,
+            fileUrl
+        }).then(() => {
+            setMessages([...messages, {
+                sender_name: user.name,
+                content: newMessage,
+                fileUrl,
+                creation_date: new Date().toISOString()
+            }]);
             setNewMessage("");
+            setFile(null);
+        });
+    };
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = (error) => reject(error);
         });
     };
 
@@ -30,6 +64,16 @@ const PersonalChannel = () => {
                     {messages.map((msg, i) => (
                         <div key={i} className="bg-gray-50 p-3 rounded-md shadow-sm border">
                             <strong>{msg.sender_name}</strong>: {msg.content}
+                            {msg.fileUrl && (
+                                <a
+                                    href={msg.fileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-500 underline"
+                                >
+                                    View Attachment
+                                </a>
+                            )}
                             <p className="text-sm text-gray-500">{new Date(msg.creation_date).toLocaleString()}</p>
                         </div>
                     ))}
@@ -43,6 +87,15 @@ const PersonalChannel = () => {
                         required
                         className="w-full p-2 border rounded"
                     />
+                    <input
+                        type="file"
+                        onChange={(e) => setFile(e.target.files[0])}
+                        className="hidden"
+                        id="file-upload"
+                    />
+                    <label htmlFor="file-upload" className="cursor-pointer">
+                        <FaFileUpload className="text-blue-500" size={24} />
+                    </label>
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center">
                         <FaPaperPlane className="mr-2" /> Send
                     </button>

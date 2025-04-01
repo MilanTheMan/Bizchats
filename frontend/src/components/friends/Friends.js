@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { FaPaperPlane, FaUserPlus, FaTrashAlt } from "react-icons/fa";
+import { FaPaperPlane, FaUserPlus, FaTrashAlt, FaFileUpload } from "react-icons/fa";
 import placeholderImage from '../../img/Placeholder.jpg';
 
 const Friends = () => {
@@ -10,6 +10,7 @@ const Friends = () => {
     const [selectedFriend, setSelectedFriend] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const [file, setFile] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
@@ -31,14 +32,49 @@ const Friends = () => {
         }
     };
 
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
         if (user && selectedFriend) {
-            sqlService.createChat({ sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage }).then(() => {
-                setMessages([...messages, { sender_id: user.id, receiver_id: selectedFriend.id, content: newMessage, creation_date: new Date().toISOString() }]);
+            let fileUrl = null;
+            if (file) {
+                const fileType = file.type.split('/')[1];
+                const base64 = await toBase64(file);
+                fileUrl = await sqlService.uploadAttachment({
+                    base64,
+                    fileType,
+                    userId: user.id,
+                    channelId: null, // No channel for direct messages
+                    assignmentId: null, // Not related to assignments
+                    folder: `messages/friends/${user.id}_${selectedFriend.id}`
+                });
+            }
+
+            sqlService.createChat({
+                sender_id: user.id,
+                receiver_id: selectedFriend.id,
+                content: newMessage,
+                fileUrl
+            }).then(() => {
+                setMessages([...messages, {
+                    sender_id: user.id,
+                    receiver_id: selectedFriend.id,
+                    content: newMessage,
+                    fileUrl,
+                    creation_date: new Date().toISOString()
+                }]);
                 setNewMessage("");
+                setFile(null);
             });
         }
+    };
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = (error) => reject(error);
+        });
     };
 
     const handleSearch = () => {
@@ -174,6 +210,16 @@ const Friends = () => {
                                     }`}
                                 >
                                     <p className="mb-1">{msg.content}</p>
+                                    {msg.fileUrl && (
+                                        <a
+                                            href={msg.fileUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-500 underline"
+                                        >
+                                            View Attachment
+                                        </a>
+                                    )}
                                     <span className="text-xs text-gray-500">
                                         {new Date(msg.creation_date).toLocaleString()}
                                     </span>
@@ -190,6 +236,15 @@ const Friends = () => {
                                 className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                                 required
                             />
+                            <input
+                                type="file"
+                                onChange={(e) => setFile(e.target.files[0])}
+                                className="hidden"
+                                id="file-upload"
+                            />
+                            <label htmlFor="file-upload" className="cursor-pointer">
+                                <FaFileUpload className="text-blue-500" size={24} />
+                            </label>
                             <button 
                                 type="submit" 
                                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2 transition-all"

@@ -1,5 +1,5 @@
 const mysqlController = require('./mysqlController');
-const { uploadFile, uploadImg } = require('./awsController');
+const { uploadFile, uploadImg, uploadMessageFile } = require('./awsController');
 
 async function signup(req, res) {
     try {
@@ -359,30 +359,13 @@ async function updateProfilePicture(req, res) {
 
 async function uploadAttachment(req, res) {
     try {
-        const { base64, fileType, userId, channelId, assignmentId } = req.body;
-        console.log(`Uploading attachment for user ${userId} in channel ${channelId} for assignment ${assignmentId}`);
+        const { base64, fileType, folder } = req.body;
 
-        const channelQuery = "SELECT name FROM channels WHERE id = ?";
-        const assignmentQuery = "SELECT title FROM channel_assignments WHERE id = ?";
-
-        const [channelResult] = await sqlConnection.promise().query(channelQuery, [channelId]);
-        const [assignmentResult] = await sqlConnection.promise().query(assignmentQuery, [assignmentId]);
-
-        if (!channelResult.length || !assignmentResult.length) {
-            throw new Error('Channel or Assignment not found');
-        }
-
-        const channelName = channelResult[0].name;
-        const assignmentName = assignmentResult[0].title;
-
-        const s3Url = await uploadFile(base64, fileType, 'assignment', assignmentId, channelName, assignmentName);
-
-        const query = "INSERT INTO submission_attachments (channel_id, assignment_id, user_id, attachment_link) VALUES (?, ?, ?, ?)";
-        await sqlConnection.promise().query(query, [channelId, assignmentId, userId, s3Url]);
-
-        res.status(201).json({ message: "Attachment uploaded successfully", attachmentUrl: s3Url });
+        const fileUrl = await uploadMessageFile(base64, fileType, folder);
+        res.status(200).json({ fileUrl });
     } catch (err) {
-        res.status(500).json({ err: err });
+        console.log(err);
+        res.status(500).json({ error: "Failed to upload attachment" });
     }
 }
 
@@ -453,19 +436,38 @@ async function submitResults(req, res) {
 
 async function createChannelMessage(req, res) {
     try {
-        const { userId, channelId, content } = req.body;
-        const query = "INSERT INTO channel_messages (user_id, channel_id, content) VALUES (?, ?, ?)";
+        const { userId, channelId, content, file } = req.body;
 
-        sqlConnection.query(query, [userId, channelId, content], (err, result, fields) => {
+        let fileUrl = null;
+        if (file) {
+            const { base64, fileType, folder } = file;
+            fileUrl = await uploadMessageFile(base64, fileType, folder);
+        }
+
+        const query = "INSERT INTO channel_messages (user_id, channel_id, content, file_url, creation_date) VALUES (?, ?, ?, ?, NOW())";
+        const params = [userId, channelId, content, fileUrl];
+
+        sqlConnection.query(query, params, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
             } else {
-                res.status(201).json({ message: "Message sent successfully" });
+                res.status(200).json({
+                    message: "Message sent successfully",
+                    data: {
+                        id: result.insertId,
+                        user_id: userId,
+                        channel_id: channelId,
+                        content,
+                        file_url: fileUrl,
+                        creation_date: new Date().toISOString()
+                    }
+                });
             }
         });
     } catch (err) {
-        res.status(500).json({ err: err });
+        console.log(err);
+        res.status(500).json({ error: "Failed to send message" });
     }
 }
 

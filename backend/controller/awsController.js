@@ -225,8 +225,55 @@ async function uploadFile(base64, fileType, contact_name, id, channelName, assig
     });
 }
 
+async function uploadMessageFile(base64, fileType, folder) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!base64 || !fileType || !folder) {
+                throw new Error("One or more required parameters are missing");
+            }
+
+            let file = dataURLtoUint8Array(base64);
+            const d = new Date();
+            const time = d.toISOString().replace(/[:.-]/g, "_");
+            const key = `message_${time}.${fileType}`;
+            const s3Path = `${folder}/${key}`;
+
+            const contentTypeMap = {
+                jpg: 'image/jpeg',
+                jpeg: 'image/jpeg',
+                png: 'image/png',
+                gif: 'image/gif',
+                pdf: 'application/pdf',
+                txt: 'text/plain',
+                // Add more file types as needed
+            };
+
+            const mimeType = contentTypeMap[fileType.toLowerCase()] || 'application/octet-stream';
+
+            const params = {
+                Bucket: bucketName,
+                Key: s3Path,
+                Body: file,
+                ContentType: mimeType,
+                ContentDisposition: 'inline'
+            };
+
+            await s3.upload(params, (err, data) => {
+                if (err) {
+                    reject({ "err": `Error uploading data: ${err}` });
+                } else {
+                    resolve(data.Location);
+                }
+            });
+        } catch (err) {
+            reject({ "err": "awsController uploadMessageFile something went wrong" });
+        }
+    });
+}
+
 module.exports = {
     uploadImg,
     deleteImg,
-    uploadFile
+    uploadFile,
+    uploadMessageFile // New function for message-specific uploads
 };
