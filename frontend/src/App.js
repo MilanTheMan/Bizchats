@@ -77,6 +77,7 @@ import AssignmentDetails from './components/channel/AssignmentDetails';
 import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
 import Friends from './components/friends/Friends';
+import PersonalChannel from './components/channel/PersonalChannel';
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
               <Route path="messages" element={<ChannelMessages />} />
               <Route path="assignments/:assignmentId/details" element={<AssignmentDetails />} />
             </Route>
+            <Route path="/personal-channel/:channelId" element={<PersonalChannel />} />
             <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/friends" element={<FriendsPage />} />

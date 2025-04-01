@@ -16,7 +16,7 @@ const Mainpage = () => {
         if (user) {
             sqlService.getUserChannels(user.id)
                 .then(data => {
-                    setChannels(data.data || []);
+                    setChannels(data.data || []); // Ensure channels are set even if empty
                 })
                 .catch(err => {
                     console.log(err);
@@ -30,7 +30,7 @@ const Mainpage = () => {
         if (user) {
             const categoryId = getCategoryFromPath();
             sqlService.createChannel({ name: newChannelName, role_id: 1, profile_picture: null, userId: user.id, category: categoryId })
-                .then(data => {
+                .then(() => {
                     window.location.reload(); // Refresh the screen
                 })
                 .catch(err => {
@@ -44,8 +44,7 @@ const Mainpage = () => {
         e.preventDefault();
         if (user) {
             sqlService.joinChannel({ userId: user.id, channelId: joinChannelId, roleId: 3 }) // 3 for 'member'
-                .then(data => {
-                    // Optionally, fetch channels again to update the list
+                .then(() => {
                     sqlService.getUserChannels(user.id)
                         .then(data => {
                             setChannels(data.data || []);
@@ -61,8 +60,12 @@ const Mainpage = () => {
         }
     };
 
-    const handleChannelClick = (channelId) => {
-        navigate(`/channel/${channelId}`);
+    const handleChannelClick = (channel) => {
+        if (channel.category === 1) {
+            navigate(`/personal-channel/${channel.id}`);
+        } else {
+            navigate(`/channel/${channel.id}`);
+        }
     };
 
     const getCategoryFromPath = () => {
@@ -76,11 +79,10 @@ const Mainpage = () => {
 
     return (
         <div id="main_page">
-            {/* <h1>Welcome to BizChats!</h1> */}
             <div className="actual_content">
                 <div className="class_list">
                     {filteredChannels.map(channel => (
-                        <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel.id)}>
+                        <div key={channel.id} className="listed_class" onClick={() => handleChannelClick(channel)}>
                             <img src={channel.profile_picture} alt="Channel" />
                             <p>{channel.name}</p>
                         </div>
@@ -111,6 +113,6 @@ const Mainpage = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Mainpage;
