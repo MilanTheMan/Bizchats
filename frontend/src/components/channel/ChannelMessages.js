@@ -1,99 +1,186 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { FaPaperPlane, FaFileUpload } from "react-icons/fa";
+import { FaPaperPlane, FaFileUpload, FaTimes } from "react-icons/fa";
 
 const ChannelMessages = () => {
     const { channelId } = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [file, setFile] = useState(null);
+    const [filePreview, setFilePreview] = useState(null);
     const { user } = useContext(UserContext);
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        sqlService.getChannelMessages(channelId).then((data) => setMessages(data.data));
+        loadMessages();
     }, [channelId]);
 
-    const handleSendMessage = async (e) => {
-        e.preventDefault();
-        let fileUrl = null;
-        if (file) {
-            const fileType = file.type.split('/')[1];
-            const base64 = await toBase64(file);
-            fileUrl = await sqlService.uploadAttachment({
-                base64,
-                fileType,
-                folder: `channels/messages/${channelId}`
-            });
-        }
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
-        sqlService.createChannelMessage({
-            userId: user.id,
-            channelId,
-            content: newMessage,
-            fileUrl
-        }).then(() => {
-            setMessages([...messages, {
-                sender_name: user.name,
-                content: newMessage,
-                file_url: fileUrl,
-                creation_date: new Date().toISOString()
-            }]);
-            setNewMessage("");
-            setFile(null);
-        });
+    const loadMessages = async () => {
+        try {
+            const data = await sqlService.getChannelMessages(channelId);
+            setMessages(data.data);
+        } catch (err) {
+            console.error("Failed to load messages:", err);
+        }
     };
 
-    const toBase64 = (file) => {
-        return new Promise((resolve, reject) => {
+    const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result.split(',')[1]);
             reader.onerror = (error) => reject(error);
         });
+
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+
+        let file_url = null;
+
+        try {
+            if (file) {
+                const fileType = file.type.split('/')[1];
+                const base64 = await toBase64(file);
+                const uploadResponse = await sqlService.uploadAttachment({
+                    base64,
+                    fileType,
+                    folder: `channels/messages/${channelId}`
+                });
+                file_url = uploadResponse.file_url || uploadResponse.fileUrl;
+            }
+
+            if (!newMessage && !file_url) {
+                alert("Please enter a message or attach a file.");
+                return;
+            }
+
+            const messageData = {
+                userId: user.id,
+                channelId,
+                content: newMessage || "",
+                file_url
+            };
+
+            await sqlService.createChannelMessage(messageData);
+            await loadMessages();
+
+            setNewMessage("");
+            setFile(null);
+            setFilePreview(null);
+        } catch (err) {
+            console.error("Failed to send message:", err);
+            alert("Failed to send message. Please try again.");
+        }
+    };
+
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+
+        if (selectedFile && selectedFile.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = () => setFilePreview(reader.result);
+            reader.readAsDataURL(selectedFile);
+        } else {
+            setFilePreview(null);
+        }
+    };
+
+    const handleRemoveFile = () => {
+        setFile(null);
+        setFilePreview(null);
     };
 
     return (
-        <div>
-            <h2 className="text-xl font-semibold mb-4">Messages</h2>
-            <div className="space-y-3">
-                {messages.map((msg, i) => (
-                    <div key={i} className="bg-gray-50 p-3 rounded-md shadow-sm border">
-                        <strong>{msg.sender_name}</strong>: {msg.content}
-                        {msg.file_url && (
-                            <a
-                                href={msg.file_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-500 underline"
-                            >
-                                View Attachment
-                            </a>
-                        )}
-                        <p className="text-sm text-gray-500">{new Date(msg.creation_date).toLocaleString()}</p>
-                    </div>
-                ))}
+        <div className="bg-gray-100 flex flex-col">
+            {/* Messages List */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                {messages.map((msg, i) => {
+                    const fileUrl = msg.file_url || msg.file;
+                    return (
+                        <div key={i} className="bg-gray-50 p-3 rounded-md shadow-sm border">
+                            <strong>{msg.sender_name || 'Unknown'}</strong>:
+                            {fileUrl && fileUrl.match(/\.(jpeg|jpg|png|gif|webp)$/i) ? (
+                                <img
+                                    src={fileUrl}
+                                    alt="Attachment"
+                                    className="max-w-[300px] max-h-[300px] rounded-lg mb-2 object-contain"
+                                />
+                            ) : fileUrl ? (
+                                <a
+                                    href={fileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-500 underline"
+                                >
+                                    View Attachment
+                                </a>
+                            ) : null}
+                            {msg.content && <p>{msg.content}</p>}
+                            <p className="text-sm text-gray-500">
+                                {msg.creation_date
+                                    ? new Date(msg.creation_date).toLocaleString()
+                                    : "Unknown date"}
+                            </p>
+                        </div>
+                    );
+                })}
+                <div ref={messagesEndRef} />
             </div>
-            <form className="mt-4 flex space-x-2" onSubmit={handleSendMessage}>
+
+            {/* File Preview */}
+            {filePreview && (
+                <div className="p-4 border-t bg-white flex items-center justify-start gap-4">
+                    <div className="text-sm text-gray-600">Attachment Preview:</div>
+                    <div className="relative">
+                        <img
+                            src={filePreview}
+                            alt="Preview"
+                            className="max-w-[100px] max-h-[100px] rounded object-contain border"
+                        />
+                        <button
+                            onClick={handleRemoveFile}
+                            className="absolute top-0 right-0 bg-white border rounded-full p-1 text-red-600 hover:text-red-800"
+                            title="Remove"
+                        >
+                            <FaTimes size={12} />
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Input Form */}
+            <form
+                className="w-full flex items-center gap-2 p-4 border-t bg-white"
+                style={{ marginBottom: "64px" }}
+                onSubmit={handleSendMessage}
+            >
                 <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type a message"
-                    required
-                    className="w-full p-2 border rounded"
+                    className="flex-1 p-2 border rounded"
                 />
                 <input
                     type="file"
-                    onChange={(e) => setFile(e.target.files[0])}
+                    onChange={handleFileChange}
                     className="hidden"
                     id="file-upload"
                 />
                 <label htmlFor="file-upload" className="cursor-pointer">
                     <FaFileUpload className="text-blue-500" size={24} />
                 </label>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center">
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center"
+                >
                     <FaPaperPlane className="mr-2" /> Send
                 </button>
             </form>

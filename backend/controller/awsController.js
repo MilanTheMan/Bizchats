@@ -271,9 +271,23 @@ async function uploadMessageFile(base64, fileType, folder) {
     });
 }
 
+async function uploadAttachment(req, res) {
+    try {
+        const { base64, fileType, folder } = req.body;
+
+        const file_url = await uploadMessageFile(base64, fileType, folder);
+        console.log("Uploaded file URL:", file_url); // Debugging: Log the uploaded file URL
+        res.status(200).json({ file_url });
+    } catch (err) {
+        console.error("Error in uploadAttachment:", err); // Debugging: Log any errors
+        res.status(500).json({ error: "Failed to upload attachment" });
+    }
+}
+
 module.exports = {
     uploadImg,
     deleteImg,
     uploadFile,
-    uploadMessageFile // New function for message-specific uploads
+    uploadMessageFile, // New function for message-specific uploads
+    uploadAttachment // New function for handling attachment uploads
 };

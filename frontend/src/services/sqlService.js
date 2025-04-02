@@ -504,17 +504,19 @@ function getChannelMessages(channelId) {
 function createChannelMessage(data = {}) {
     return new Promise((resolve, reject) => {
         try {
+            console.log("Creating channel message with data:", data);
             axios
                 .post(`${serverConstants.baseURL}/createChannelMessage`, data)
                 .then((response) => {
-                    let ret = response.data;
-                    resolve(ret);
+                    console.log("Create message response:", response.data);
+                    resolve(response.data);
                 })
                 .catch((err) => {
-                    serverResponseErrActions(err);
+                    console.error("Error creating message:", err);
                     reject(err);
                 });
         } catch (err) {
+            console.error("Unexpected error in createChannelMessage:", err);
             reject(err);
         }
     });
@@ -599,14 +601,15 @@ function updateAssignment(data = {}) {
 function uploadAttachment(data = {}) {
     return new Promise((resolve, reject) => {
         try {
+            console.log("Uploading attachment:", data);
             axios
                 .post(`${serverConstants.baseURL}/uploadAttachment`, data)
                 .then((response) => {
-                    let ret = response.data;
-                    resolve(ret);
+                    console.log("Upload response:", response.data);
+                    resolve(response.data);
                 })
                 .catch((err) => {
-                    serverResponseErrActions(err);
+                    console.log("Upload error:", err);
                     reject(err);
                 });
         } catch (err) {
@@ -770,10 +773,10 @@ function sendMessage({ userId, channelId, content, file, folder }) {
         try {
             const fileData = file
                 ? {
-                      base64: file.base64,
-                      fileType: file.type.split('/')[1],
-                      folder
-                  }
+                    base64: file.base64,
+                    fileType: file.type.split('/')[1],
+                    folder
+                }
                 : null;
 
             axios
@@ -788,15 +791,6 @@ function sendMessage({ userId, channelId, content, file, folder }) {
         } catch (err) {
             reject(err);
         }
-    });
-}
-
-function toBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = (error) => reject(error);
     });
 }
 

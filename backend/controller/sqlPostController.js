@@ -361,8 +361,8 @@ async function uploadAttachment(req, res) {
     try {
         const { base64, fileType, folder } = req.body;
 
-        const fileUrl = await uploadMessageFile(base64, fileType, folder);
-        res.status(200).json({ fileUrl });
+        const file_url = await uploadMessageFile(base64, fileType, folder);
+        res.status(200).json({ file_url });
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Failed to upload attachment" });
@@ -436,38 +436,32 @@ async function submitResults(req, res) {
 
 async function createChannelMessage(req, res) {
     try {
-        const { userId, channelId, content, file } = req.body;
+        const { userId, channelId, content, file_url } = req.body;
 
-        let fileUrl = null;
-        if (file) {
-            const { base64, fileType, folder } = file;
-            fileUrl = await uploadMessageFile(base64, fileType, folder);
-        }
+        const query = `
+            INSERT INTO channel_messages (user_id, channel_id, content, file_url, creation_date)
+            VALUES (?, ?, ?, ?, NOW())
+        `;
 
-        const query = "INSERT INTO channel_messages (user_id, channel_id, content, file_url, creation_date) VALUES (?, ?, ?, ?, NOW())";
-        const params = [userId, channelId, content, fileUrl];
-
-        sqlConnection.query(query, params, (err, result) => {
+        sqlConnection.query(query, [userId, channelId, content, file_url], (err, result) => {
             if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
+                res.status(500).json({ error: "Failed to save message", details: err.message });
             } else {
                 res.status(200).json({
-                    message: "Message sent successfully",
+                    message: "Message created successfully",
                     data: {
                         id: result.insertId,
                         user_id: userId,
                         channel_id: channelId,
                         content,
-                        file_url: fileUrl,
+                        file_url,
                         creation_date: new Date().toISOString()
                     }
                 });
             }
         });
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: "Failed to send message" });
+        res.status(500).json({ error: "Failed to create message", details: err.message });
     }
 }
 

@@ -164,18 +164,21 @@ async function getChannelMembers(req, res) {
 async function getChannelMessages(req, res) {
     try {
         const { channelId } = req.body;
+
+
         const query = `
             SELECT channel_messages.*, users.name as sender_name
             FROM channel_messages
             INNER JOIN users ON channel_messages.user_id = users.id
             WHERE channel_messages.channel_id = ?
-            ORDER BY channel_messages.creation_date ASC`;
+            ORDER BY channel_messages.creation_date ASC
+        `;
 
         const [result] = await sqlConnection.promise().query(query, [channelId]);
 
         res.send({ data: result });
     } catch (err) {
-        res.status(500).json({ err: err });
+        res.status(500).json({ error: "Failed to fetch messages" });
     }
 }
 
