@@ -1,0 +1,31 @@
+.channel-schedule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.calendar-container {
+    width: 100%;
+    max-width: 800px; /* Adjust the maximum width */
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar {
+    width: 100%;
+    height: auto;
+    font-size: 1.5rem; /* Increase font size for better visibility */
+}
+
+.selected-date {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}

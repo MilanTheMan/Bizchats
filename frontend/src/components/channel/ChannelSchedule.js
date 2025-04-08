@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import sqlService from '../../services/sqlService';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // Import the calendar's CSS
+import './ChannelSchedule.css'; // Import custom styles for the calendar
 
 const ChannelSchedule = () => {
-    const { channelId } = useParams();
-    const [schedule, setSchedule] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
-    useEffect(() => {
-        sqlService.getChannelSchedule(channelId).then((data) => setSchedule(data.data));
-    }, [channelId]);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-semibold mb-4">Channel Schedule</h2>
-            <ul className="space-y-4">
-                {schedule.map((event, index) => (
-                    <li key={index} className="bg-white p-4 rounded-lg shadow">
-                        <h3 className="font-semibold text-lg">{event.title}</h3>
-                        <p className="text-gray-700">{event.description}</p>
-                        <p className="text-sm text-gray-500">Date: {new Date(event.date).toLocaleString()}</p>
-                    </li>
-                ))}
-            </ul>
+        <div className="channel-schedule">
+            <h2 className="text-xl font-semibold mb-4 text-center">Channel Schedule</h2>
+            <div className="calendar-container">
+                <Calendar
+                    onChange={handleDateChange}
+                    value={selectedDate}
+                    className="react-calendar"
+                />
+            </div>
+            {/* <div className="selected-date">
+                <h3 className="text-lg font-semibold">Selected Date:</h3>
+                <p>{selectedDate.toDateString()}</p>
+            </div> */}
         </div>
     );
 };
