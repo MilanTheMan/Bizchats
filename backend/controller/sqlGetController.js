@@ -262,6 +262,17 @@ async function getChannelDocuments(req, res) {
     }
 }
 
+async function getChannelEvents(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * FROM calendar_events WHERE channel_id = ?";
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+        res.send({ data: result });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -278,5 +289,6 @@ module.exports = {
     getSubmissions,
     getFriends,
     getDocumentCategories,
-    getChannelDocuments
+    getChannelDocuments,
+    getChannelEvents
 };

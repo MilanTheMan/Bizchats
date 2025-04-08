@@ -487,6 +487,17 @@ async function uploadChannelDocument(req, res) {
     }
 }
 
+async function createChannelEvent(req, res) {
+    try {
+        const { channelId, title, description, event_date } = req.body;
+        const query = "INSERT INTO calendar_events (channel_id, title, description, event_date) VALUES (?, ?, ?, ?)";
+        await sqlConnection.promise().query(query, [channelId, title, description, event_date]);
+        res.status(200).json({ message: "Event created successfully" });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     signup,
     createChannel,
@@ -509,5 +520,6 @@ module.exports = {
     submitResults,
     createChannelMessage,
     createDocumentCategory,
-    uploadChannelDocument
+    uploadChannelDocument,
+    createChannelEvent,
 };

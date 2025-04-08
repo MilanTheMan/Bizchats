@@ -889,6 +889,63 @@ function deleteChannelDocument(data = {}) {
     });
 }
 
+function getChannelEvents(channelId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getChannelEvents`, { channelId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function createChannelEvent(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/createChannelEvent`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function deleteChannelEvent(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/deleteChannelEvent`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -934,7 +991,10 @@ const sqlService = {
     getChannelDocuments,
     createDocumentCategory,
     uploadChannelDocument,
-    deleteChannelDocument
+    deleteChannelDocument,
+    getChannelEvents,
+    createChannelEvent,
+    deleteChannelEvent
 };
 
 export default sqlService;

@@ -55,4 +55,8 @@ homeRouter.post("/createDocumentCategory", sqlPostController.createDocumentCateg
 homeRouter.post("/uploadChannelDocument", sqlPostController.uploadChannelDocument);
 homeRouter.post("/deleteChannelDocument", sqlDeleteController.deleteChannelDocument);
 
+homeRouter.post("/getChannelEvents", sqlGetController.getChannelEvents);
+homeRouter.post("/createChannelEvent", sqlPostController.createChannelEvent);
+homeRouter.post("/deleteChannelEvent", sqlDeleteController.deleteChannelEvent);
+
 module.exports = homeRouter;

@@ -8,24 +8,105 @@
     background-color: #f9f9f9;
 }
 
-.calendar-container {
+.schedule-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     width: 100%;
-    max-width: 800px; /* Adjust the maximum width */
-    height: auto;
-    padding: 20px;
+    max-width: 1200px;
+    justify-content: space-between;
+}
+
+.create-event,
+.calendar-container,
+.upcoming-events,
+.events-for-day {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .react-calendar {
     width: 100%;
     height: auto;
-    font-size: 1.5rem; /* Increase font size for better visibility */
+    font-size: 1.5rem;
 }
 
 .selected-date {
     margin-top: 20px;
     text-align: center;
     font-size: 1.2rem;
+}
+
+.upcoming-events ul,
+.selected-date ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.events-for-day ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.events-for-day li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.events-for-day li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.events-for-day h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.events-for-day p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.events-for-day .event-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.events-for-day .event-actions button {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.events-for-day .event-actions button:hover {
+    opacity: 0.9;
+}
+
+.events-for-day .event-actions .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.events-for-day .event-actions .delete-button:hover {
+    background-color: #c0392b;
 }

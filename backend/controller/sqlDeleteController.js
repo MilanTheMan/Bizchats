@@ -47,8 +47,20 @@ async function deleteChannelDocument(req, res) {
     }
 }
 
+async function deleteChannelEvent(req, res) {
+    try {
+        const { eventId } = req.body;
+        const query = "DELETE FROM calendar_events WHERE id = ?";
+        await sqlConnection.promise().query(query, [eventId]);
+        res.status(200).json({ message: "Event deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     deleteAnnouncement,
     deleteAssignment,
-    deleteChannelDocument
+    deleteChannelDocument,
+    deleteChannelEvent
 };

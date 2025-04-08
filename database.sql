@@ -352,6 +352,23 @@
 	);
 
 
+	-- ------------------ --
+	-- | Calendar Events| --
+	-- ------------------ --
+
+
+	DROP TABLE IF EXISTS calendar_events;
+	CREATE TABLE calendar_events (
+		id INT PRIMARY KEY AUTO_INCREMENT,
+		channel_id INT NOT NULL,
+		title VARCHAR(255) NOT NULL,
+		description TEXT,
+		event_date DATE NOT NULL,
+		creation_date DATETIME DEFAULT NOW(),
+		FOREIGN KEY (channel_id) REFERENCES channels(id) ON DELETE CASCADE
+	);
+
+
 	-- -------------------- --
 	-- -------------------- --
 	-- |Insert Statements| --
