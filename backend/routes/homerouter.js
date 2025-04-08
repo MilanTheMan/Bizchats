@@ -49,4 +49,10 @@ homeRouter.post("/submitResults", sqlPostController.submitResults);
 homeRouter.post("/updateChannelName", sqlUpdateController.updateChannelName);
 homeRouter.post("/updateChannelPicture", sqlUpdateController.updateChannelPicture);
 
+homeRouter.post("/getDocumentCategories", sqlGetController.getDocumentCategories);
+homeRouter.post("/getChannelDocuments", sqlGetController.getChannelDocuments);
+homeRouter.post("/createDocumentCategory", sqlPostController.createDocumentCategory);
+homeRouter.post("/uploadChannelDocument", sqlPostController.uploadChannelDocument);
+homeRouter.post("/deleteChannelDocument", sqlDeleteController.deleteChannelDocument);
+
 module.exports = homeRouter;

@@ -78,6 +78,9 @@ import Chatbot from './components/chatbot/Chatbot';
 import FriendsPage from './components/friends/FriendsPage';
 import Friends from './components/friends/Friends';
 import PersonalChannel from './components/channel/PersonalChannel';
+import ProfessionalPage from './components/channel/ProfessionalPage';
+import ChannelSchedule from './components/channel/ChannelSchedule';
+import ProfessionalDoccuments from './components/channel/ProfessionalDoccuments';
 
 function App() {
   return (
@@ -109,10 +112,18 @@ function App() {
               <Route path="marks" element={<ChannelMarks />} />
               <Route path="marks-admin" element={<ChannelMarksAdmin />} />
               <Route path="messages" element={<ChannelMessages />} />
+              <Route path="schedule" element={<ChannelSchedule />} />
+              <Route path="documents" element={<ProfessionalDoccuments />} />
               <Route path="assignments/:assignmentId/details" element={<AssignmentDetails />} />
             </Route>
             <Route path="/personal-channel/:channelId" element={<PersonalChannel />} />
             <Route path="/channel/:channelId/settings" element={<ChannelSettings />} />
+            <Route path="/professional/:channelId" element={<ProfessionalPage />}>
+              <Route path="messages" element={<ChannelMessages />} />
+              <Route path="documents" element={<ProfessionalDoccuments />} />
+              <Route path="schedule" element={<ChannelSchedule />} />
+              <Route path="settings" element={<ChannelSettings />} />
+            </Route>
             <Route path="/friends" element={<Friends />} />
             <Route path="/friends" element={<FriendsPage />} />
 

@@ -314,6 +314,42 @@
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
+    
+    
+    -- -------------------- --
+	-- |Channel Doccuments| --
+	-- -------------------- --
+
+
+	drop table if exists channel_doccuments;
+	create table channel_doccuments
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+        catagory_id INT NOT NULL,
+		user_id INT NOT NULL,
+        file_link TEXT,
+        creation_date DATETIME default NOW(),
+		foreign key (user_id) references users(id) ON DELETE CASCADE,
+		foreign key (catagory_id) references documents_catagories(id) ON DELETE CASCADE,
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+    
+    
+	-- ---------------------- --
+	-- |Doccument Catagories| --
+	-- ---------------------- --
+
+
+	drop table if exists documents_catagories;
+	create table documents_catagories
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+        catagory_name VARCHAR(100),
+        creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
 
 
 	-- -------------------- --
@@ -371,31 +407,31 @@
 	(1, 5, 1),
     (1, 6, 1),
     (1, 7, 1),
-    (2, 1, 1),
-	(2, 2, 1),
-	(2, 3, 1),
-	(2, 4, 1),
-	(2, 5, 1),
-	(2, 6, 1),
-    (2, 7, 1),
-    (3, 1, 1),
-	(3, 2, 1),
-	(3, 3, 1),
-	(3, 4, 1),
-	(3, 5, 1),
-	(3, 6, 1),
-    (3, 7, 1),
-    (4, 1, 1),
-	(4, 2, 1),
-	(4, 3, 1),
-	(4, 4, 1),
-	(4, 5, 1),
-	(4, 6, 1),
-    (4, 7, 1),
-    (5, 1, 1),
-	(5, 2, 1),
-	(5, 3, 1),
-	(5, 4, 1),
-	(5, 5, 1),
-	(5, 6, 1),
-    (5, 7, 1);
+    (2, 1, 2),
+	(2, 2, 2),
+	(2, 3, 2),
+	(2, 4, 2),
+	(2, 5, 2),
+	(2, 6, 2),
+    (2, 7, 2),
+    (3, 1, 2),
+	(3, 2, 2),
+	(3, 3, 2),
+	(3, 4, 2),
+	(3, 5, 2),
+	(3, 6, 2),
+    (3, 7, 2),
+    (4, 1, 2),
+	(4, 2, 2),
+	(4, 3, 2),
+	(4, 4, 2),
+	(4, 5, 2),
+	(4, 6, 2),
+    (4, 7, 2),
+    (5, 1, 3),
+	(5, 2, 3),
+	(5, 3, 3),
+	(5, 4, 3),
+	(5, 5, 3),
+	(5, 6, 3),
+    (5, 7, 3);

@@ -794,6 +794,101 @@ function sendMessage({ userId, channelId, content, file, folder }) {
     });
 }
 
+function getDocumentCategories(channelId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getDocumentCategories`, { channelId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function getChannelDocuments(channelId, categoryId) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/getChannelDocuments`, { channelId, categoryId })
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function createDocumentCategory(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/createDocumentCategory`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function uploadChannelDocument(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/uploadChannelDocument`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function deleteChannelDocument(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/deleteChannelDocument`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -834,7 +929,12 @@ const sqlService = {
     updateChannel,
     updateChannelName,
     updateChannelPicture,
-    sendMessage
+    sendMessage,
+    getDocumentCategories,
+    getChannelDocuments,
+    createDocumentCategory,
+    uploadChannelDocument,
+    deleteChannelDocument
 };
 
 export default sqlService;

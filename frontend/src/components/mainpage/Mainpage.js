@@ -63,8 +63,10 @@ const Mainpage = () => {
     const handleChannelClick = (channel) => {
         if (channel.category === 1) {
             navigate(`/personal-channel/${channel.id}`);
-        } else {
+        } else if (channel.category === 2) {
             navigate(`/channel/${channel.id}`);
+        } else if (channel.category === 3) {
+            navigate(`/professional/${channel.id}`);
         }
     };
 

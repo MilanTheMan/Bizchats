@@ -1,0 +1,108 @@
+.professional-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.channel-banner {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.channel-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.channel-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.channel-name {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    flex: 1;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.file-preview-box {
+    width: 100%;
+    max-width: 600px; /* Fixed width */
+    height: 400px; /* Fixed height */
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.file-preview-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover; /* Ensure the content fills the box */
+}
+
+.file-preview-box .preview-error {
+    text-align: center;
+    color: #888;
+    font-size: 1rem;
+}

@@ -240,6 +240,28 @@ async function getFriends(req, res) {
     }
 }
 
+async function getDocumentCategories(req, res) {
+    try {
+        const { channelId } = req.body;
+        const query = "SELECT * FROM documents_catagories WHERE channel_id = ?";
+        const [result] = await sqlConnection.promise().query(query, [channelId]);
+        res.send({ data: result });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
+async function getChannelDocuments(req, res) {
+    try {
+        const { channelId, categoryId } = req.body;
+        const query = "SELECT * FROM channel_doccuments WHERE channel_id = ? AND catagory_id = ?";
+        const [result] = await sqlConnection.promise().query(query, [channelId, categoryId]);
+        res.send({ data: result });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -254,5 +276,7 @@ module.exports = {
     getChannelMessages,
     getSubmissionDetails,
     getSubmissions,
-    getFriends
+    getFriends,
+    getDocumentCategories,
+    getChannelDocuments
 };

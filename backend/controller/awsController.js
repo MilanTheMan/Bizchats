@@ -288,6 +288,6 @@ module.exports = {
     uploadImg,
     deleteImg,
     uploadFile,
-    uploadMessageFile, // New function for message-specific uploads
-    uploadAttachment // New function for handling attachment uploads
+    uploadMessageFile,
+    uploadAttachment
 };
