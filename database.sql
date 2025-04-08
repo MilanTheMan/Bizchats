@@ -316,6 +316,22 @@
 	);
     
     
+    -- ---------------------- --
+	-- |Doccument Catagories| --
+	-- ---------------------- --
+
+
+	drop table if exists documents_catagories;
+	create table documents_catagories
+	(
+		id INT PRIMARY KEY auto_increment,
+		channel_id INT NOT NULL,
+        catagory_name VARCHAR(100),
+        creation_date DATETIME default NOW(),
+		foreign key (channel_id) references channels(id) ON DELETE CASCADE
+	);
+    
+    
     -- -------------------- --
 	-- |Channel Doccuments| --
 	-- -------------------- --
@@ -332,22 +348,6 @@
         creation_date DATETIME default NOW(),
 		foreign key (user_id) references users(id) ON DELETE CASCADE,
 		foreign key (catagory_id) references documents_catagories(id) ON DELETE CASCADE,
-		foreign key (channel_id) references channels(id) ON DELETE CASCADE
-	);
-    
-    
-	-- ---------------------- --
-	-- |Doccument Catagories| --
-	-- ---------------------- --
-
-
-	drop table if exists documents_catagories;
-	create table documents_catagories
-	(
-		id INT PRIMARY KEY auto_increment,
-		channel_id INT NOT NULL,
-        catagory_name VARCHAR(100),
-        creation_date DATETIME default NOW(),
 		foreign key (channel_id) references channels(id) ON DELETE CASCADE
 	);
 
