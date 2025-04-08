@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import sqlService from '../../services/sqlService';
 import { UserContext } from '../../context/UserContext';
-import { FaPaperPlane, FaFileUpload } from "react-icons/fa";
+import { FaPaperPlane, FaFileUpload, FaCog } from "react-icons/fa";
 
 const PersonalChannel = () => {
     const { channelId } = useParams();
+    const navigate = useNavigate();
+    const [channel, setChannel] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [file, setFile] = useState(null);
@@ -19,6 +21,7 @@ const PersonalChannel = () => {
     };
 
     useEffect(() => {
+        sqlService.getChannelById(channelId).then((data) => setChannel(data.data));
         reloadMessages();
     }, [channelId]);
 
@@ -93,8 +96,32 @@ const PersonalChannel = () => {
         }
     };
 
+    if (!channel) {
+        return <div className="text-center text-gray-600 text-lg">Loading channel...</div>;
+    }
+
     return (
         <div className="relative min-h-[calc(100vh-64px)] bg-gray-100 flex flex-col">
+            {/* Channel Banner */}
+            <div className="channel-banner relative">
+                <img
+                    src={channel.profile_picture}
+                    alt={`${channel.name} Banner`}
+                    className="channel-banner-image"
+                />
+                <div className="channel-banner-overlay">
+                    <h1 className="channel-name">{channel.name}</h1>
+                </div>
+                <button
+                    onClick={() => navigate(`/channel/${channelId}/settings`)}
+                    className="absolute top-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition"
+                    title="Settings"
+                >
+                    <FaCog size={20} />
+                </button>
+            </div>
+
+            {/* Messages List */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
                 {messages.map((msg, i) => (
                     <div key={i} className="bg-gray-50 p-3 rounded-md shadow-sm border">
