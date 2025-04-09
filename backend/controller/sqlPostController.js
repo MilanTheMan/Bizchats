@@ -286,7 +286,7 @@ async function getFriends(req, res) {
 async function deleteFriend(req, res) {
     try {
         const { user_id, friend_id } = req.body;
-        const query = "DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (friend_id = ? AND user_id = ?)";
+        const query = "DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)";
         
         sqlConnection.query(query, [user_id, friend_id, friend_id, user_id], (err, result) => {
             if (err) {
