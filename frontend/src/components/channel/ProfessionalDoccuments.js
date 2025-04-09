@@ -69,6 +69,7 @@ const ProfessionalDoccuments = () => {
                 channelId,
                 categoryId: selectedCategory.id,
                 userId: user.id,
+                fileName: file.name,
                 fileLink: uploadResponse.file_url
             });
 
@@ -161,7 +162,7 @@ const ProfessionalDoccuments = () => {
                                 onClick={() => handlePreviewFile(doc)}
                             >
                                 <FaEye className="text-blue-500 text-2xl mb-2" />
-                                <p className="text-center truncate">{doc.file_link.split('/').pop()}</p>
+                                <p className="text-center truncate">{doc.file_name}</p>
                             </div>
                         ))}
                     </div>

@@ -480,12 +480,15 @@ async function createDocumentCategory(req, res) {
 
 async function uploadChannelDocument(req, res) {
     try {
-        const { channelId, categoryId, userId, fileLink } = req.body;
-        const query = "INSERT INTO channel_doccuments (channel_id, catagory_id, user_id, file_link) VALUES (?, ?, ?, ?)";
-        await sqlConnection.promise().query(query, [channelId, categoryId, userId, fileLink]);
+        const { fileName, channelId, categoryId, userId, fileLink } = req.body;
+        const query = `
+            INSERT INTO channel_doccuments (file_name, channel_id, catagory_id, user_id, file_link)
+            VALUES (?, ?, ?, ?, ?)
+        `;
+        await sqlConnection.promise().query(query, [fileName, channelId, categoryId, userId, fileLink]);
         res.status(200).json({ message: "Document uploaded successfully" });
     } catch (err) {
-        res.status(500).json({ err: err });
+        res.status(500).json({ error: "Failed to upload document", details: err });
     }
 }
 

@@ -341,6 +341,7 @@
 	create table channel_doccuments
 	(
 		id INT PRIMARY KEY auto_increment,
+        file_name VARCHAR (100),
 		channel_id INT NOT NULL,
         catagory_id INT NOT NULL,
 		user_id INT NOT NULL,
