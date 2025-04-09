@@ -163,7 +163,7 @@ const Friends = () => {
             {/* Sidebar */}
             <div className="w-1/4 p-4 bg-white shadow-xl rounded-r-3xl overflow-y-auto">
                 <h3 className="text-xl font-bold text-blue-700 mb-4">👥 Friends</h3>
-                <ul className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
+                <ul className="space-y-2 max-h-[300px] overflow-y-auto pr-2 flex flex-col">
                     {friends.map((friend) => (
                         <li
                             key={friend.id}
