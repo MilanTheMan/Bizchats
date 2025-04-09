@@ -53,7 +53,7 @@ function Homepage() {
             animate="visible"
             custom={3}
           >
-            Get Started for Free
+            Get Started Now
           </motion.a>
         </div>
       </section>
