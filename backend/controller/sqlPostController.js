@@ -201,10 +201,10 @@ async function removeMember(req, res) {
 
 async function createChat(req, res) {
     try {
-        const { sender_id, receiver_id, content } = req.body;
-        const query = "INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)";
+        const { sender_id, receiver_id, content, file_url } = req.body;
+        const query = "INSERT INTO messages (sender_id, receiver_id, content, file_url) VALUES (?, ?, ?, ?)";
 
-        sqlConnection.query(query, [sender_id, receiver_id, content], (err, result, fields) => {
+        sqlConnection.query(query, [sender_id, receiver_id, content, file_url], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: err });
