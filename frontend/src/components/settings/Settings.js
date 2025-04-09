@@ -72,8 +72,8 @@ const Settings = () => {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-[85vh] bg-gray-900 text-white p-6 overflow-y-auto">
-            <h1 className="text-3xl font-bold mb-6">Settings</h1>
+        <div className="flex flex-col items-center min-h-[85vh] text-white p-6 overflow-y-auto">
+            <h1 className="text-3xl font-bold mb-6 text-black">Settings</h1>
 
             <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-800 rounded-lg shadow-lg p-6">
