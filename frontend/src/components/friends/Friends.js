@@ -19,7 +19,7 @@ const Friends = () => {
     useEffect(() => {
         if (user) {
             sqlService.getFriends(user.id).then((data) => {
-                console.log("Fetched Friends:", data.data); // ✅ Log here
+                console.log("Fetched Friends:", data.data);
                 setFriends(data.data);
             });
         }
@@ -171,18 +171,30 @@ const Friends = () => {
                     {friends.map((friend) => (
                         <li
                             key={friend.id}
-                            className={`p-3 rounded-lg cursor-pointer flex items-center gap-3 transition-all duration-300 ${selectedFriend?.id === friend.id
+                            className={`p-3 rounded-lg cursor-pointer flex items-center justify-between gap-3 transition-all duration-300 ${selectedFriend?.id === friend.id
                                 ? "bg-blue-600 text-white scale-105 shadow-md"
                                 : "hover:bg-blue-100"
                                 }`}
                             onClick={() => handleFriendClick(friend)}
                         >
-                            <img
-                                src={friend.profile_picture || placeholderImage}
-                                alt={friend.name}
-                                className="w-10 h-10 rounded-full border border-blue-300"
-                            />
-                            <span className="font-medium">{friend.name}</span>
+                            <div className="flex items-center gap-3">
+                                <img
+                                    src={friend.profile_picture || placeholderImage}
+                                    alt={friend.name}
+                                    className="w-10 h-10 rounded-full border border-blue-300"
+                                />
+                                <span className="font-medium">{friend.name}</span>
+                            </div>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleUnfriend(friend.id);
+                                }}
+                                className="text-red-500 hover:text-red-700 transition"
+                                title="Remove Friend"
+                            >
+                                <FaTrashAlt />
+                            </button>
                         </li>
                     ))}
                 </ul>

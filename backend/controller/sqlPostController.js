@@ -286,18 +286,18 @@ async function getFriends(req, res) {
 async function deleteFriend(req, res) {
     try {
         const { user_id, friend_id } = req.body;
-        const query = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
-
-        sqlConnection.query(query, [user_id, friend_id], (err, result, fields) => {
+        const query = "DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (friend_id = ? AND user_id = ?)";
+        
+        sqlConnection.query(query, [user_id, friend_id, friend_id, user_id], (err, result) => {
             if (err) {
-                console.log(err);
-                res.status(500).json({ error: err });
-            } else {
-                res.status(200).json({ message: "Friend deleted successfully" });
+                console.error("Error deleting friend:", err);
+                return res.status(500).json({ error: "Failed to remove friend" });
             }
+            res.status(200).json({ message: "Friend removed successfully" });
         });
     } catch (err) {
-        res.status(500).json({ err: err });
+        console.error("Unexpected error:", err);
+        res.status(500).json({ error: "An unexpected error occurred" });
     }
 }
 
