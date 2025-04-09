@@ -222,7 +222,7 @@ async function getFriends(req, res) {
     try {
         const { user_id } = req.body;
         const query = `
-            SELECT users.id, users.name, users.email
+            SELECT users.id, users.name, users.email, users.profile_picture
             FROM friends
             INNER JOIN users ON friends.friend_id = users.id
             WHERE friends.user_id = ?`;

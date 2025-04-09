@@ -18,9 +18,13 @@ const Friends = () => {
 
     useEffect(() => {
         if (user) {
-            sqlService.getFriends(user.id).then((data) => setFriends(data.data));
+            sqlService.getFriends(user.id).then((data) => {
+                console.log("Fetched Friends:", data.data); // ✅ Log here
+                setFriends(data.data);
+            });
         }
     }, [user]);
+    
 
     useEffect(() => {
         if (bottomRef.current) {
