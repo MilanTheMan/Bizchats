@@ -10,7 +10,7 @@ const ChannelSettings = () => {
     const [members, setMembers] = useState([]);
     const [channelName, setChannelName] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     useEffect(() => {
         sqlService.getChannelById(channelId)
@@ -22,14 +22,35 @@ const ChannelSettings = () => {
                 console.log(err);
             });
 
-        sqlService.getChannelMembers(channelId)
-            .then(data => {
-                setMembers(data.data);
-            })
-            .catch(err => {
-                console.log(err);
+        fetchMembers();
+
+        // Ensure user.channels is fetched
+        if (user?.id && (!user.channels || user.channels.length === 0)) {
+            sqlService.getUserChannels(user.id).then((data) => {
+                console.log("Fetched user channels from server:", data.data);
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    channels: data.data,
+                }));
             });
-    }, [channelId]);
+        }
+    }, [channelId, user?.id, setUser]);
+
+    useEffect(() => {
+        if (user?.channels) {
+            console.log("user.channels loaded:", user.channels);
+        }
+    }, [user?.channels]);
+
+    const fetchMembers = async () => {
+        try {
+            const data = await sqlService.getChannelMembers(channelId);
+            console.log("Fetched members:", data.data);
+            setMembers(data.data);
+        } catch (err) {
+            console.error("Failed to fetch members:", err);
+        }
+    };
 
     const handleUpdateChannelName = () => {
         sqlService.updateChannelName({ channelId, name: channelName })
@@ -54,7 +75,7 @@ const ChannelSettings = () => {
     const handleUpdateProfilePicture = () => {
         sqlService.updateChannelPicture({ channelId, profile_picture: profilePicture })
             .then((data) => {
-                setProfilePicture(data.profilePictureUrl); // Update the profile picture with the S3 URL
+                setProfilePicture(data.profilePictureUrl);
                 alert("Profile picture updated successfully!");
             })
             .catch(err => {
@@ -63,27 +84,45 @@ const ChannelSettings = () => {
             });
     };
 
-    const handleMakeAdmin = (userId) => {
-        sqlService.updateUserRole({ userId, channelId, roleId: 2 }) // 2 for 'administrator'
-            .then(() => {
-                setMembers(members.map(member => member.id === userId ? { ...member, role: 2 } : member));
-            })
-            .catch(err => {
-                console.log(err);
-                alert("Failed to update user role.");
-            });
+    const handlePromote = async (memberId, currentRole) => {
+        try {
+            const newRoleId = currentRole === 3 ? 2 : 1;
+            await sqlService.updateChannelRole({ channelId, memberId, newRoleId });
+            if (newRoleId === 1) {
+                await sqlService.updateChannelRole({ channelId, memberId: user.id, newRoleId: 2 });
+            }
+            fetchMembers();
+        } catch (err) {
+            console.error("Failed to promote member:", err);
+        }
     };
 
-    const handleRemoveMember = (memberId) => {
-        sqlService.removeMember({ userId: user.id, channelId, memberId })
-            .then(() => {
-                setMembers(members.filter(member => member.id !== memberId));
-            })
-            .catch(err => {
-                console.log(err);
-                alert("Failed to remove member.");
-            });
+    const handleDemote = async (memberId, currentRole) => {
+        try {
+            const newRoleId = currentRole === 1 ? 2 : 3;
+            await sqlService.updateChannelRole({ channelId, memberId, newRoleId });
+            fetchMembers();
+        } catch (err) {
+            console.error("Failed to demote member:", err);
+        }
     };
+
+    const handleRemove = async (memberId) => {
+        try {
+            await sqlService.removeChannelMember({ channelId, memberId });
+            fetchMembers();
+        } catch (err) {
+            console.error("Failed to remove member:", err);
+        }
+    };
+
+    const userRoleId = user?.channels?.find((c) => c.id === parseInt(channelId))?.channelroleid;
+
+    useEffect(() => {
+        console.log("user.channels:", user?.channels);
+        console.log("Parsed channelId:", parseInt(channelId));
+        console.log("Resolved userRoleId:", userRoleId);
+    }, [userRoleId, user?.channels]);
 
     return (
         <div className="channel-settings bg-gray-100 min-h-screen p-8">
@@ -109,7 +148,7 @@ const ChannelSettings = () => {
                         />
                         <button
                             onClick={handleUpdateChannelName}
-                            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                            className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
                         >
                             Update Name
                         </button>
@@ -141,41 +180,46 @@ const ChannelSettings = () => {
                 {/* Members */}
                 <div className="mt-8">
                     <h2 className="text-xl font-semibold mb-4">Members</h2>
-                    <ul className="space-y-4">
-                        {members.map(member => (
-                            <li key={member.id} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow">
-                                <div>
-                                    <p className="font-medium text-gray-800">{member.name} ({member.email})</p>
-                                    <p className="text-sm text-gray-600">{member.role === 1 ? 'Owner' : member.role === 2 ? 'Administrator' : 'Member'}</p>
-                                </div>
-                                <div className="flex space-x-2">
-                                    {user.role === 1 && member.role !== 1 && (
-                                        <>
+                    <ul className="space-y-4" style={{ marginBottom: "20px" }}>
+                        {members.map(member => {
+                            console.log("Rendering member", member.name, "role:", member.role, "User role:", userRoleId);
+                            return (
+                                <li key={member.id} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow">
+                                    <div>
+                                        <p className="font-medium text-gray-800">{member.name} ({member.email})</p>
+                                        <p className="text-sm text-gray-600">
+                                            {member.role === 1 ? 'Owner' : member.role === 2 ? 'Administrator' : 'Member'}
+                                        </p>
+                                    </div>
+                                    <div className="flex space-x-2">
+                                        {member.role === 2 && (
                                             <button
-                                                onClick={() => handleMakeAdmin(member.id)}
-                                                className="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 transition"
+                                                onClick={() => handleDemote(member.id, member.role)}
+                                                className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
                                             >
-                                                Make Admin
+                                                Demote to Member
                                             </button>
+                                        )}
+                                        {true && member.role === 3 && (
                                             <button
-                                                onClick={() => handleRemoveMember(member.id)}
-                                                className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
+                                                onClick={() => handlePromote(member.id, member.role)}
+                                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                                            >
+                                                Promote to Admin
+                                            </button>
+                                        )}
+                                        {true && member.role === 3 && (
+                                            <button
+                                                onClick={() => handleRemove(member.id)}
+                                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
                                             >
                                                 Remove
                                             </button>
-                                        </>
-                                    )}
-                                    {user.role === 2 && member.role === 3 && (
-                                        <button
-                                            onClick={() => handleRemoveMember(member.id)}
-                                            className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
-                                        >
-                                            Remove
-                                        </button>
-                                    )}
-                                </div>
-                            </li>
-                        ))}
+                                        )}
+                                    </div>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>

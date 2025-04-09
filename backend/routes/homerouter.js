@@ -59,4 +59,7 @@ homeRouter.post("/getChannelEvents", sqlGetController.getChannelEvents);
 homeRouter.post("/createChannelEvent", sqlPostController.createChannelEvent);
 homeRouter.post("/deleteChannelEvent", sqlDeleteController.deleteChannelEvent);
 
+homeRouter.post("/updateChannelRole", sqlUpdateController.updateChannelRole);
+homeRouter.post("/removeChannelMember", sqlDeleteController.removeChannelMember);
+
 module.exports = homeRouter;

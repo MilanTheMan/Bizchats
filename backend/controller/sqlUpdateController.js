@@ -81,9 +81,21 @@ async function updateChannelPicture(req, res) {
     }
 }
 
+async function updateChannelRole(req, res) {
+    try {
+        const { channelId, memberId, newRoleId } = req.body;
+        const query = "UPDATE userstochannels SET channelroleid = ? WHERE channelid = ? AND userid = ?";
+        await sqlConnection.promise().query(query, [newRoleId, channelId, memberId]);
+        res.status(200).json({ message: "Role updated successfully" });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     updateAnnouncement,
     updateAssignment,
     updateChannelName,
-    updateChannelPicture
+    updateChannelPicture,
+    updateChannelRole
 };

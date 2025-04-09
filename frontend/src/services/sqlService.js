@@ -946,6 +946,44 @@ function deleteChannelEvent(data = {}) {
     });
 }
 
+function updateChannelRole(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/updateChannelRole`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+function removeChannelMember(data = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            axios
+                .post(`${serverConstants.baseURL}/removeChannelMember`, data)
+                .then((response) => {
+                    let ret = response.data;
+                    resolve(ret);
+                })
+                .catch((err) => {
+                    serverResponseErrActions(err);
+                    reject(err);
+                });
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 const sqlService = {
     getAllUsers,
     login,
@@ -994,7 +1032,9 @@ const sqlService = {
     deleteChannelDocument,
     getChannelEvents,
     createChannelEvent,
-    deleteChannelEvent
+    deleteChannelEvent,
+    updateChannelRole,
+    removeChannelMember,
 };
 
 export default sqlService;

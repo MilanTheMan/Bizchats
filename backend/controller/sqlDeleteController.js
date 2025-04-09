@@ -58,9 +58,21 @@ async function deleteChannelEvent(req, res) {
     }
 }
 
+async function removeChannelMember(req, res) {
+    try {
+        const { channelId, memberId } = req.body;
+        const query = "DELETE FROM userstochannels WHERE channelid = ? AND userid = ?";
+        await sqlConnection.promise().query(query, [channelId, memberId]);
+        res.status(200).json({ message: "Member removed successfully" });
+    } catch (err) {
+        res.status(500).json({ err: err });
+    }
+}
+
 module.exports = {
     deleteAnnouncement,
     deleteAssignment,
     deleteChannelDocument,
-    deleteChannelEvent
+    deleteChannelEvent,
+    removeChannelMember
 };
