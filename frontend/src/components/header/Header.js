@@ -26,16 +26,16 @@ const Header = () => {
       ];
 
   return (
-    <header className="w-full flex justify-between items-center px-6 py-3 bg-gradient-to-b from-blue-900 to-blue-950 shadow-md">
+    <header className="w-full flex justify-between items-center px-6 py-3 bg-gradient-to-b from-blue-900 to-blue-950 shadow-md h-[60px]">
       <Link to="/">
         <img src={Bizchats_logo} alt="Bizchats Logo" className="h-12 w-auto" />
       </Link>
-      <ul className="flex space-x-4">
+      <ul className="flex space-x-4 items-center content-center">
         {links.map((item) => (
           <li key={item.id}>
             <Link
               to={`/${item.id}`}
-              className="text-white text-lg px-4 py-2 hover:bg-white/10 border border-transparent hover:border-white rounded transition"
+              className="text-white text-lg px-4 py-2 hover:bg-white/10 border border-transparent hover:border-white rounded transition "
             >
               {item.name}
             </Link>
