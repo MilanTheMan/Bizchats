@@ -554,3 +554,14 @@
 	(18, 5, 3),
 	(18, 6, 3),
     (18, 7, 3);
+    
+-- message with spiderman 
+INSERT INTO messages (sender_id, receiver_id, content)
+VALUES 
+(13, 7, 'Yo! Just swung past your apartment. You really need to clean that window.'),
+(7, 13, 'Bro, maybe don’t use my living room as your shortcut.'),
+(13, 7, 'It’s either that or crashing into a billboard again.'),
+(7, 13, 'Was that you who knocked over the hot dog cart on Bloor and Bathurst?'),
+(13, 7, 'Allegedly. I call it "unintentional urban remodeling."'),
+(7, 13, 'You owe me a hot dog.'),
+(13, 7, 'Fine. I’ll web one to your door. No promises it won’t be airborne.');

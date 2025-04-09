@@ -57,12 +57,21 @@ const ChannelPage = () => {
                 >
                     Assignments
                 </NavLink>
+                {userRole === 1 ? (
+                <NavLink
+                    to={`/channel/${channelId}/marks-admin`}
+                    className={({ isActive }) => `tab-button ${isActive ? 'active' : ''}`}
+                >
+                    Marks
+                </NavLink>
+                ) : (
                 <NavLink
                     to={`/channel/${channelId}/marks`}
                     className={({ isActive }) => `tab-button ${isActive ? 'active' : ''}`}
                 >
                     Marks
                 </NavLink>
+                )}
                 <NavLink
                     to={`/channel/${channelId}/messages`}
                     className={({ isActive }) => `tab-button ${isActive ? 'active' : ''}`}

@@ -45,8 +45,8 @@ const ChannelMarks = () => {
                             const mark = marks.find(m => m.assignment_id === assignment.id);
                             return (
                                 <tr key={assignment.id}>
-                                    <td className="py-2 px-4 border-b">{assignment.title}</td>
-                                    <td className="py-2 px-4 border-b">{mark ? mark.mark : 'Not Graded'}</td>
+                                    <td className="py-2 px-4 border-b text-center">{assignment.title}</td>
+                                    <td className="py-2 px-4 border-b text-center">{mark ? mark.mark : 'Not Graded'}</td>
                                 </tr>
                             );
                         })}

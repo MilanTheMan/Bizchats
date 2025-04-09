@@ -98,17 +98,17 @@ const ChannelMarksAdmin = () => {
                             <th className="py-2 px-4 border-b">Student</th>
                             <th className="py-2 px-4 border-b">Average Mark</th>
                             {assignments.map((assignment) => (
-                                <th key={assignment.id} className="py-2 px-4 border-b">{assignment.title}</th>
+                                <th key={assignment.id} className="py-2 px-4 border-b text-center">{assignment.title}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {members.map((member) => (
                             <tr key={member.id}>
-                                <td className="py-2 px-4 border-b">{member.name}</td>
-                                <td className="py-2 px-4 border-b">{getAverageMark(member.id)}</td>
+                                <td className="py-2 px-4 border-b text-center">{member.name}</td>
+                                <td className="py-2 px-4 border-b text-center">{getAverageMark(member.id)}</td>
                                 {assignments.map((assignment) => (
-                                    <td key={assignment.id} className="py-2 px-4 border-b">
+                                    <td key={assignment.id} className="py-2 px-4 border-b text-center">
                                         {isSubmitted(member.id, assignment.id) ? (
                                             editingMark?.userId === member.id && editingMark?.assignmentId === assignment.id ? (
                                                 <input
@@ -117,13 +117,13 @@ const ChannelMarksAdmin = () => {
                                                     max="100"
                                                     defaultValue={getMarkForAssignment(member.id, assignment.id)}
                                                     onBlur={(e) => handleMarkChange(member.id, assignment.id, e.target.value)}
-                                                    className="w-16 p-1 border rounded"
+                                                    className="w-16 p-1 border rounded text-center"
                                                 />
                                             ) : (
-                                                <div className="flex items-center">
-                                                    <span className="mr-2">{getMarkForAssignment(member.id, assignment.id)}</span>
+                                                <div className="flex justify-center items-center gap-2">
+                                                    <span className="mr-2 text-center">{getMarkForAssignment(member.id, assignment.id)}</span>
                                                     <FaPencilAlt
-                                                        className="text-blue-500 cursor-pointer"
+                                                        className="text-blue-500 cursor-pointer text-center"
                                                         onClick={() => handleEditClick(member.id, assignment.id)}
                                                     />
                                                 </div>

@@ -228,10 +228,11 @@ async function uploadFile(base64, fileType, contact_name, id, channelName, assig
 async function uploadMessageFile(base64, fileType, folder) {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!base64 || !fileType || !folder) {
-                throw new Error("One or more required parameters are missing");
-            }
-
+            console.log ("test");
+            // if (!base64 || !fileType || !folder) {
+            //     throw new Error("One or more required parameters are missing");
+            // }
+            
             let file = dataURLtoUint8Array(base64);
             const d = new Date();
             const time = d.toISOString().replace(/[:.-]/g, "_");
@@ -257,7 +258,6 @@ async function uploadMessageFile(base64, fileType, folder) {
                 ContentType: mimeType,
                 ContentDisposition: 'inline'
             };
-
             await s3.upload(params, (err, data) => {
                 if (err) {
                     reject({ "err": `Error uploading data: ${err}` });
